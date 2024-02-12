@@ -1,7 +1,7 @@
 /** 메인 컬러 변수 **/
 :root {
-  --main_text_color: #ef64b8;
-  --main_button_color: #ffafdf;
+  --main_text: #ef64b8;
+  --main_button: #ffafdf;
   --red: #f74479;
   --yellow: #ffd600;
   --black: #292929;
@@ -32,7 +32,7 @@ header {
   top: 0;
 }
 
-nav {
+footer {
   position: fixed;
   bottom: 0;
 }
