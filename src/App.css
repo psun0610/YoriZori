@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+/** 메인 컬러 변수 **/
+:root {
+  --main_text_color: #ef64b8;
+  --main_button_color: #ffafdf;
+  --red: #f74479;
+  --yellow: #ffd600;
+  --black: #292929;
+  --grey80: #6c6c6c;
+  --grey60: #b0b0b0;
+  --grey40: #d9d9d9;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Noto Sans KR", sans-serif;
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body {
+  max-width: 600px;
+  margin: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
+header {
+  position: fixed;
+  top: 0;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav {
+  position: fixed;
+  bottom: 0;
 }
