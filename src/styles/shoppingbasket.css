@@ -1,0 +1,109 @@
+.shopping-basket-container {
+  padding-top: 50px;
+
+  width: 100%;
+  height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* justify-content: flex-end; */
+}
+
+.basket-header {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  
+}
+
+.basket-info {
+  margin-bottom: 30px;
+}
+
+.ingredient-count {
+  margin-right: 20px;
+}
+.item-button{
+  display: flex;
+  flex-direction: column;
+}
+.select-button {
+  background-color: #ffafdf;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.basket-items {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.basket-item {
+  height: 70px;
+  border: 1px solid #ccc;
+  display: flex;
+  margin: 10px;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.item-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  margin: 10px;
+}
+
+.item-name {
+  display: block;
+
+  margin: 5px;
+  text-align: center;
+}
+
+.item-cancel {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.cancel {
+  width: 10px;
+  height: 10px;
+}
+
+.pin{
+  width:12px;
+  height:12px;
+}
+.add-button {
+  background-color: #ffafdf;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-flex;
+  /* align-items: center;
+  position: absolute; 
+  bottom: 0; 
+  left: 50%; 
+  
+  margin-bottom: 100px;
+   */
+}
+
+.add {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+}

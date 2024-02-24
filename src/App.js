@@ -8,6 +8,8 @@ import Mypage from "./pages/Mypage";
 import Recipe from "./pages/Recipe";
 import RecipeList from "./pages/RecipeList";
 import Refrigerator from "./pages/Refrigerator";
+import ShoppingBasket from "./pages/ShoppingBasket";
+import MemberEdit from "./pages/MemberEdit";
 
 const App = () => {
   return (
@@ -21,6 +23,8 @@ const App = () => {
         <Route path="/recipe" element={<Recipe />} />
         <Route path="/recipelist" element={<RecipeList />} />
         <Route path="/refrigerator" element={<Refrigerator />} />
+        <Route path="/shoppingbasket" element={<ShoppingBasket />} />
+        <Route path="/memberedit" element={<MemberEdit />} />
       </Routes>
     </>
   );
