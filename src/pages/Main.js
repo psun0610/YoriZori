@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../../styles/main.module.css";
-import Material from "./Material";
-import Recipe from "./Recipe";
+import styles from "../styles/main.module.css";
+import Material from "../components/Material";
+import Recipe from "../components/Recipe";
 
 const Main = () => {
   return (
