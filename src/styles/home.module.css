@@ -1,0 +1,39 @@
+/** Button Component **/
+.button {
+  width: 80%;
+  margin: 8px auto;
+  padding: 8px;
+  font-size: 14px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.pink_back {
+  background-color: var(--main_button);
+  color: white;
+}
+
+.white_back {
+  background-color: white;
+  border: 3px solid var(--main_button);
+  color: var(--black);
+}
+
+/** home **/
+.home_img_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 150px auto 55px;
+}
+.home_img_container img {
+  width: 190px;
+}
+
+.home_first {
+  font-weight: 900;
+  color: var(--grey80);
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
