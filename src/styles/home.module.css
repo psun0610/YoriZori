@@ -2,7 +2,7 @@
 .button {
   width: 80%;
   margin: 8px auto;
-  padding: 8px;
+  padding: 10px;
   font-size: 14px;
   border-radius: 10px;
   text-align: center;
@@ -24,21 +24,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 150px auto 55px;
+  margin: 200px auto 55px;
 }
 .home_img_container img {
   width: 190px;
 }
 
 .home_first {
-  font-weight: 900;
+  font-weight: 700;
   color: var(--grey80);
   text-align: center;
-  margin-bottom: 24px;
+  margin: 80px auto 36px;
   font-size: 18px;
 }
 
-/** login page **/
+/** LoginJoinInput.js 컴포넌트**/
 .input_container {
   position: relative;
   margin: 20px auto;
@@ -51,6 +51,7 @@
   border: none;
   border-bottom: 2px solid var(--grey60);
   background-color: transparent;
+  font-size: 14px;
   position: relative;
   transition:
     border-bottom 0.3s ease,
@@ -86,13 +87,24 @@
   top: -2px;
   font-size: 0.8em;
 }
-* {
-  box-sizing: border-box;
-}
 
-.signup_button {
+/** join.js **/
+.join_h1 {
+  text-align: center;
+  margin: 180px auto 60px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--grey80);
+}
+.join_button {
   display: block;
   text-align: center;
   margin-top: 15px;
   font-size: 14px;
+}
+
+.inconsistency {
+  color: var(--red);
+  width: 80%;
+  margin: auto;
 }
