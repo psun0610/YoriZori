@@ -1,0 +1,110 @@
+/** Button Component **/
+.button {
+  width: 80%;
+  margin: 8px auto;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.pink_back {
+  background-color: var(--main_button);
+  color: white;
+}
+
+.white_back {
+  background-color: white;
+  border: 3px solid var(--main_button);
+  color: var(--black);
+}
+
+/** home **/
+.home_img_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 200px auto 55px;
+}
+.home_img_container img {
+  width: 190px;
+}
+
+.home_first {
+  font-weight: 700;
+  color: var(--grey80);
+  text-align: center;
+  margin: 80px auto 36px;
+  font-size: 18px;
+}
+
+/** LoginJoinInput.js 컴포넌트**/
+.input_container {
+  position: relative;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.input {
+  width: 100%;
+  padding: 20px 5px 5px;
+  border: none;
+  border-bottom: 2px solid var(--grey60);
+  background-color: transparent;
+  font-size: 14px;
+  position: relative;
+  transition:
+    border-bottom 0.3s ease,
+    padding-top 0.3s ease,
+    top 0.3s ease; /* top 속성에 대한 전환 효과 추가 */
+}
+
+.input:focus {
+  outline: none;
+  border-bottom-color: var(--black);
+  padding-top: 25px;
+}
+
+.input_ph {
+  position: absolute;
+  top: 13px;
+  left: 10px;
+  margin: 0;
+  padding: 0;
+  color: var(--grey60);
+  pointer-events: none;
+  transition:
+    top 0.3s ease,
+    font-size 0.3s ease;
+  font-size: 16px;
+}
+
+.input:focus + .input_ph {
+  top: -2px;
+  font-size: 0.8em;
+}
+.input_ph.active {
+  top: -2px;
+  font-size: 0.8em;
+}
+
+/** join.js **/
+.join_h1 {
+  text-align: center;
+  margin: 180px auto 60px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--grey80);
+}
+.join_button {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.inconsistency {
+  color: var(--red);
+  width: 80%;
+  margin: auto;
+}
