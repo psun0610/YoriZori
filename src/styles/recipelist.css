@@ -4,14 +4,13 @@
     height:200px;
 }
 .list{
-    padding:35px;
+    padding:25px;
 }
 .uplist{
     display:flex;
     justify-content: space-evenly;
 }
 .downlist{
-    padding-top: 15px;
     display:flex;
     justify-content: space-evenly;
 }
@@ -24,7 +23,7 @@
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     position: absolute;
-    top: 180px;
+    top: 190px;
     left: 50%;
     transform: translate(-50%, -50%);
     
@@ -46,6 +45,6 @@
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 2rem 1.25rem;
     grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-    padding: 50px;
+    padding: 60px;
     margin-bottom: 70px;
 }
