@@ -1,5 +1,6 @@
 import React from "react";
 import "../styles/shoppingbasket.css";
+import Footer from "../components/footer";
 
 const ShoppingBasket = () => {
   return (
@@ -20,12 +21,12 @@ const ShoppingBasket = () => {
             />
             <span className="item-name">Item 1</span>
             <div className="item-button">
-            <button className="item-cancel">
-              <img className="pin" src="/images/pin1.png" />
-            </button>
-            <button className="item-cancel">
-              <img className="cancel" src="/images/cancel.png" />
-            </button>
+              <button className="item-cancel">
+                <img className="pin" src="/images/pin1.png" />
+              </button>
+              <button className="item-cancel">
+                <img className="cancel" src="/images/cancel.png" />
+              </button>
             </div>
           </div>
           <div className="basket-item">
@@ -107,7 +108,8 @@ const ShoppingBasket = () => {
             <button className="item-cancel">
               <img className="cancel" src="/images/cancel.png" />
             </button>
-          </div> <div className="basket-item">
+          </div>{" "}
+          <div className="basket-item">
             <img
               src="https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg"
               className="item-image"
@@ -118,9 +120,12 @@ const ShoppingBasket = () => {
             </button>
           </div>
         </div>
-        
-        <button className="add-button">재료추가<img className="add"src="/images/add.png"></img></button>
+
+        <button className="add-button">
+          재료추가<img className="add" src="/images/add.png"></img>
+        </button>
       </div>
+      <Footer />
     </div>
   );
 };

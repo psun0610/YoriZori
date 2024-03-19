@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const refrigerator = () => {
-  return (
-    <div>refrigerator</div>
-  )
-}
+  return <div>refrigerator</div>;
+};
 
-export default refrigerator
+export default refrigerator;
