@@ -22,7 +22,7 @@
 body {
   max-width: 600px;
   margin: auto;
-
+  box-sizing: border-box;
 }
 
 a {
