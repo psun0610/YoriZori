@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/recipelist.css";
-import Footer from "../components/footer";
+import Footer from "../components/Navigation";
 import Recipe from "../components/Recipe";
 
 const RecipeList = () => {
@@ -34,12 +34,12 @@ const RecipeList = () => {
         </div>
       </div>
       <div className="recipe-box">
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
+        <Recipe />
+        <Recipe />
+        <Recipe />
+        <Recipe />
+        <Recipe />
+        <Recipe />
       </div>
       <Footer />
     </div>
