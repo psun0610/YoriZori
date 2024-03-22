@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/shoppingbasket.css";
-import Footer from "../components/footer";
+import Navigation from "../components/Navigation";
 
 const ShoppingBasket = () => {
   return (
@@ -125,7 +125,7 @@ const ShoppingBasket = () => {
           재료추가<img className="add" src="/images/add.png"></img>
         </button>
       </div>
-      <Footer />
+      <Navigation />
     </div>
   );
 };
