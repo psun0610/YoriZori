@@ -11,6 +11,7 @@ import Refrigerator from "./pages/Refrigerator";
 import ShoppingBasket from "./pages/ShoppingBasket";
 import MemberEdit from "./pages/MemberEdit";
 import Avoidance from "./pages/Avoidance";
+import JoinComplete from "./pages/JoinComplete";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
       <Route path="/shoppingbasket" element={<ShoppingBasket />} />
       <Route path="/memberedit" element={<MemberEdit />} />
       <Route path="/avoidance" element={<Avoidance />} />
+      <Route path="/join_complete" element={<JoinComplete />} />
     </Routes>
   );
 };
