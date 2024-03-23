@@ -1,6 +1,6 @@
 import React from "react";
-import "../styles/shoppingbasket.css";
-import Footer from "../components/footer";
+import styles from "../styles/shoppingbasket.module.css";
+import Navigation from "../components/Navigation";
 
 const ShoppingBasket = () => {
   return (

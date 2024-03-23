@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "../styles/recipelist.css";
-import Footer from "../components/footer";
+import styles from "../styles/recipelist.module.css";
+import Navigation from "../components/Navigation";
 import Recipe from "../components/Recipe";
 
 const RecipeList = () => {
@@ -33,7 +33,7 @@ const RecipeList = () => {
           <img className={styles.search_img} src="../images/search.png" alt="search"></img>
         </div>
       </div>
-      <div className="recipe-box">
+      <div className={styles.recipe_box}>
       <Recipe/>
       <Recipe/>
       <Recipe/>
@@ -41,7 +41,7 @@ const RecipeList = () => {
       <Recipe/>
       <Recipe/>
       </div>
-      <Footer />
+      <Navigation />
     </div>
   );
 };
