@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../styles/home.module.css";
+import styles from "../styles/LoginJoin.module.css";
 
 function Button(props) {
   let buttonStyle = styles.button;
@@ -18,7 +18,7 @@ function Button(props) {
 
 Button.defaultProps = {
   color: "pink",
-  width: "auto",
+  width: "80%",
 };
 
 Button.propTypes = {
