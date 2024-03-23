@@ -1,12 +1,13 @@
 .title {
   text-align: center;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   color: var(--grey80);
-  margin: 9vh 0 5vh;
+  margin: 8vh 0 4.5vh;
 }
 
 .title span {
   font-weight: 700;
   color: var(--main_text);
+  font-size: 22px;
 }
