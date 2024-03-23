@@ -1,6 +1,6 @@
 // LoginSignupInput.js
 import React from "react";
-import styles from "../styles/home.module.css";
+import styles from "../styles/LoginJoin.module.css";
 import PropTypes from "prop-types";
 
 function LoginSignupInput(props) {
