@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../styles/main.module.css";
 import Material from "../components/Material";
 import Recipe from "../components/Recipe";
-import Footer from "../components/footer";
+import Navigation from "../components/Navigation";
 
 const Main = () => {
   return (
@@ -102,7 +102,7 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Navigation />
     </div>
   );
 };

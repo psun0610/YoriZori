@@ -1,5 +1,6 @@
 /** Button Component **/
 .button {
+  box-sizing: border-box;
   width: 80%;
   margin: 8px auto;
   padding: 10px;
@@ -24,10 +25,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 200px auto 55px;
+  margin: 160px auto 30px;
 }
 .home_img_container img {
-  width: 190px;
+  width: 170px;
 }
 
 .home_first {
@@ -46,6 +47,7 @@
 }
 
 .input {
+  box-sizing: border-box;
   width: 100%;
   padding: 20px 5px 5px;
   border: none;
@@ -107,4 +109,33 @@
   color: var(--red);
   width: 80%;
   margin: auto;
+}
+
+/* JoinComplete.js */
+.join_complete_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 34vh;
+}
+
+.join_complete_title svg {
+  margin-right: 5px;
+}
+.join_complete_title h1,
+span {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--grey80);
+}
+
+.join_complete_title span {
+  color: var(--main_text);
+}
+
+.join_complete_sub {
+  text-align: center;
+  color: var(--grey80);
+  font-size: 15px;
+  margin: 7px 0 6vh;
 }

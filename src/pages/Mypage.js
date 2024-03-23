@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/mypage.module.css";
 import { useNavigate } from "react-router";
-import Footer from "../components/footer";
+import Navigation from "../components/Navigation";
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Mypage = () => {
 
         <span className={styles.logout}>로그아웃</span>
       </div>
-      <Footer />
+      <Navigation />
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/recipelist.module.css"; // 모듈화된 CSS 파일 import
+import styles from "../styles/recipelist.css";
 import Footer from "../components/footer";
 import Recipe from "../components/Recipe";
 
@@ -33,13 +33,13 @@ const RecipeList = () => {
           <img className={styles.search_img} src="../images/search.png" alt="search"></img>
         </div>
       </div>
-      <div className={styles.recipe_box}>
-        <Recipe/>
-        <Recipe/>
-        <Recipe/>
-        <Recipe/>
-        <Recipe/>
-        <Recipe/>
+      <div className="recipe-box">
+      <Recipe/>
+      <Recipe/>
+      <Recipe/>
+      <Recipe/>
+      <Recipe/>
+      <Recipe/>
       </div>
       <Footer />
     </div>

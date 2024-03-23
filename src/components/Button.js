@@ -1,23 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../styles/home.module.css";
+import styles from "../styles/LoginJoin.module.css";
 
-function Button({ color, name }) {
-  if (color == "pink") {
-    return <div className={`${styles.button} ${styles.pink_back}`}>{name}</div>;
-  } else if (color == "white") {
-    return (
-      <div className={`${styles.button} ${styles.white_back}`}>{name}</div>
-    );
+function Button(props) {
+  let buttonStyle = styles.button;
+  if (props.color === "pink") {
+    buttonStyle += ` ${styles.pink_back}`;
+  } else if (props.color === "white") {
+    buttonStyle += ` ${styles.white_back}`;
   }
+  return (
+    <div className={buttonStyle} style={{ width: props.width }}>
+      {props.name}
+    </div>
+  );
 }
 
 Button.defaultProps = {
   color: "pink",
+  width: "80%",
 };
-// Button 컴포넌트에 대한 PropTypes 정의
+
 Button.propTypes = {
   color: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
+
 export default Button;

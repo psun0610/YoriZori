@@ -1,8 +1,7 @@
-
 /** 일치하는 아이디가 있는지, 비밀번호가 맞는지 알려주는 텍스트 작성할 것 */
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../styles/home.module.css";
+import styles from "../styles/LoginJoin.module.css";
 import LoginSignupInput from "../components/LoginJoinInput";
 import Button from "../components/Button";
 
@@ -39,6 +38,5 @@ const Login = () => {
     </div>
   );
 };
-
 
 export default Login;
