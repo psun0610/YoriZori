@@ -1,16 +1,16 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import styles from "../styles/navigation.module.css";
 
+// 네비게이션 사용시, 네비게이션 앞의 모든 내용을 #wrapper로 묶어야 함! (특히 컨텐츠가 적은 페이지)
 const Navigation = () => {
   const currentURL = useLocation().pathname;
 
   return (
-    <nav className={styles.nav}>
+    <nav className="nav">
       <Link to="/refrigerator">
-        <div className={styles.nav_content}>
+        <div className="nav_content">
           <svg
-            width="30"
+            width="25"
             height="33"
             viewBox="0 0 30 33"
             fill="none"
@@ -43,9 +43,9 @@ const Navigation = () => {
         </div>
       </Link>
       <Link to="/recipelist">
-        <div className={styles.nav_content}>
+        <div className="nav_content">
           <svg
-            width="34"
+            width="26"
             height="34"
             viewBox="0 0 32 31"
             fill="none"
@@ -68,9 +68,9 @@ const Navigation = () => {
         </div>
       </Link>
       <Link to="/main">
-        <div className={styles.nav_content}>
+        <div className="nav_content">
           <svg
-            width="32"
+            width="26"
             height="32"
             viewBox="0 0 30 30"
             fill="none"
@@ -88,9 +88,9 @@ const Navigation = () => {
       </Link>
 
       <Link to="/shoppingbasket">
-        <div className={styles.nav_content}>
+        <div className="nav_content">
           <svg
-            width="35"
+            width="28"
             height="34"
             viewBox="0 0 35 34"
             fill="none"
@@ -113,9 +113,9 @@ const Navigation = () => {
         </div>
       </Link>
       <Link to="/mypage">
-        <div className={styles.nav_content}>
+        <div className="nav_content">
           <svg
-            width="30"
+            width="26"
             height="30"
             viewBox="0 0 30 30"
             fill="none"

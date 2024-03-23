@@ -49,6 +49,7 @@
 }
 
 .close_to_expiration h1 span {
+  font-size: 19px;
   color: var(--main_text);
   font-weight: 700;
 }
@@ -196,6 +197,7 @@
 .lack_descript span {
   color: var(--main_text);
   font-weight: 700;
+  font-size: 12px;
 }
 
 .lack_descript {
