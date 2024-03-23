@@ -1,10 +1,10 @@
-.mypage-header{
+.mypage_header{
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
     
 }
-.mypage-top{
+.mypage_top{
     padding-top: 50px;
 
     width: 100%;
@@ -26,11 +26,11 @@
     margin:30px;
     cursor: pointer;
 }
-.bookmark-text{
+.bookmark_text{
     text-align: center;
     margin-bottom: 10px;
 }
-.bookmark-image{
+.bookmark_image{
     width:25px;
     height:25px;
     
@@ -46,24 +46,24 @@
     padding:20px;
     border-radius: 15px;
 }
-.hate-top{
+.hate_top{
     margin-bottom: 10px;
 }
-.hate-text{
+.hate_text{
     font-weight: bold;
     
 }
-.hate-button {
+.hate_button {
     border:none;
     background-color: #fff;
     margin-left:5px;
 }
-.hate-button-img{
+.hate_button_img{
     width: 12px;
     height: 12px;
 }
 
-.hate-food{
+.hate_food{
     font-size:12px;
 }
 
@@ -79,4 +79,3 @@
     cursor: pointer;
     margin-top:20px;
 }
-    

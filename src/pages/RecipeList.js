@@ -1,14 +1,14 @@
 import React from "react";
-import "../styles/recipelist.css";
+import styles from "../styles/recipelist.module.css"; // 모듈화된 CSS 파일 import
 import Footer from "../components/footer";
 import Recipe from "../components/Recipe";
 
 const RecipeList = () => {
   return (
     <div>
-      <div className="up">
-        <div className="list">
-          <div className="uplist">
+      <div className={styles.up}>
+        <div className={styles.list}>
+          <div className={styles.uplist}>
             <p>전체</p>
             <p>메인요리</p>
             <p>밑반찬</p>
@@ -16,7 +16,7 @@ const RecipeList = () => {
             <p>국/찌개</p>
             <p>간식</p>
           </div>
-          <div className="downlist">
+          <div className={styles.downlist}>
             <p>샐러드</p>
             <p>해장</p>
             <p>밥/죽/떡</p>
@@ -24,22 +24,22 @@ const RecipeList = () => {
             <p>디저트</p>
           </div>
         </div>
-        <div className="search">
+        <div className={styles.search}>
           <input
-            className="search-input"
+            className={styles.search_input}
             type="text"
             placeholder="재료 검색하기"
           ></input>
-          <img className="search-img" src="../images/search.png"></img>
+          <img className={styles.search_img} src="../images/search.png" alt="search"></img>
         </div>
       </div>
-      <div className="recipe-box">
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
-      <Recipe/>
+      <div className={styles.recipe_box}>
+        <Recipe/>
+        <Recipe/>
+        <Recipe/>
+        <Recipe/>
+        <Recipe/>
+        <Recipe/>
       </div>
       <Footer />
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/mypage.css";
+import styles from "../styles/mypage.module.css";
 import { useNavigate } from "react-router";
 import Footer from "../components/footer";
 
@@ -7,23 +7,23 @@ const Mypage = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <header className="mypage-header">Mypage</header>
-      <div className="mypage-top">
-        <div className="bookmark">
-          <span className="bookmark-text">레시피북마크</span>
-          <img className="bookmark-image" src="./images/bookmark.png"></img>
+      <header className={styles.mypage_header}>Mypage</header>
+      <div className={styles.mypage_top}>
+        <div className={styles.bookmark}>
+          <span className={styles.bookmark_text}>레시피북마크</span>
+          <img className={styles.bookmark_image} src="./images/bookmark.png" alt="bookmark"></img>
         </div>
-        <div className="hate">
-          <div className="hate-top">
-            <span className="hate-text">나의 기피 음식</span>
-            <button className="hate-button">
-              <img className="hate-button-img" src="/images/pencil.png"></img>
+        <div className={styles.hate}>
+          <div className={styles.hate_top}>
+            <span className={styles.hate_text}>나의 기피 음식</span>
+            <button className={styles.hate_button}>
+              <img className={styles.hate_button_img} src="/images/pencil.png" alt="pencil"></img>
             </button>
           </div>
-          <span className="hate-food">기피하는 음식들</span>
+          <span className={styles.hate_food}>기피하는 음식들</span>
         </div>
       </div>
-      <div className="memberedit">
+      <div className={styles.memberedit}>
         <span
           onClick={() => {
             navigate("/memberedit");
@@ -32,7 +32,7 @@ const Mypage = () => {
           회원정보수정
         </span>
 
-        <span className="logout">로그아웃</span>
+        <span className={styles.logout}>로그아웃</span>
       </div>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-.shopping-basket-container {
+.shopping_basket_container {
   padding-top: 50px;
 
   width: 100%;
@@ -10,25 +10,24 @@
   /* justify-content: flex-end; */
 }
 
-.basket-header {
+.basket_header {
   font-size: 20px;
   font-weight: bold;
   margin-bottom: 10px;
-  
 }
 
-.basket-info {
+.basket_info {
   margin-bottom: 30px;
 }
 
-.ingredient-count {
+.ingredient_count {
   margin-right: 20px;
 }
-.item-button{
+.item_button{
   display: flex;
   flex-direction: column;
 }
-.select-button {
+.select_button {
   background-color: #ffafdf;
   color: #fff;
   border: none;
@@ -37,14 +36,14 @@
   cursor: pointer;
 }
 
-.basket-items {
+.basket_items {
   display: flex;
   flex-wrap: wrap;
   margin-right: 11px; 
   margin-bottom: 10px;
 }
 
-.basket-item {
+.basket_item {
   height: 70px;
   border: 1px solid #ccc;
   display: flex;
@@ -53,21 +52,21 @@
   border-radius: 10px;
 }
 
-.item-image {
+.item_image {
   width: 50px;
   height: 50px;
   object-fit: cover;
   margin: 10px;
 }
 
-.item-name {
+.item_name {
   display: block;
 
   margin: 5px;
   text-align: center;
 }
 
-.item-cancel {
+.item_cancel {
   width: 20px;
   height: 20px;
   background-color: #fff;
@@ -85,7 +84,7 @@
   width:12px;
   height:12px;
 }
-.add-button {
+.add_button {
   background-color: #ffafdf;
   color: #fff;
   border: none;
