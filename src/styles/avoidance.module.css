@@ -1,0 +1,12 @@
+.title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--grey80);
+  margin: 9vh 0 5vh;
+}
+
+.title span {
+  font-weight: 700;
+  color: var(--main_text);
+}
