@@ -38,7 +38,7 @@
   background: transparent;
 }
 .category_button_list {
-  margin: 15px auto;
+  padding: 15px 0;
   text-align: center;
 }
 
@@ -50,7 +50,6 @@
   border-radius: 12px;
   font-weight: 500;
   font-size: 15px;
-  color: var(--black);
   background-color: transparent;
   cursor: pointer;
 }

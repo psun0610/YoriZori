@@ -49,7 +49,7 @@
 }
 
 .close_to_expiration h1 span {
-  font-size: 19px;
+  font-size: 18px;
   color: var(--main_text);
   font-weight: 700;
 }
@@ -58,8 +58,7 @@
 
 .material_box {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 12px 24px;
+  grid-gap: 22px 24px;
   grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
 }
 
@@ -68,7 +67,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px;
+  width: 56px;
 }
 
 .material_img_box {
@@ -146,12 +145,12 @@
 .recipe_main_title {
   display: flex;
   align-items: center;
-  margin: 14px 0 4px;
+  margin: 24px 0 9px;
 }
 
 .recipe_main_title h1 {
   font-size: 18px;
-  margin-right: 8px;
+  margin-right: 12px;
   font-weight: 700;
 }
 

@@ -11,7 +11,7 @@ function SearchBox(props) {
     <div className={styles.search_box}>
       <SearchWindow placeholder="검색하기" />
       <Category items={props.items} />
-      <MaterialList />
+      <MaterialList height="35vh" />
     </div>
   );
 }
