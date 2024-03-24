@@ -1,0 +1,37 @@
+.material_box {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  grid-gap: 35px 50px;
+  place-items: center;
+  padding: 5vh 12px 60px;
+}
+
+.wrapper {
+  margin: 4vh 0;
+  position: relative;
+}
+
+.category {
+  margin: 0 1px;
+}
+
+.material_add_button {
+  position: fixed;
+  right: calc((100% - 600px) / 2 + 30px);
+  bottom: 95px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+
+  @media (max-width: 600px) {
+    right: 30px; /* 화면이 작아질 때 오른쪽에 붙도록 설정 */
+  }
+}
+
+.material_add_button p {
+  font-size: 13px;
+  margin: 0;
+  font-weight: 700;
+}
