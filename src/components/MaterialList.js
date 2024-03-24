@@ -2,6 +2,7 @@ import React from "react";
 import styles from "../styles/SearchBox.module.css";
 import styles2 from "../styles/main.module.css";
 
+// SearchBox에 사용되는 검색용 재료 리스트
 function MaterialList() {
   const materials = [];
   for (let i = 0; i < 100; i++) {

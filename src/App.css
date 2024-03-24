@@ -17,13 +17,15 @@
   font-weight: 400;
   font-style: normal;
   color: var(--black);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body {
   max-width: 600px;
   margin: auto;
-  box-sizing: border-box;
 }
 
 a {
@@ -37,9 +39,11 @@ header {
 }
 
 #wrapper {
+  box-sizing: border-box;
   height: auto;
-  min-height: calc(100vh - 71px);
+  min-height: calc(100vh - 71.333px);
 }
+
 .nav {
   position: sticky;
   bottom: 0;
