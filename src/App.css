@@ -26,8 +26,12 @@ html,
 body {
   max-width: 600px;
   margin: auto;
+  -ms-overflow-style: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 a {
   color: inherit;
   text-decoration: none;

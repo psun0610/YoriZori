@@ -10,10 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   return (
-    <div>
-      <div className={styles.home_img_container}>
-        <img src="../../images/logo.jpg" alt="logo"></img>
-      </div>
+    <div className={styles.home}>
+      <img src="../../images/logo.jpg" alt="logo" className={styles.logo}></img>
       <LoginSignupInput
         name="아이디"
         value={username}
@@ -27,7 +25,7 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)}
         />
       )}
-      <div style={{ marginTop: "30px" }}>
+      <div className={styles.home_buttons}>
         <Link>
           <Button name="로그인"></Button>
         </Link>
