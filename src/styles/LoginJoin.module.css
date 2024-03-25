@@ -1,7 +1,6 @@
 /** Button Component **/
 .button {
   box-sizing: border-box;
-  width: 80%;
   margin: 8px auto;
   padding: 10px;
   font-size: 14px;
@@ -21,28 +20,33 @@
 }
 
 /** home **/
-.home_img_container {
+.home {
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin: 160px auto 30px;
+  justify-content: center;
 }
-.home_img_container img {
-  width: 170px;
+.logo {
+  max-width: 170px;
 }
 
 .home_first {
   font-weight: 700;
   color: var(--grey80);
   text-align: center;
-  margin: 80px auto 36px;
+  margin: 45px auto 20px;
   font-size: 18px;
+}
+
+.home_buttons {
+  width: 100%;
 }
 
 /** LoginJoinInput.js 컴포넌트**/
 .input_container {
   position: relative;
-  margin: 20px auto;
+  margin: 10px auto;
   width: 80%;
 }
 
@@ -93,7 +97,7 @@
 /** join.js **/
 .join_h1 {
   text-align: center;
-  margin: 180px auto 60px;
+  margin-bottom: 40px;
   font-size: 20px;
   font-weight: 700;
   color: var(--grey80);
@@ -108,7 +112,6 @@
 .inconsistency {
   color: var(--red);
   width: 80%;
-  margin: auto;
 }
 
 /* JoinComplete.js */
