@@ -18,7 +18,7 @@ const Join = () => {
   };
 
   return (
-    <div>
+    <div className={styles.home}>
       <h1 className={styles.join_h1}>회원가입</h1>
       <LoginSignupInput
         name="아이디"
@@ -40,7 +40,7 @@ const Join = () => {
       {passwordMatchError && (
         <p className={styles.inconsistency}>비밀번호가 일치하지 않습니다.</p>
       )}
-      <div style={{ margin: "60px auto", width: "100%" }}>
+      <div style={{ margin: "30px auto", width: "100%" }}>
         <Link>
           <Button name="확인"></Button>
         </Link>
