@@ -3,9 +3,7 @@
 
   width: 100%;
   height: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
   
   /* justify-content: flex-end; */
 }
@@ -35,7 +33,11 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
+.shopping_list{
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+  padding-bottom:20px;
+}
 .basket_items {
   display: flex;
   flex-wrap: wrap;
@@ -75,15 +77,31 @@
   cursor: pointer;
 }
 
+.pinbutton{
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.pin {
+  width: 23px;
+  height: 23px;
+  background-color: #fff;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+
+  
+}
+
+
 .cancel {
   width: 10px;
   height: 10px;
 }
 
-.pin{
-  width:12px;
-  height:12px;
-}
+
 .add_button {
   background-color: #ffafdf;
   color: #fff;
@@ -92,6 +110,7 @@
   border-radius: 10px;
   cursor: pointer;
   display: inline-flex;
+  
   /* align-items: center;
   position: absolute; 
   bottom: 0; 
