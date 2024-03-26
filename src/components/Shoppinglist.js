@@ -3,9 +3,8 @@ import styles from "../styles/shoppingbasket.module.css";
 
 const Shoppinglist = () => {
   return (
-    
-     
-        <div className={styles.basket_item}>
+    <div>
+      {/* <div className={styles.basket_item}>
           <img
             src="https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg"
             className={styles.item_image}
@@ -19,9 +18,8 @@ const Shoppinglist = () => {
               <img className={styles.cancel} src="/images/cancel.png" />
             </button>
           </div>
-        </div>
-      
-    
+        </div> */}
+    </div>
   );
 };
 

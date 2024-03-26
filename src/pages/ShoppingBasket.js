@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import styles from "../styles/shoppingbasket.module.css"; 
+import Navigation from "../components/Navigation";
 
 const ShoppingBasket = () => {
   const [items, setItems] = useState([
     {
       id: 1,
-      name: "Item 1",
+      name: "예쁜 달걀",
       imageUrl: "https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg",
       pinned: false,
     },
     {
       id: 2,
-      name: "Item 2",
+      name: "못생긴 달걀",
       imageUrl: "https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg",
       pinned: false,
     },
     {
       id: 3,
-      name: "Item 3",
+      name: "그냥 달걀",
       imageUrl: "https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg",
       pinned: false,
     },
@@ -86,6 +87,7 @@ const ShoppingBasket = () => {
           </button>
         </div>
       </div>
+      <Navigation/>
     </div>
   );
 };
