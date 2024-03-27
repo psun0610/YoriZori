@@ -126,7 +126,7 @@
   margin-right: 5px;
 }
 .join_complete_title h1,
-span {
+.join_complete_title span {
   font-size: 24px;
   font-weight: 700;
   color: var(--grey80);
