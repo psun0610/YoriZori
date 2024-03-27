@@ -1,9 +1,20 @@
 .search_box {
   max-width: 95%;
   margin: 0 20px;
-  padding: 3vh 2vh 2vh;
+  padding: 2.3vh 1.7vh;
   box-shadow: 0 0 7px var(--grey60);
   border-radius: 10px;
+  position: relative;
+}
+
+.category_material {
+  transition: max-height 0.6s ease-in-out;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.category_material.open {
+  max-height: 1000px; /* 충분히 큰 값으로 설정하여 내용이 모두 보이도록 함 */
 }
 
 .search_window {
@@ -18,7 +29,7 @@
   margin: auto;
   border: 0;
   border-bottom: 2px solid var(--grey60);
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
 }
 
@@ -32,7 +43,7 @@
 
 .magnifier {
   position: absolute;
-  top: -5px;
+  top: 0;
   right: 22px;
   border: 0;
   background: transparent;
@@ -45,11 +56,11 @@
 .category_button {
   display: inline-block;
   width: fit-content;
-  margin: 3px 6px;
   padding: 3px 10px;
+  margin: 0 5px;
   border-radius: 12px;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 13px;
   background-color: transparent;
   cursor: pointer;
 }
@@ -66,7 +77,7 @@
 }
 .material_list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
   place-items: center;
 }
