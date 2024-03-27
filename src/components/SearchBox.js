@@ -9,9 +9,13 @@ import MaterialList from "./MaterialList";
 function SearchBox(props) {
   return (
     <div className={styles.search_box}>
-      <SearchWindow placeholder="검색하기" />
-      <Category items={props.items} />
-      <MaterialList height="35vh" />
+      <SearchWindow placeholder={props.placeholder} />
+      <div
+        className={`${styles.category_material} ${props.isOpen ? styles.open : ""}`}
+      >
+        <Category items={props.items} />
+        <MaterialList />
+      </div>
     </div>
   );
 }
