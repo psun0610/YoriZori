@@ -1,7 +1,6 @@
-// 냉장고 재료 추가 페이지
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/Refrigerator.module.css";
-import SearchWindow from "../components/SearchWindow";
+import SearchBox from "../components/SearchBox";
 import Navigation from "../components/Navigation";
 /** 달력 */
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -10,6 +9,21 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import dayjs from "dayjs";
 
 function RefrigeratorAdd() {
+  const items = [
+    "전체",
+    "과일",
+    "채소",
+    "육류",
+    "해산물",
+    "유제품",
+    "음료/주류",
+    "조미료/향신료",
+    "견과류/곡류",
+    "디저트",
+    "요리",
+    "기타",
+  ];
+  const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [storage, setStorage] = useState("냉장");
   const handleStorageClick = type => {
     setStorage(type);
@@ -19,7 +33,20 @@ function RefrigeratorAdd() {
   const today = dayjs();
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
-  // const dateFormat = dayjs(date).format("YYYY-MM-DD");
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setSearchIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
 
   return (
     <div>
@@ -30,8 +57,16 @@ function RefrigeratorAdd() {
             <span>어떤 재료</span>를 등록할까요?
           </h1>
           {/* 클릭하면 열기, 재료 선택하면 닫기 */}
-          <div className={styles.search_window}>
-            <SearchWindow placeholder="재료 검색하기" />
+          <div
+            ref={wrapperRef}
+            className={styles.search_window}
+            onClick={() => setSearchIsOpen(true)}
+          >
+            <SearchBox
+              placeholder="재료 검색하기"
+              isOpen={searchIsOpen}
+              items={items}
+            />
           </div>
         </div>
 

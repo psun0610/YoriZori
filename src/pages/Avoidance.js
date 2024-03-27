@@ -23,7 +23,7 @@ function Avoidance() {
       <h1 className={styles.title}>
         평소에 <span>기피하는 음식</span>이 있으신가요?
       </h1>
-      <SearchBox items={items} />
+      <SearchBox items={items} placeholder={"검색하기"} isOpen={true} />
       <div style={{ margin: "5vh 0", width: "100%" }}>
         <Button name="없어요 !" color="pink" width="95%" />
       </div>
