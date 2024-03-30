@@ -98,7 +98,7 @@ const Main = () => {
               <Link to="/recipelist">더보기{">"}</Link>
             </div>
             <div className={styles.recipe_list}>
-           <MainRecipe/>
+              <MainRecipe />
             </div>
           </div>
         </div>

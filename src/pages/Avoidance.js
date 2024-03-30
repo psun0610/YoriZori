@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../styles/avoidance.module.css";
 import SearchBox from "../components/SearchBox";
 
@@ -32,9 +33,11 @@ function Avoidance() {
       </h1>
       <SearchBox items={items} placeholder={"검색하기"} isOpen={true} />
       <div style={{ margin: "4vh 0 0", width: "100%" }}>
-        <div className={`button pink_back`} style={{ width: "95%" }}>
-          없어요 !
-        </div>
+        <Link to="/join_complete">
+          <div className={`button pink_back`} style={{ width: "95%" }}>
+            없어요 !
+          </div>
+        </Link>
       </div>
     </div>
   );
