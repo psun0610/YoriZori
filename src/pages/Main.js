@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/main.module.css";
 import Material from "../components/Material";
-import Recipe from "../components/Recipe";
+
 import Navigation from "../components/Navigation";
+import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
   return (
@@ -97,9 +98,7 @@ const Main = () => {
               <Link to="/recipelist">더보기{">"}</Link>
             </div>
             <div className={styles.recipe_list}>
-              <Recipe></Recipe>
-              <Recipe></Recipe>
-              <Recipe></Recipe>
+           <MainRecipe/>
             </div>
           </div>
         </div>

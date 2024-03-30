@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import styles from "../styles/main.module.css";
 import axios from "axios";
 
-function Recipe(props) {
-  const { searchText } = props;
+function MainRecipe() {
+
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -23,8 +23,8 @@ function Recipe(props) {
   return (
     <>
       {recipes.map(
-        (recipe, index) => recipe.title &&
-          recipe.title.toLowerCase().includes(searchText.toLowerCase()) && (
+        (recipe, index) => 
+          
             <Link to="/recipeinfo" className={styles.recipe} key={index}>
               <img src={recipe.imageUrl} alt={recipe.title} />
               <div>
@@ -41,10 +41,10 @@ function Recipe(props) {
                 </div>
               </div>
             </Link>
-          ),
+          
       )}
     </>
   );
 }
 
-export default Recipe;
+export default MainRecipe;
