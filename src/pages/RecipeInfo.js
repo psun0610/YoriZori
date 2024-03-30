@@ -46,13 +46,13 @@ const RecipeInfo = () => {
                   </button>
                 </div>
               </div>
-              <div className={styles.title_p}>
-                <p>
+              <div className={styles.title_sub}>
+                <div>
                   가진 재료<p>|</p>
-                </p>
-                <p>
+                </div>
+                <div>
                   없는 재료<p>|</p>
-                </p>
+                </div>
               </div>
             </div>
           </div>
