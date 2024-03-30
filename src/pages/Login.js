@@ -2,28 +2,35 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
-import LoginSignupInput from "../components/LoginJoinInput";
 import "../App.css";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
     <form className={styles.home}>
       <img src="../../images/logo.jpg" alt="logo" className={styles.logo}></img>
-      <LoginSignupInput
-        name="아이디"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-      />
-      {username && (
-        <LoginSignupInput
-          name="비밀번호"
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
+
+      <div className={styles.input_container}>
+        <input
+          name="userName"
+          value={userName}
+          onChange={e => setUsername(e.target.value)}
+        ></input>
+        <p className={userName ? ` ${styles.active}` : ""}>아이디</p>
+      </div>
+
+      {userName && (
+        <div className={styles.input_container}>
+          <input
+            name="password"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          ></input>
+          <p className={password ? ` ${styles.active}` : ""}>비밀번호</p>
+        </div>
       )}
       <input
         type="submit"
