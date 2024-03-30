@@ -1,11 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
-import Button from "../components/Button";
 
 function JoinComplete() {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
       <div className={styles.join_complete_title}>
         <svg
           width="54"
@@ -47,9 +54,11 @@ function JoinComplete() {
       <p className={styles.join_complete_sub}>
         요리조리의 다양한 기능을 이용해보세요!
       </p>
-      <Link to="/main">
-        <Button name="시작하기" />
-      </Link>
+      <div style={{ width: "100%" }}>
+        <Link to="/main">
+          <div className={`button pink_back`}>시작하기</div>
+        </Link>
+      </div>
     </div>
   );
 }

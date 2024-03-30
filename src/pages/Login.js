@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
 import LoginSignupInput from "../components/LoginJoinInput";
-import Button from "../components/Button";
+import "../App.css";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
-    <div className={styles.home}>
+    <form className={styles.home}>
       <img src="../../images/logo.jpg" alt="logo" className={styles.logo}></img>
       <LoginSignupInput
         name="아이디"
@@ -25,15 +25,15 @@ const Login = () => {
           onChange={e => setPassword(e.target.value)}
         />
       )}
-      <div className={styles.home_buttons}>
-        <Link>
-          <Button name="로그인"></Button>
-        </Link>
-        <Link to="../join" className={styles.join_button}>
-          회원가입
-        </Link>
-      </div>
-    </div>
+      <input
+        type="submit"
+        value="로그인"
+        className={`button pink_back`}
+      ></input>
+      <Link to="../join" className={styles.join_button}>
+        회원가입
+      </Link>
+    </form>
   );
 };
 
