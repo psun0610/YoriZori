@@ -1,0 +1,25 @@
+[
+    {
+        "title": "계란찜",
+        "imageUrl": "https://recipekorea.com/data/editor/2301/31ff4a3a5f3fd180b4da85afd77955b3_1674740258_0009.PNG",
+        "lackCount": 2,
+        "material": ["계란", "파"]
+      },
+      {
+        "title": "오리불고기",
+        "imageUrl": "https://homecuisine.co.kr/files/attach/images/140/241/098/e4e2a7ab18e8650a8fab5c1e455e8606.JPG",
+        "lackCount": 1,
+        "material": ["오리고기"]
+      },  {
+        "title": "알리올리오 파스타",
+        "imageUrl": "https://i.namu.wiki/i/Vq1NCi7kRytIcVHb1QdFH4krNT5sBflOhupbYVtzcTLiJGFR9jml_kJcer-zcjqNosmpmGnsFmcjYP5m77fhJ71eSS4HqyeedMfXjXg3szUlGagZfnwy237sWzir-3BwLEJ7h26RCgjgTvi8A8uSnA.webp",
+        "lackCount": 2,
+        "material": ["파스타면", "마늘"]
+      },
+      {
+        "title": "잔치국수",
+        "imageUrl": "https://homecuisine.co.kr/files/attach/images/140/875/103/d69ad51d533197d7cfd1d91cfc4ae5c8.jpg",
+        "lackCount": 3,
+        "material": ["소면", "애호박","전구지"]
+      }
+]
