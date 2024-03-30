@@ -1,24 +1,3 @@
-/** Button Component **/
-.button {
-  box-sizing: border-box;
-  margin: 8px auto;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.pink_back {
-  background-color: var(--main_button);
-  color: white;
-}
-
-.white_back {
-  background-color: white;
-  border: 3px solid var(--main_button);
-  color: var(--black);
-}
-
 /** home **/
 .home {
   height: 100vh;
@@ -105,7 +84,7 @@
 .join_button {
   display: block;
   text-align: center;
-  margin-top: 15px;
+  margin-top: 5px;
   font-size: 14px;
 }
 
@@ -119,7 +98,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 34vh;
 }
 
 .join_complete_title svg {
@@ -140,5 +118,5 @@
   text-align: center;
   color: var(--grey80);
   font-size: 15px;
-  margin: 7px 0 6vh;
+  margin: 7px 0;
 }

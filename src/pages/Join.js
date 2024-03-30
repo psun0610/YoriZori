@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
 import LoginSignupInput from "../components/LoginJoinInput";
-import Button from "../components/Button";
+import "../App.css";
 
 const Join = () => {
   const [username, setUsername] = useState("");
@@ -18,7 +17,7 @@ const Join = () => {
   };
 
   return (
-    <div className={styles.home}>
+    <form className={styles.home}>
       <h1 className={styles.join_h1}>회원가입</h1>
       <LoginSignupInput
         name="아이디"
@@ -40,12 +39,8 @@ const Join = () => {
       {passwordMatchError && (
         <p className={styles.inconsistency}>비밀번호가 일치하지 않습니다.</p>
       )}
-      <div style={{ margin: "30px auto", width: "100%" }}>
-        <Link>
-          <Button name="확인"></Button>
-        </Link>
-      </div>
-    </div>
+      <input type="submit" value="확인" className={`button pink_back`}></input>
+    </form>
   );
 };
 
