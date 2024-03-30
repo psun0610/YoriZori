@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/shoppingbasket.module.css";
+import styles from "../styles/ShoppingBasket.module.css";
 import Navigation from "../components/Navigation";
 import axios from "axios";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/mypage.module.css";
+import styles from "../styles/Mypage.module.css";
 import { useNavigate } from "react-router";
 import Navigation from "../components/Navigation";
 

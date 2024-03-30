@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "../styles/SearchBox.module.css";
-import styles2 from "../styles/main.module.css";
+import styles2 from "../styles/Main.module.css";
 
 // SearchBox에 사용되는 검색용 재료 리스트
 function MaterialList() {
