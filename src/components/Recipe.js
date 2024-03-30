@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import styles from "../styles/main.module.css";
+import styles from "../styles/Main.module.css";
 import axios from "axios";
 
 function Recipe(props) {
@@ -23,7 +23,8 @@ function Recipe(props) {
   return (
     <>
       {recipes.map(
-        (recipe, index) => recipe.title &&
+        (recipe, index) =>
+          recipe.title &&
           recipe.title.toLowerCase().includes(searchText.toLowerCase()) && (
             <Link to="/recipeinfo" className={styles.recipe} key={index}>
               <img src={recipe.imageUrl} alt={recipe.title} />

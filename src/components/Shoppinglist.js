@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/shoppingbasket.module.css";
+import styles from "../styles/ShoppingBasket.module.css";
 
 const Shoppinglist = () => {
   return (

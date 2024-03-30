@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "../styles/avoidance.module.css";
+import styles from "../styles/Avoidance.module.css";
 import SearchBox from "../components/SearchBox";
 
 function Avoidance() {

@@ -38,7 +38,10 @@ const RecipeList = () => {
         <div className={styles.wrapper}>
           <Category items={items} />
 
-          <div className={styleSearch.search_box}>
+          <div
+            className={styleSearch.search_box}
+            style={{ marginTop: "1.5vh" }}
+          >
             <div className={styleSearch.search_window}>
               <input
                 className={styleSearch.search_input}
