@@ -2,28 +2,28 @@ import React from "react";
 import styles from "../styles/recipelist.module.css";
 import Navigation from "../components/Navigation";
 import Recipe from "../components/Recipe";
+import Category from "../components/CategoryMaterial";
 
 const RecipeList = () => {
+  const items = [
+    "전체",
+    "메인요리",
+    "밑반찬",
+    "면/만두",
+    "국/찌개",
+    "간식",
+    "샐러드",
+    "해장",
+    "밥/죽/떡",
+    "야식",
+    "디저트",
+  ];
   return (
     <div>
       <div id="wrapper">
         <div className={styles.up}>
-          <div className={styles.list}>
-            <div className={styles.uplist}>
-              <p>전체</p>
-              <p>메인요리</p>
-              <p>밑반찬</p>
-              <p>면/만두</p>
-              <p>국/찌개</p>
-              <p>간식</p>
-            </div>
-            <div className={styles.downlist}>
-              <p>샐러드</p>
-              <p>해장</p>
-              <p>밥/죽/떡</p>
-              <p>야식</p>
-              <p>디저트</p>
-            </div>
+          <div className={styles.category}>
+            <Category items={items} />
           </div>
           <div className={styles.search}>
             <input
@@ -40,11 +40,7 @@ const RecipeList = () => {
         </div>
         <div className={styles.recipe_box}>
           <Recipe />
-          <Recipe />
-          <Recipe />
-          <Recipe />
-          <Recipe />
-          <Recipe />
+         
         </div>
       </div>
       <Navigation />
@@ -53,3 +49,25 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
+
+// function Category(props) {
+//   const [selectedItem, setSelectedItem] = useState(0); // 첫 번째 버튼 기본 선택
+//   const handleItemClick = index => {
+//     setSelectedItem(index);
+//   };
+//   return (
+//     <div className={styles.category_button_list}>
+//       {props.items.map((item, index) => (
+//         <div
+//           key={index}
+//           className={`${styles.category_button} ${
+//             selectedItem === index ? styles.selected : ""
+//           }`}
+//           onClick={() => handleItemClick(index)}
+//         >
+//           {item}
+//         </div>
+//       ))}
+//     </div>
+//   );
+// }
