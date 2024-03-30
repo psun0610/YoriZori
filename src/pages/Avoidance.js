@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../styles/avoidance.module.css";
 import SearchBox from "../components/SearchBox";
-import Button from "../components/Button";
 
 function Avoidance() {
   const items = [
@@ -19,13 +18,23 @@ function Avoidance() {
     "기타",
   ];
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
       <h1 className={styles.title}>
         평소에 <span>기피하는 음식</span>이 있으신가요?
       </h1>
       <SearchBox items={items} placeholder={"검색하기"} isOpen={true} />
-      <div style={{ margin: "5vh 0", width: "100%" }}>
-        <Button name="없어요 !" color="pink" width="95%" />
+      <div style={{ margin: "4vh 0 0", width: "100%" }}>
+        <div className={`button pink_back`} style={{ width: "95%" }}>
+          없어요 !
+        </div>
       </div>
     </div>
   );
