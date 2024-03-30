@@ -1,32 +1,39 @@
-import React, { useState } from "react";
-import styles from "../styles/shoppingbasket.module.css"; 
+import React, { useEffect, useState } from "react";
+import styles from "../styles/shoppingbasket.module.css";
 import Navigation from "../components/Navigation";
+import axios from "axios";
 
 const ShoppingBasket = () => {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      name: "예쁜 달걀",
-      imageUrl: "https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg",
-      pinned: false,
-    },
-    {
-      id: 2,
-      name: "못생긴 달걀",
-      imageUrl: "https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg",
-      pinned: false,
-    },
-    {
-      id: 3,
-      name: "그냥 달걀",
-      imageUrl: "https://image.zdnet.co.kr/2019/01/15/sini_1zwN8DfI5uThk94.jpg",
-      pinned: false,
-    },
-  ]);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const response = await axios.get("/shoppingbasket.json");
+        setItems(response.data);
+      } catch (error) {
+        console.error("Error Code:", error);
+      }
+    };
+
+    fetchItems();
+  }, []);
 
   const handleDeleteItem = itemId => {
     setItems(prevItems => prevItems.filter(item => item.id !== itemId));
   };
+
+  //추후 axios 연동 후 delete 코드 구현 예정 밑은 임시 delete 코드
+
+  // const handleDeleteItem = async itemId => {
+  //   try {
+  //     await axios.delete(`/shoppingbasket.json/${itemId}`);
+
+  //     setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  //   } catch (error) {
+  //     console.error("Error deleting item:", error);
+  //   }
+  // };
 
   const handleTogglePin = itemId => {
     const updatedItems = [...items];
@@ -68,14 +75,17 @@ const ShoppingBasket = () => {
                     className={styles.pinbutton}
                     onClick={() => handleTogglePin(item.id)}
                   >
-                    <img className={styles.pin} src={item.pinned ? "/images/pin2.png":"images/pin1.png"} />
+                    <img
+                      className={styles.pin}
+                      src={item.pinned ? "/images/pin2.png" : "images/pin1.png"}
+                    />
                   </button>
 
                   <button
                     className={styles.item_cancel}
                     onClick={() => handleDeleteItem(item.id)}
                   >
-                    <img className={styles.cancel} src="/images/cancel.png"/>
+                    <img className={styles.cancel} src="/images/cancel.png" />
                   </button>
                 </div>
               </div>
@@ -87,7 +97,7 @@ const ShoppingBasket = () => {
           </button>
         </div>
       </div>
-      <Navigation/>
+      <Navigation />
     </div>
   );
 };
