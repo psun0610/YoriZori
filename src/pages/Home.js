@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "../styles/LoginJoin.module.css";
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
 
 const Home = () => {
   return (
@@ -10,10 +9,10 @@ const Home = () => {
       <p className={styles.home_first}>처음 오셨나요?</p>
       <div className={styles.home_buttons}>
         <Link to="/join">
-          <Button name="네, 처음이에요 !"></Button>
+          <div className={`button pink_back`}>네, 처음이에요 !</div>
         </Link>
         <Link to="/login">
-          <Button name="아뇨, 회원이에요 !" color="white"></Button>
+          <div className={`button white_back`}>아뇨, 회원이에요 !</div>
         </Link>
       </div>
       <footer></footer>
