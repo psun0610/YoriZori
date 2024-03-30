@@ -26,17 +26,17 @@
   font-weight: 700;
   height: 100%;
 }
-.title_p {
+.title_sub {
   margin-top: 8px;
 }
-.title_p > p {
+.title_sub > div {
   display: flex;
   align-items: center;
   margin: 2px 0;
   font-size: 14px;
   font-weight: 800;
 }
-.title_p > p > p {
+.title_sub p {
   margin-left: 20px;
   font-weight: 900;
   font-size: 12px;
