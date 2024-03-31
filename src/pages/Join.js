@@ -5,7 +5,7 @@ import axios from "axios";
 import "../App.css";
 
 const Join = () => {
-  const userURL = "http://localhost:8080/users";
+  const baseURL = "http://localhost:8080";
   const navigate = useNavigate();
   const [user, setUser] = useState({
     userName: "",
@@ -45,6 +45,13 @@ const Join = () => {
     }));
   }, [user.userName, user.password, user.confirmPassword, user.nickName]);
 
+  useEffect(() => {
+    setValid(prevValid => ({
+      ...prevValid,
+      idDuplicate: false,
+    }));
+  }, [user.userName]);
+
   const handleSubmitClick = e => {
     e.preventDefault();
     // input이 비어있는지 확인
@@ -62,7 +69,7 @@ const Join = () => {
 
     // 회원가입
     axios
-      .post(userURL, {
+      .post(baseURL + "/users", {
         name: user.userName,
         password: user.password,
         nickname: user.nickName,
