@@ -1,6 +1,6 @@
 .wrapper {
   width: 95%;
-  margin: 2vh auto;
+  margin: auto;
 }
 .search {
   display: flex;
@@ -17,7 +17,7 @@
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem 1.25rem;
   grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
-  margin: 4vh auto;
+  margin: 4vh auto 0;
 }
 .recipe_main_title {
   display: flex;

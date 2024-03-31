@@ -1,13 +1,13 @@
 #wrapper {
   box-sizing: border-box;
   height: auto;
-  min-height: 92vh;
+  min-height: calc(100vh - 70px);
 }
 
 #wrapper_contain_header {
   box-sizing: border-box;
   height: auto;
-  min-height: 85vh;
+  min-height: calc(100vh - 130px);
 }
 
 .nav {
@@ -18,7 +18,7 @@
   justify-content: space-between;
   max-width: 600px;
   width: 100%;
-  height: 8vh;
+  height: 70px;
   padding: 12px 20px 8px;
   box-shadow: 0px 0px 10px rgba(189, 186, 186, 0.5);
   background-color: white;
