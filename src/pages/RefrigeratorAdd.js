@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
 import SearchBox from "../components/SearchBox";
+import Header from "../components/Header";
 import Navigation from "../components/Navigation";
 /** 달력 */
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
@@ -59,7 +60,8 @@ function RefrigeratorAdd() {
 
   return (
     <div>
-      <div id="wrapper" className={styles.refrigerator_add}>
+      <Header name="냉장고 재료 등록" />
+      <div id="wrapper_contain_header" className={styles.refrigerator_add}>
         {/* 재료 선택 */}
         <div className={styles.add_title}>
           <h1>
