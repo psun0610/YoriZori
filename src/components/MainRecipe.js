@@ -19,6 +19,11 @@ function MainRecipe() {
     fetchRecipes();
   }, []);
 
+  // recipes가 초기화되지 않은 경우 렌더링하지 않음
+  if (!recipes) {
+    return null;
+  }
+
   return (
     <>
       {recipes.map((recipe, index) => (
@@ -32,9 +37,11 @@ function MainRecipe() {
               부족한 재료 <span>{recipe.lackCount}</span>개
             </p>
             <div className={styles.lack_ingredients}>
-              {recipe.ingredient.map((ingredient, i) => (
-                <div key={i}>{ingredient}</div>
-              ))}
+              {recipe.ingredient
+                ? recipe.ingredient.map((ingredient, i) => (
+                    <div key={i}>{ingredient}</div>
+                  ))
+                : ""}
             </div>
           </div>
         </Link>
