@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
-import Material from "../components/Material";
+import Ingredient from "../components/Ingredient";
 
 import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
   // 개발용 임시 로그인
-  localStorage.setItem("id", "test");
+  localStorage.setItem("id", 10);
   localStorage.setItem("token_nickname", "test");
 
   // 로그인 한 사용자인지 확인
@@ -38,9 +38,9 @@ const Main = () => {
               <h1>
                 <span>소비기한이 임박한 재료</span>가 있어요!
               </h1>
-              <div className={styles.material_box}>
-                <Material />
-                <Material />
+              <div className={styles.ingredient_box}>
+                <Ingredient />
+                <Ingredient />
               </div>
             </div>
           )}
