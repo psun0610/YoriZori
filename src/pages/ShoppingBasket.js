@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import styles from "../styles/ShoppingBasket.module.css";
 import Navigation from "../components/Navigation";
 import axios from "axios";
 
 const ShoppingBasket = () => {
+  // 로그인 한 사용자인지 확인
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") === null) {
+      navigate("/home");
+    }
+  }, []);
+
   const [items, setItems] = useState([]);
 
   useEffect(() => {

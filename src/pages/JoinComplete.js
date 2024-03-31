@@ -1,8 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
 
 function JoinComplete() {
+  // 로그인 한 사용자인지 확인
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") === null) {
+      navigate("/home");
+    }
+  }, []);
   return (
     <div
       style={{
@@ -55,7 +62,7 @@ function JoinComplete() {
         요리조리의 다양한 기능을 이용해보세요!
       </p>
       <div style={{ width: "100%" }}>
-        <Link to="/main">
+        <Link to="/">
           <div className={`button pink_back`}>시작하기</div>
         </Link>
       </div>
