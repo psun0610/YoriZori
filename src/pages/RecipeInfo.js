@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
 import Navigation from "../components/Navigation";
+import Header from "../components/Header";
 
 const RecipeInfo = () => {
   // 로그인 한 사용자인지 확인
@@ -13,7 +14,8 @@ const RecipeInfo = () => {
 
   return (
     <div>
-      <div id="wrapper">
+      <Header name="레시피" />
+      <div id="wrapper_contain_header">
         <div className={styles.recipe_img}>
           <img src="./images/mainpage_food_image.jpg" />
         </div>

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import styles from "../styles/Mypage.module.css";
 import { useNavigate } from "react-router";
 import Navigation from "../components/Navigation";
+import Header from "../components/Header";
 
 const Mypage = () => {
   const navigate = useNavigate();
@@ -14,7 +15,8 @@ const Mypage = () => {
 
   return (
     <div>
-      <div id="wrapper" className={styles.wrapper}>
+      <Header name="마이페이지" />
+      <div id="wrapper_contain_header" className={styles.wrapper}>
         <div className={styles.mypage_top}>
           <div className={styles.bookmark}>
             <p>레시피북마크</p>
