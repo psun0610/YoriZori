@@ -7,6 +7,10 @@ import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
+  // 개발용 임시 로그인
+  localStorage.setItem("id", "test");
+  localStorage.setItem("token_nickname", "test");
+
   // 로그인 한 사용자인지 확인
   const [loginUser, setLoginUser] = useState("");
   useEffect(() => {
