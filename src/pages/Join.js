@@ -5,8 +5,9 @@ import axios from "axios";
 import "../App.css";
 
 const Join = () => {
-  const userURL = "http://localhost:8080/users";
+  const baseURL = "http://localhost:8080";
   const navigate = useNavigate();
+
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -45,6 +46,13 @@ const Join = () => {
     }));
   }, [user.userName, user.password, user.confirmPassword, user.nickName]);
 
+  useEffect(() => {
+    setValid(prevValid => ({
+      ...prevValid,
+      idDuplicate: false,
+    }));
+  }, [user.userName]);
+
   const handleSubmitClick = e => {
     e.preventDefault();
     // input이 비어있는지 확인
@@ -62,13 +70,24 @@ const Join = () => {
 
     // 회원가입
     axios
-      .post(userURL, {
+      .post(baseURL + "/users", {
         name: user.userName,
         password: user.password,
         nickname: user.nickName,
       })
       .then(() => {
-        navigate("/avoidance");
+        axios
+          .post(baseURL + "/login", {
+            name: user.userName,
+            password: user.password,
+          })
+          .then(response => {
+            /** 현재 닉네임이 토큰으로 돼있는데 추후 JWT 추가되면 수정 **/
+            localStorage.clear();
+            localStorage.setItem("id", response.data.userId);
+            localStorage.setItem("token_nickname", response.data.nickname);
+            navigate("/avoidance");
+          });
       })
       .catch(error => {
         if (error.response.data.message === "이미 존재하는 아이디입니다.")

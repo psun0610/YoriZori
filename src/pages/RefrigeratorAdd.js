@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
 import SearchBox from "../components/SearchBox";
 import Navigation from "../components/Navigation";
@@ -9,6 +10,14 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import dayjs from "dayjs";
 
 function RefrigeratorAdd() {
+  // 로그인 한 사용자인지 확인
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") === null) {
+      navigate("/home");
+    }
+  }, []);
+
   const items = [
     "전체",
     "과일",
@@ -59,6 +68,7 @@ function RefrigeratorAdd() {
           {/* 클릭하면 열기, 재료 선택하면 닫기 */}
           <div
             ref={wrapperRef}
+            style={{ cursor: "pointer" }}
             className={styles.search_window}
             onClick={() => setSearchIsOpen(true)}
           >

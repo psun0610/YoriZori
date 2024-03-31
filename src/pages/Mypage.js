@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "../styles/Mypage.module.css";
 import { useNavigate } from "react-router";
 import Navigation from "../components/Navigation";
 
 const Mypage = () => {
   const navigate = useNavigate();
+  // 로그인 한 사용자인지 확인
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") === null) {
+      navigate("/home");
+    }
+  }, []);
+
   return (
     <div>
-      <div id="wrapper">
-        <header className={styles.mypage_header}>Mypage</header>
+      <div id="wrapper" className={styles.wrapper}>
         <div className={styles.mypage_top}>
           <div className={styles.bookmark}>
-            <span className={styles.bookmark_text}>레시피북마크</span>
-            <img
-              className={styles.bookmark_image}
-              src="./images/bookmark.png"
-              alt="bookmark"
-            ></img>
+            <p>레시피북마크</p>
+            <img src="./images/bookmark.png" alt="bookmark"></img>
           </div>
           <div className={styles.hate}>
             <div className={styles.hate_top}>
@@ -32,17 +34,23 @@ const Mypage = () => {
             <span className={styles.hate_food}>기피하는 음식들</span>
           </div>
         </div>
-        <div className={styles.memberedit}>
-          <span
+        <ul className={styles.my_list}>
+          <li
             onClick={() => {
               navigate("/memberedit");
             }}
           >
             회원정보수정
-          </span>
-
-          <span className={styles.logout}>로그아웃</span>
-        </div>
+          </li>
+          <li
+            onClick={() => {
+              localStorage.clear();
+              navigate("/");
+            }}
+          >
+            로그아웃
+          </li>
+        </ul>
       </div>
       <Navigation />
     </div>

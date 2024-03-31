@@ -6,13 +6,13 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <img src="../../images/logo.jpg" className={styles.logo}></img>
-      <p className={styles.home_first}>처음 오셨나요?</p>
+      <p className={styles.home_first}>로그인 후 이용할 수 있어요!</p>
       <div className={styles.home_buttons}>
-        <Link to="/join">
-          <div className={`button pink_back`}>네, 처음이에요 !</div>
-        </Link>
         <Link to="/login">
-          <div className={`button white_back`}>아뇨, 회원이에요 !</div>
+          <div className={`button pink_back`}>로그인 하기</div>
+        </Link>
+        <Link to="/join">
+          <div className={`button white_back`}>회원가입</div>
         </Link>
       </div>
       <footer></footer>

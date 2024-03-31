@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Material from "../components/Material";
@@ -7,6 +7,14 @@ import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
+  // 로그인 한 사용자인지 확인
+  const [loginUser, setLoginUser] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") !== null) {
+      setLoginUser(localStorage.getItem("id"));
+    }
+  }, []);
+
   return (
     <div>
       <div id="wrapper">
@@ -21,22 +29,22 @@ const Main = () => {
         </div>
         <div className={styles.container}>
           {/* 소비기한 임박 재료 리스트 */}
-          <div className={styles.close_to_expiration}>
-            <h1>
-              <span>소비기한이 임박한 재료</span>가 있어요!
-            </h1>
-            <div className={styles.material_box}>
-              <Material />
-              <Material />
-              <Material />
-              <Material />
-              <Material />
-              <Material />
-              <Material />
+          {loginUser !== "" && (
+            <div className={styles.close_to_expiration}>
+              <h1>
+                <span>소비기한이 임박한 재료</span>가 있어요!
+              </h1>
+              <div className={styles.material_box}>
+                <Material />
+                <Material />
+              </div>
             </div>
-          </div>
+          )}
           {/* 메인 버튼 3개 */}
-          <div className={styles.main_buttons}>
+          <div
+            className={styles.main_buttons}
+            style={{ marginTop: !loginUser ? "20px" : "5px" }}
+          >
             <div className={styles.button_box1}>
               <Link to="/refrigerator" className={styles.main_button}>
                 <svg

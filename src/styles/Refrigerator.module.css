@@ -77,6 +77,7 @@
   border-radius: 15px;
   font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
 }
 
 .buttons > button.active {

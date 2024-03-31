@@ -17,10 +17,10 @@ import RecipeInfo from "./pages/RecipeInfo";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Main />} />
       <Route path="/join" element={<Join />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/main" element={<Main />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/mypage" element={<Mypage />} />
       <Route path="/recipeinfo" element={<RecipeInfo />} />
       <Route path="/recipelist" element={<RecipeList />} />
