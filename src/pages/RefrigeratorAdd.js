@@ -33,6 +33,21 @@ function RefrigeratorAdd() {
     "요리",
     "기타",
   ];
+
+  // const items = [
+  //   [0, "전체"],
+  //   [1, "과일"],
+  //   [2, "채소"],
+  //   [3, "육류"],
+  //   [4, "해산물"],
+  //   [5, "유제품"],
+  //   [6, "음료/주류"],
+  //   [7, "조미료/향신료"],
+  //   [8, "견과류/곡류"],
+  //   [9, "디저트"],
+  //   [10, "요리"],
+  //   [11, "기타"],
+  // ];
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [storage, setStorage] = useState("냉장");
   const handleStorageClick = type => {

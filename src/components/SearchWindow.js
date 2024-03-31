@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../styles/SearchBox.module.css";
 
 // 검색창 input 컴포넌트
 function SearchWindow(props) {
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearchChange = e => {
+    const inputValue = e.target.value;
+    setSearchText(inputValue);
+    props.onSearch(inputValue); // 검색어 변경 시 부모 컴포넌트로 검색어 전달
+  };
+
   return (
     <div className={styles.search_window}>
       <input
         placeholder={props.placeholder}
         className={styles.search_input}
+        onChange={handleSearchChange}
+        value={searchText}
       ></input>
       <button className={styles.magnifier}>
         <svg
