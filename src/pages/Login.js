@@ -32,8 +32,6 @@ const Login = () => {
         password: password,
       })
       .then(response => {
-        console.log(response);
-
         // 아이디, 비밀번호 Match Check
         if (!response.data.success) {
           setValidMatch(response.data.message);
@@ -44,7 +42,7 @@ const Login = () => {
         localStorage.clear();
         localStorage.setItem("id", response.data.userId);
         localStorage.setItem("token_nickname", response.data.nickname);
-        navigate("/main");
+        navigate("/");
       });
   };
 

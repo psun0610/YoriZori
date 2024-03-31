@@ -1,11 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Category from "../components/CategoryMaterial";
 import Material from "../components/Material";
 import styles from "../styles/Refrigerator.module.css";
 
 const refrigerator = () => {
+  // 로그인 한 사용자인지 확인
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") === null) {
+      navigate("/home");
+    }
+  }, []);
+
   const items = [
     "전체",
     "과일",

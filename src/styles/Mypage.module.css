@@ -1,81 +1,75 @@
-.mypage_header{
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    
+.wrapper {
+  width: 95%;
+  margin: auto;
 }
-.mypage_top{
-    padding-top: 50px;
+.mypage_top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-    width: 100%;
-    height: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.mypage_top > div {
+  cursor: pointer;
+  box-shadow: 0 0 7px var(--grey60);
+  height: 100px;
 }
-.bookmark{
-    display:flex;
-    height:100px;
-    width:30%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    padding:20px;
-    border-radius: 15px;
-    margin:30px;
-    cursor: pointer;
+
+.bookmark {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border-radius: 15px;
 }
-.bookmark_text{
-    text-align: center;
-    margin-bottom: 10px;
+.bookmark > p {
+  font-size: 15px;
 }
-.bookmark_image{
-    width:25px;
-    height:25px;
-    
+
+.bookmark_text {
+  text-align: center;
+  margin-bottom: 10px;
 }
-.hate{
-    display:flex;
-    width:50%;
-    height:100px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #ccc;
-    padding:20px;
-    border-radius: 15px;
+.bookmark > img {
+  width: 25px;
+  height: 25px;
 }
-.hate_top{
-    margin-bottom: 10px;
+.hate {
+  display: flex;
+  width: 60%;
+  height: 100px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 15px;
 }
-.hate_text{
-    font-weight: bold;
-    
+.hate_top {
+  margin-bottom: 10px;
+}
+.hate_text {
+  font-weight: bold;
 }
 .hate_button {
-    border:none;
-    background-color: #fff;
-    margin-left:5px;
+  border: none;
+  background-color: transparent;
+  margin-left: 5px;
 }
-.hate_button_img{
-    width: 12px;
-    height: 12px;
-}
-
-.hate_food{
-    font-size:12px;
+.hate_button_img {
+  width: 12px;
+  height: 12px;
 }
 
-.memberedit{
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    padding-left: 50px;
-    margin-top: 20px;
+.hate_food {
+  font-size: 12px;
 }
 
-.logout{
-    cursor: pointer;
-    margin-top:20px;
+.my_list {
+  list-style: none;
+}
+
+.my_list li {
+  margin: 15px 0;
 }
