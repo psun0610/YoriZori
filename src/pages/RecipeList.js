@@ -4,6 +4,7 @@ import styleSearch from "../styles/SearchBox.module.css";
 import Navigation from "../components/Navigation";
 import Category from "../components/Category";
 import Recipe from "../components/Recipe";
+import Header from "../components/Header";
 
 const RecipeList = () => {
   const [searchText, setSearchText] = useState(""); // 초기 상태를 빈 문자열로 설정
@@ -34,7 +35,8 @@ const RecipeList = () => {
 
   return (
     <div>
-      <div id="wrapper">
+      <Header name="레시피" />
+      <div id="wrapper_contain_header">
         <div className={styles.wrapper}>
           <Category items={items} />
 
