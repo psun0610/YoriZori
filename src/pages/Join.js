@@ -7,6 +7,7 @@ import "../App.css";
 const Join = () => {
   const baseURL = "http://localhost:8080";
   const navigate = useNavigate();
+
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -75,7 +76,18 @@ const Join = () => {
         nickname: user.nickName,
       })
       .then(() => {
-        navigate("/avoidance");
+        axios
+          .post(baseURL + "/login", {
+            name: user.userName,
+            password: user.password,
+          })
+          .then(response => {
+            /** 현재 닉네임이 토큰으로 돼있는데 추후 JWT 추가되면 수정 **/
+            localStorage.clear();
+            localStorage.setItem("id", response.data.userId);
+            localStorage.setItem("token_nickname", response.data.nickname);
+            navigate("/avoidance");
+          });
       })
       .catch(error => {
         if (error.response.data.message === "이미 존재하는 아이디입니다.")

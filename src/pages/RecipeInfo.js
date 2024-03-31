@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
 import Navigation from "../components/Navigation";
 
 const RecipeInfo = () => {
+  // 로그인 한 사용자인지 확인
+  const [loginUser, setLoginUser] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("token_nickname") !== null) {
+      setLoginUser(localStorage.getItem("id"));
+    }
+  }, []);
+
   return (
     <div>
       <div id="wrapper">
@@ -46,14 +54,18 @@ const RecipeInfo = () => {
                   </button>
                 </div>
               </div>
-              <div className={styles.title_sub}>
-                <div>
-                  가진 재료<p>|</p>
+
+              {/** 재료 로그인 한 사용자만 볼 수 있게 함 (전체 재료 출력 필요함) */}
+              {loginUser && (
+                <div className={styles.title_sub}>
+                  <div>
+                    가진 재료<p>|</p>
+                  </div>
+                  <div>
+                    없는 재료<p>|</p>
+                  </div>
                 </div>
-                <div>
-                  없는 재료<p>|</p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
           <div className={styles.cook}>
