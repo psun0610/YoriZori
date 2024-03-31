@@ -1,5 +1,5 @@
 /* * Refrigerator.js * */
-.material_box {
+.ingredient_box {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
   grid-gap: 35px 50px;
@@ -16,7 +16,7 @@
   margin: 0 1px;
 }
 
-.material_add_button {
+.ingredient_add_button {
   position: fixed;
   right: calc((100% - 600px) / 2 + 30px);
   bottom: 95px;
@@ -31,7 +31,7 @@
   }
 }
 
-.material_add_button > p {
+.ingredient_add_button > p {
   font-size: 13px;
   margin: 0;
   font-weight: 700;

@@ -35,9 +35,9 @@ function Recipe(props) {
                 <p className={styles.lack_descript}>
                   부족한 재료 <span>{recipe.lackCount}</span>개
                 </p>
-                <div className={styles.lack_materials}>
-                  {recipe.material.map((material, i) => (
-                    <div key={i}>{material}</div>
+                <div className={styles.lack_ingredients}>
+                  {recipe.ingredient.map((ingredient, i) => (
+                    <div key={i}>{ingredient}</div>
                   ))}
                 </div>
               </div>

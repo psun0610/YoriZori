@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
-import Category from "../components/CategoryMaterial";
-import Material from "../components/Material";
+import Category from "../components/Category";
+import Ingredient from "../components/Ingredient";
 import styles from "../styles/Refrigerator.module.css";
 
 const refrigerator = () => {
@@ -28,11 +28,11 @@ const refrigerator = () => {
     "요리",
     "기타",
   ];
-  const materials = [];
+  const ingredients = [];
   for (let i = 0; i < 100; i++) {
-    materials.push(
+    ingredients.push(
       <div key={i}>
-        <Material />
+        <Ingredient />
       </div>,
     );
   }
@@ -42,8 +42,8 @@ const refrigerator = () => {
         <div className={styles.category}>
           <Category items={items} />
         </div>
-        <div className={styles.material_box}>{materials}</div>
-        <Link to="/refrigerator_add" className={styles.material_add_button}>
+        <div className={styles.ingredient_box}>{ingredients}</div>
+        <Link to="/refrigerator_add" className={styles.ingredient_add_button}>
           <svg
             width="36"
             height="36"

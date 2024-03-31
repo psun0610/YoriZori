@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/RecipeList.module.css";
 import styleSearch from "../styles/SearchBox.module.css";
 import Navigation from "../components/Navigation";
-import Category from "../components/CategoryMaterial";
+import Category from "../components/Category";
 import Recipe from "../components/Recipe";
 
 const RecipeList = () => {

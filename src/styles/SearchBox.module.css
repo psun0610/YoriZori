@@ -7,13 +7,13 @@
   position: relative;
 }
 
-.category_material {
+.category_ingredient {
   transition: max-height 0.6s ease-in-out;
   max-height: 0;
   overflow: hidden;
 }
 
-.category_material.open {
+.category_ingredient.open {
   max-height: 1000px; /* 충분히 큰 값으로 설정하여 내용이 모두 보이도록 함 */
 }
 
@@ -70,13 +70,14 @@
 }
 
 /* main.module.css */
-.material_list_container {
+.ingredient_list_container {
   max-height: 35vh;
   overflow-y: auto;
 }
-.material_list {
+.ingredient_list {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 20px;
   place-items: center;
+  cursor: default;
 }
