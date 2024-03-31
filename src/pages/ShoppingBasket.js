@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import styles from "../styles/ShoppingBasket.module.css";
 import Navigation from "../components/Navigation";
 import axios from "axios";
+import Header from "../components/Header";
 
 const ShoppingBasket = () => {
   // 로그인 한 사용자인지 확인
@@ -60,9 +61,8 @@ const ShoppingBasket = () => {
 
   return (
     <div>
-      <div id="wrapper">
-        <header className={styles.basket_header}>ShoppingBasket</header>
-
+      <Header name="장바구니" />
+      <div id="wrapper_contain_header">
         <div className={styles.shopping_basket_container}>
           <div className={styles.basket_info}>
             <span className={styles.ingredient_count}>
