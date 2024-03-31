@@ -59,6 +59,7 @@ function RefrigeratorAdd() {
           {/* 클릭하면 열기, 재료 선택하면 닫기 */}
           <div
             ref={wrapperRef}
+            style={{ cursor: "pointer" }}
             className={styles.search_window}
             onClick={() => setSearchIsOpen(true)}
           >
