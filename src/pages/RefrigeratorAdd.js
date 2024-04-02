@@ -9,6 +9,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import dayjs from "dayjs";
+import axios from "axios";
 
 function RefrigeratorAdd() {
   // 로그인 한 사용자인지 확인
@@ -18,6 +19,11 @@ function RefrigeratorAdd() {
       navigate("/home");
     }
   }, []);
+
+  const baseURL = "http://localhost:8080";
+  const userId = localStorage.getItem("id");
+  const [selectIngredient, setSelectIngredient] = useState("");
+  const [searchIsOpen, setSearchIsOpen] = useState(false);
 
   const items = [
     "전체",
@@ -34,22 +40,8 @@ function RefrigeratorAdd() {
     "기타",
   ];
 
-  // const items = [
-  //   [0, "전체"],
-  //   [1, "과일"],
-  //   [2, "채소"],
-  //   [3, "육류"],
-  //   [4, "해산물"],
-  //   [5, "유제품"],
-  //   [6, "음료/주류"],
-  //   [7, "조미료/향신료"],
-  //   [8, "견과류/곡류"],
-  //   [9, "디저트"],
-  //   [10, "요리"],
-  //   [11, "기타"],
-  // ];
-  const [searchIsOpen, setSearchIsOpen] = useState(false);
-  const [storage, setStorage] = useState("냉장");
+  /* 냉장, 냉동, 실온 */
+  const [storage, setStorage] = useState("COLD");
   const handleStorageClick = type => {
     setStorage(type);
   };
@@ -73,98 +65,138 @@ function RefrigeratorAdd() {
     };
   }, [wrapperRef]);
 
+  /* 제출 버튼 동작 함수 */
+  // 냉동일때 putDate 처리해야함.
+  const handleSubmitClick = () => {
+    axios
+      .post(`${baseURL}/fridges/${userId}/ingredients`, {
+        fridgeId: userId,
+        ingredientId: selectIngredient.id,
+        putDate: JSON.stringify(startDate).substr(1, 10),
+        storagePlace: storage,
+      })
+      .then(() => {
+        navigate("/refrigerator");
+      })
+      .catch(() => {
+        alert("재료를 선택해주세요");
+        return;
+      });
+  };
   return (
     <div>
       <Header name="냉장고 재료 등록" />
       <div id="wrapper_contain_header" className={styles.refrigerator_add}>
-        {/* 재료 선택 */}
-        <div className={styles.add_title}>
-          <h1>
-            <span>어떤 재료</span>를 등록할까요?
-          </h1>
-          {/* 클릭하면 열기, 재료 선택하면 닫기 */}
-          <div
-            ref={wrapperRef}
-            style={{ cursor: "pointer" }}
-            className={styles.search_window}
-            onClick={() => setSearchIsOpen(true)}
-          >
-            <SearchBox
-              placeholder="재료 검색하기"
-              isOpen={searchIsOpen}
-              items={items}
-            />
-          </div>
-        </div>
-
-        {/* 보관 방법 */}
-        <div className={styles.add_title}>
-          <h1>
-            <span>보관 방법</span>을 선택해주세요
-          </h1>
-          <div className={styles.buttons}>
-            <button
-              className={storage === "냉장" ? styles.active : ""}
-              onClick={() => handleStorageClick("냉장")}
-            >
-              냉장
-            </button>
-            <button
-              className={storage === "냉동" ? styles.active : ""}
-              onClick={() => handleStorageClick("냉동")}
-            >
-              냉동
-            </button>
-            <button
-              className={storage === "실온" ? styles.active : ""}
-              onClick={() => handleStorageClick("실온")}
-            >
-              실온
-            </button>
-          </div>
-        </div>
-
-        {/* 등록일 */}
-        <div className={styles.add_title}>
-          <h1>
-            <span>등록일</span>을 입력해주세요
-          </h1>
-          <div>
-            <div className={styles.add_date}>
-              <p>등록일</p>
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <MobileDatePicker
-                  className={styles.datepicker}
-                  format="YYYY년 MM월 DD일"
-                  disableFuture={true}
-                  value={startDate}
-                  defaultValue={today}
-                  onChange={newValue => {
-                    setStartDate(newValue);
-                  }}
-                />
-              </LocalizationProvider>
+        <div>
+          {/* 재료 선택 */}
+          <div className={styles.add_title}>
+            <div className={styles.select_ingredient_box}>
+              <h1>
+                <span>어떤 재료</span>를 등록할까요?
+              </h1>
+              {selectIngredient && (
+                <div className={styles.select_ingredient}>
+                  {selectIngredient.name}
+                </div>
+              )}
             </div>
-            <div className={styles.add_date}>
-              <p>소비기한</p>
-              {storage != "냉동" ? (
+            {/* 클릭하면 열기, 재료 선택하면 닫기 */}
+            <div
+              ref={wrapperRef}
+              style={{ cursor: "pointer" }}
+              className={styles.search_window}
+              onClick={() => setSearchIsOpen(true)}
+            >
+              <SearchBox
+                placeholder="재료 검색하기"
+                isOpen={searchIsOpen}
+                items={items}
+                onClick={ingredient => {
+                  setSelectIngredient(ingredient);
+                }}
+              />
+            </div>
+          </div>
+
+          {/* 보관 방법 */}
+          <div className={styles.add_title}>
+            <h1>
+              <span>보관 방법</span>을 선택해주세요
+            </h1>
+            <div className={styles.buttons}>
+              <button
+                className={storage === "COLD" ? styles.active : ""}
+                onClick={() => handleStorageClick("COLD")}
+              >
+                냉장
+              </button>
+              <button
+                className={storage === "FROZEN" ? styles.active : ""}
+                onClick={() => handleStorageClick("FROZEN")}
+              >
+                냉동
+              </button>
+              <button
+                className={storage === "OUTSIDE" ? styles.active : ""}
+                onClick={() => handleStorageClick("OUTSIDE")}
+              >
+                실온
+              </button>
+            </div>
+          </div>
+
+          {/* 등록일 */}
+          <div className={styles.add_title}>
+            <h1>
+              <span>등록일</span>을 입력해주세요
+            </h1>
+            <div>
+              <div className={styles.add_date}>
+                <p>등록일</p>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
                     className={styles.datepicker}
                     format="YYYY년 MM월 DD일"
-                    value={endDate}
+                    disableFuture={true}
+                    value={startDate}
                     defaultValue={today}
                     onChange={newValue => {
-                      setEndDate(newValue);
+                      setStartDate(newValue);
                     }}
                   />
                 </LocalizationProvider>
-              ) : (
-                <div className={styles.none}>-</div>
-              )}
+              </div>
+              <div className={styles.add_date}>
+                <p>소비기한</p>
+                {storage != "FROZEN" ? (
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <MobileDatePicker
+                      className={styles.datepicker}
+                      format="YYYY년 MM월 DD일"
+                      value={endDate}
+                      defaultValue={today}
+                      onChange={newValue => {
+                        setEndDate(newValue);
+                      }}
+                    />
+                  </LocalizationProvider>
+                ) : (
+                  <div className={styles.none}>-</div>
+                )}
+              </div>
             </div>
           </div>
         </div>
+        <input
+          type="submit"
+          value="재료 추가하기"
+          className={`button pink_back`}
+          style={{
+            width: "100%",
+            backgroundColor: "var(--main_text)",
+          }}
+          onClick={handleSubmitClick}
+        ></input>
       </div>
       <Navigation />
     </div>

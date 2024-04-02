@@ -14,8 +14,8 @@ function SearchBox(props) {
     setSearchText(searchQuery); // 검색어 상태 업데이트
   };
 
-  const handleSelectCategory = select => {
-    setSelectCategory(select);
+  const handleSelectCategory = index => {
+    setSelectCategory(index);
   };
 
   return (
@@ -28,6 +28,9 @@ function SearchBox(props) {
         <IngredientList
           searchText={searchText}
           selectCategory={selectCategory}
+          onClick={ingredient => {
+            props.onClick(ingredient);
+          }}
         />
         {/* 검색어 props 전달 */}
       </div>

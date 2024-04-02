@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Category from "../components/Category";
@@ -6,12 +7,33 @@ import Ingredient from "../components/Ingredient";
 import styles from "../styles/Refrigerator.module.css";
 
 const refrigerator = () => {
-  // 로그인 한 사용자인지 확인
+  const baseURL = "http://localhost:8080";
+  const userId = localStorage.getItem("id");
+  const [ingredients, setIngredients] = useState([]);
+  const [selectCategory, setSelectCategory] = useState(0);
+  const [filteredIngredients, setFilteredIngredients] = useState([]);
+
+  const handleSelectCategory = select => {
+    setSelectCategory(select);
+  };
+
+  useEffect(() => {
+    const filtered = ingredients.filter(
+      ingredient =>
+        selectCategory === 0 || ingredient.categoryId === selectCategory,
+    );
+    setFilteredIngredients(filtered);
+  }, [selectCategory, ingredients]);
+
+  // 로그인 한 사용자라면 냉장고 axios 요청
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token_nickname") === null) {
       navigate("/home");
     }
+    axios.get(`${baseURL}/fridges/${userId}/ingredients`).then(response => {
+      setIngredients(response.data);
+    });
   }, []);
 
   const items = [
@@ -28,21 +50,20 @@ const refrigerator = () => {
     "요리",
     "기타",
   ];
-  const ingredients = [];
-  for (let i = 0; i < 100; i++) {
-    ingredients.push(
-      <div key={i}>
-        <Ingredient />
-      </div>,
-    );
-  }
+
   return (
     <div>
       <div id="wrapper" className={styles.wrapper}>
         <div className={styles.category}>
-          <Category items={items} />
+          <Category items={items} onClick={handleSelectCategory} />
         </div>
-        <div className={styles.ingredient_box}>{ingredients}</div>
+        <div className={styles.ingredient_box}>
+          {filteredIngredients.map((ingredient, index) => (
+            <div key={index}>
+              <Ingredient name={ingredient.id} dday={ingredient.dday} />
+            </div>
+          ))}
+        </div>
         <Link to="/refrigerator_add" className={styles.ingredient_add_button}>
           <svg
             width="36"
@@ -59,7 +80,7 @@ const refrigerator = () => {
             />
             <path
               d="M18 0.125C8.14383 0.125 0.125 8.14383 0.125 18C0.125 27.8562 8.14383 35.875 18 35.875C27.8562 35.875 35.875 27.8562 35.875 18C35.875 8.14383 27.8562 0.125 18 0.125ZM24.875 19.375H19.375V24.875C19.375 25.2397 19.2301 25.5894 18.9723 25.8473C18.7144 26.1051 18.3647 26.25 18 26.25C17.6353 26.25 17.2856 26.1051 17.0277 25.8473C16.7699 25.5894 16.625 25.2397 16.625 24.875V19.375H11.125C10.7603 19.375 10.4106 19.2301 10.1527 18.9723C9.89487 18.7144 9.75 18.3647 9.75 18C9.75 17.6353 9.89487 17.2856 10.1527 17.0277C10.4106 16.7699 10.7603 16.625 11.125 16.625H16.625V11.125C16.625 10.7603 16.7699 10.4106 17.0277 10.1527C17.2856 9.89487 17.6353 9.75 18 9.75C18.3647 9.75 18.7144 9.89487 18.9723 10.1527C19.2301 10.4106 19.375 10.7603 19.375 11.125V16.625H24.875C25.2397 16.625 25.5894 16.7699 25.8473 17.0277C26.1051 17.2856 26.25 17.6353 26.25 18C26.25 18.3647 26.1051 18.7144 25.8473 18.9723C25.5894 19.2301 25.2397 19.375 24.875 19.375Z"
-              fill="#6C6C6C"
+              fill="var(--grey80)"
             />
           </svg>
 

@@ -6,7 +6,8 @@ import styles2 from "../styles/Main.module.css";
 // 검색에 사용되는 재료 리스트 컴포넌트
 function IngredientList(props) {
   const [ingredients, setIngredients] = useState([]);
-  // const [select, setSelect] = useState("");
+  const [filteredIngredients, setFilteredIngredients] = useState([]);
+
   const baseURL = "http://localhost:8080";
 
   useEffect(() => {
@@ -15,12 +16,17 @@ function IngredientList(props) {
     });
   }, []);
 
-  // 검색어에 따라 재료를 필터링하는 함수
-  const filteredIngredients = ingredients.filter(ingredient =>
-    ingredient.name.toLowerCase().includes(props.searchText.toLowerCase()),
-  );
-
-  // props.selectCategory랑 Ingredient.category_id랑 비교해서 필터링해야함
+  useEffect(() => {
+    const filtered = ingredients.filter(
+      ingredient =>
+        ingredient.name
+          .toLowerCase()
+          .includes(props.searchText.toLowerCase()) &&
+        (props.selectCategory === 0 ||
+          ingredient.categoryId === props.selectCategory),
+    );
+    setFilteredIngredients(filtered);
+  }, [props.searchText, props.selectCategory, ingredients]);
 
   return (
     <div className={styles.ingredient_list_container}>
@@ -29,9 +35,9 @@ function IngredientList(props) {
           <div
             key={index}
             className={styles2.ingredient}
-            // onClick={e => {
-            //   setSelect(e.target.index);
-            // }}
+            onClick={() => {
+              props.onClick(ingredient);
+            }}
           >
             <div className={styles2.ingredient_img_box}>
               <img src={ingredient.imageUrl} />
