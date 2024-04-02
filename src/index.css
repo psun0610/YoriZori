@@ -27,6 +27,10 @@ body {
   max-width: 600px;
   margin: auto;
   -ms-overflow-style: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
