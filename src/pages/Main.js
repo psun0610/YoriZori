@@ -13,9 +13,9 @@ const Main = () => {
   const lackIngredients = [];
   const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
 
-  // 개발용 임시 로그인
-  localStorage.setItem("id", 10);
-  localStorage.setItem("token_nickname", "test");
+  // // 개발용 임시 로그인
+  // localStorage.setItem("id", 10);
+  // localStorage.setItem("token_nickname", "test");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
