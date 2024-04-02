@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Ingredient from "../components/Ingredient";
@@ -7,16 +8,46 @@ import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
+  const baseURL = "http://localhost:8080";
+  const [ingredients, setIngredients] = useState([]);
+  const lackIngredients = [];
+  const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
+
   // 개발용 임시 로그인
   localStorage.setItem("id", 10);
   localStorage.setItem("token_nickname", "test");
 
-  // 로그인 한 사용자인지 확인
-  const [loginUser, setLoginUser] = useState("");
   useEffect(() => {
-    if (localStorage.getItem("token_nickname") !== null) {
-      setLoginUser(localStorage.getItem("id"));
-    }
+    const fetchUserInfo = async () => {
+      // 로컬 스토리지에서 로그인 사용자 정보 가져오기
+      const storedId = localStorage.getItem("id");
+      const storedNickname = localStorage.getItem("token_nickname");
+
+      // 로그인 사용자 정보가 없는 경우(null 또는 undefined) 반환
+      if (!storedId || !storedNickname) {
+        return;
+      }
+
+      setLoginUser(storedId);
+
+      try {
+        // 로그인 사용자의 재료 정보 가져오기
+        const response = await axios.get(
+          `${baseURL}/fridges/${storedId}/ingredients`,
+        );
+        setIngredients(response.data);
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
+    };
+
+    ingredients.forEach(i => {
+      if (ingredients[i].dday <= 3) {
+        lackIngredients.push(ingredients[i]);
+      }
+    });
+
+    fetchUserInfo();
   }, []);
 
   return (
@@ -33,21 +64,31 @@ const Main = () => {
         </div>
         <div className={styles.container}>
           {/* 소비기한 임박 재료 리스트 */}
-          {loginUser !== "" && (
+          {loginUser !== "" && lackIngredients.length < 0 && (
             <div className={styles.close_to_expiration}>
               <h1>
                 <span>소비기한이 임박한 재료</span>가 있어요!
               </h1>
               <div className={styles.ingredient_box}>
-                <Ingredient />
-                <Ingredient />
+                {lackIngredients.map((ingredient, index) => (
+                  <div key={index}>
+                    <Ingredient
+                      name={ingredient.id}
+                      dday={ingredient.dday}
+                      src={ingredient.imageUrl}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
           {/* 메인 버튼 3개 */}
           <div
             className={styles.main_buttons}
-            style={{ marginTop: !loginUser ? "20px" : "5px" }}
+            style={{
+              marginTop:
+                !loginUser || lackIngredients.length <= 0 ? "20px" : "5px",
+            }}
           >
             <div className={styles.button_box1}>
               <Link to="/refrigerator" className={styles.main_button}>
@@ -82,7 +123,7 @@ const Main = () => {
                 </svg>
                 <h1>레시피 리스트</h1>
               </Link>
-              <Link to="/" className={styles.main_button}>
+              <Link to="/shoppingbasket" className={styles.main_button}>
                 <svg
                   width="27"
                   height="27"

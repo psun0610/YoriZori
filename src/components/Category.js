@@ -7,7 +7,7 @@ function Category(props) {
   const [selectedItem, setSelectedItem] = useState(0); // 첫 번째 버튼 기본 선택
   const handleItemClick = index => {
     setSelectedItem(index);
-    props.onClick(selectedItem);
+    props.onClick(index);
   };
   return (
     <div className={styles.category_button_list}>
