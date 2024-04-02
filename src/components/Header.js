@@ -10,9 +10,13 @@ const Header = props => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        height: "60px",
+        height: "50px",
         padding: "0 20px",
         boxShadow: "0 0 8px var(--grey40)",
+        position: "sticky",
+        top: "0",
+        zIndex: "99",
+        backgroundColor: "white",
       }}
     >
       <div

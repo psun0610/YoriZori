@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Ingredient from "../components/Ingredient";
@@ -7,16 +8,39 @@ import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
+  const baseURL = "http://localhost:8080";
+  const [lackIngredients, setLackIngredients] = useState([]);
+  const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
+
   // 개발용 임시 로그인
   localStorage.setItem("id", 10);
   localStorage.setItem("token_nickname", "test");
 
-  // 로그인 한 사용자인지 확인
-  const [loginUser, setLoginUser] = useState("");
   useEffect(() => {
-    if (localStorage.getItem("token_nickname") !== null) {
-      setLoginUser(localStorage.getItem("id"));
-    }
+    const fetchUserInfo = async () => {
+      // 로컬 스토리지에서 로그인 사용자 정보 가져오기
+      const storedId = localStorage.getItem("id");
+      const storedNickname = localStorage.getItem("token_nickname");
+
+      // 로그인 사용자 정보가 없는 경우(null 또는 undefined) 반환
+      if (!storedId || !storedNickname) {
+        return;
+      }
+
+      setLoginUser(storedId);
+
+      try {
+        // 로그인 사용자의 재료 정보 가져오기
+        const response = await axios.get(
+          `${baseURL}/fridges/${storedId}/ingredients`,
+        );
+        setLackIngredients(response.data);
+      } catch (error) {
+        console.error("Error fetching user information:", error);
+      }
+    };
+
+    fetchUserInfo();
   }, []);
 
   return (
@@ -39,8 +63,15 @@ const Main = () => {
                 <span>소비기한이 임박한 재료</span>가 있어요!
               </h1>
               <div className={styles.ingredient_box}>
-                <Ingredient />
-                <Ingredient />
+                {lackIngredients.map((ingredient, index) => (
+                  <div key={index}>
+                    <Ingredient
+                      name={ingredient.id}
+                      dday={ingredient.dday}
+                      src={ingredient.imageUrl}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -82,7 +113,7 @@ const Main = () => {
                 </svg>
                 <h1>레시피 리스트</h1>
               </Link>
-              <Link to="/" className={styles.main_button}>
+              <Link to="/shoppingbasket" className={styles.main_button}>
                 <svg
                   width="27"
                   height="27"
