@@ -148,7 +148,7 @@ function RefrigeratorAdd() {
           {/* 등록일 */}
           <div className={styles.add_title}>
             <h1>
-              <span>등록일</span>을 입력해주세요
+              <span>등록일</span>과 <span>소비기한</span>을 입력해주세요
             </h1>
             <div>
               <div className={styles.add_date}>

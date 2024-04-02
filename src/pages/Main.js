@@ -9,7 +9,8 @@ import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
   const baseURL = "http://localhost:8080";
-  const [lackIngredients, setLackIngredients] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
+  const lackIngredients = [];
   const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
 
   // 개발용 임시 로그인
@@ -34,11 +35,17 @@ const Main = () => {
         const response = await axios.get(
           `${baseURL}/fridges/${storedId}/ingredients`,
         );
-        setLackIngredients(response.data);
+        setIngredients(response.data);
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
     };
+
+    ingredients.forEach(i => {
+      if (ingredients[i].dday <= 3) {
+        lackIngredients.push(ingredients[i]);
+      }
+    });
 
     fetchUserInfo();
   }, []);
@@ -57,7 +64,7 @@ const Main = () => {
         </div>
         <div className={styles.container}>
           {/* 소비기한 임박 재료 리스트 */}
-          {loginUser !== "" && (
+          {loginUser !== "" && lackIngredients.length < 0 && (
             <div className={styles.close_to_expiration}>
               <h1>
                 <span>소비기한이 임박한 재료</span>가 있어요!
@@ -78,7 +85,10 @@ const Main = () => {
           {/* 메인 버튼 3개 */}
           <div
             className={styles.main_buttons}
-            style={{ marginTop: !loginUser ? "20px" : "5px" }}
+            style={{
+              marginTop:
+                !loginUser || lackIngredients.length <= 0 ? "20px" : "5px",
+            }}
           >
             <div className={styles.button_box1}>
               <Link to="/refrigerator" className={styles.main_button}>
