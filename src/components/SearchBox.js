@@ -31,8 +31,8 @@ function SearchBox(props) {
           onClick={ingredient => {
             props.onClick(ingredient);
           }}
+          isSelect={props.select} // 선택된 재료 상태 전달
         />
-        {/* 검색어 props 전달 */}
       </div>
     </div>
   );
