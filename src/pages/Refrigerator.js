@@ -61,7 +61,7 @@ const refrigerator = () => {
         <div className={styles.ingredient_box}>
           {filteredIngredients.map((ingredient, index) => (
             <div key={index}>
-              <Ingredient name={ingredient.id} dday={ingredient.dday} />
+              <Ingredient name={ingredient.name} dday={ingredient.dday} />
             </div>
           ))}
         </div>

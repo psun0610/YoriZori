@@ -38,6 +38,12 @@ function IngredientList(props) {
             onClick={() => {
               props.onClick(ingredient);
             }}
+            style={
+              Array.isArray(props.isSelect) &&
+              props.isSelect.includes(ingredient)
+                ? { backgroundColor: "rgba(0, 0, 0, 0.082)" }
+                : {}
+            }
           >
             <div className={styles2.ingredient_img_box}>
               <img src={ingredient.imageUrl} />
