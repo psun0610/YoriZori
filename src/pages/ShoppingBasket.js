@@ -6,7 +6,7 @@ import axios from "axios";
 import Header from "../components/Header";
 
 const ShoppingBasket = () => {
-  // 로그인 한 사용자인지 확인
+  //로그인 한 사용자인지 확인
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token_nickname") === null) {
