@@ -4,7 +4,7 @@ import styles from "../styles/Main.module.css";
 import axios from "axios";
 
 function Recipe(props) {
-  const { searchText } = props;
+  const { searchText, category } = props;
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -20,12 +20,21 @@ function Recipe(props) {
     fetchRecipes();
   }, []);
 
+
+  const filteredRecipes = recipes.filter(recipe => {
+    if (category === 0) {
+      return true;
+    } else {
+      return recipe.category === category;
+    }
+  });
+
   return (
     <>
-      {recipes.map(
+      {filteredRecipes.map(
         (recipe, index) =>
           recipe.title &&
-          recipe.title.toLowerCase().includes(searchText.toLowerCase()) && (
+          recipe.title.includes(searchText) && (
             <Link to="/recipeinfo" className={styles.recipe} key={index}>
               <img src={recipe.imageUrl} alt={recipe.title} />
               <div>
