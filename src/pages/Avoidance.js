@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Avoidance.module.css";
 import SearchBox from "../components/SearchBox";
+import axios from "axios";
 
 function Avoidance() {
+  const baseURL = "http://localhost:8080";
+  const userId = localStorage.getItem("id");
   // 로그인 한 사용자인지 확인
   const navigate = useNavigate();
   useEffect(() => {
@@ -36,13 +39,15 @@ function Avoidance() {
     }
   };
 
-  useEffect(() => {
-    console.log(select);
-  }, [select]);
-
   // 제출 기능 아직 미개발
-  const handleSubmit = () => {};
-
+  const handleSubmit = () => {
+    let selectArray = select.map(s => s.id);
+    axios
+      .post(`${baseURL}/users/${userId}/avoid-ingredients`, selectArray)
+      .then(() => {
+        navigate("/join_complete");
+      });
+  };
   return (
     <div
       style={{
