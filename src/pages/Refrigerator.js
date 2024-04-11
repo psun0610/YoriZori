@@ -30,6 +30,7 @@ const refrigerator = () => {
   useEffect(() => {
     if (localStorage.getItem("token_nickname") === null) {
       navigate("/home");
+      return;
     }
     axios.get(`${baseURL}/fridges/${userId}/ingredients`).then(response => {
       setIngredients(response.data);
@@ -60,7 +61,7 @@ const refrigerator = () => {
         <div className={styles.ingredient_box}>
           {filteredIngredients.map((ingredient, index) => (
             <div key={index}>
-              <Ingredient name={ingredient.id} dday={ingredient.dday} />
+              <Ingredient name={ingredient.name} dday={ingredient.dday} />
             </div>
           ))}
         </div>

@@ -22,7 +22,7 @@ function RefrigeratorAdd() {
 
   const baseURL = "http://localhost:8080";
   const userId = localStorage.getItem("id");
-  const [selectIngredient, setSelectIngredient] = useState("");
+  const [selectIngredient, setSelectIngredient] = useState([]);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
 
   const items = [
@@ -66,13 +66,18 @@ function RefrigeratorAdd() {
   }, [wrapperRef]);
 
   /* 제출 버튼 동작 함수 */
-  // 냉동일때 putDate 처리해야함.
+  // 냉동일때 expDate 처리해야함.
   const handleSubmitClick = () => {
+    if (selectIngredient.length === 0) {
+      alert("재료를 선택해주세요");
+      return;
+    }
     axios
       .post(`${baseURL}/fridges/${userId}/ingredients`, {
         fridgeId: userId,
-        ingredientId: selectIngredient.id,
+        ingredientId: selectIngredient[0].id,
         putDate: JSON.stringify(startDate).substr(1, 10),
+        expDate: JSON.stringify(endDate).substr(1, 10),
         storagePlace: storage,
       })
       .then(() => {
@@ -83,6 +88,7 @@ function RefrigeratorAdd() {
         return;
       });
   };
+
   return (
     <div>
       <Header name="냉장고 재료 등록" />
@@ -94,9 +100,9 @@ function RefrigeratorAdd() {
               <h1>
                 <span>어떤 재료</span>를 등록할까요?
               </h1>
-              {selectIngredient && (
+              {selectIngredient.length !== 0 && (
                 <div className={styles.select_ingredient}>
-                  {selectIngredient.name}
+                  {selectIngredient[0].name}
                 </div>
               )}
             </div>
@@ -112,8 +118,9 @@ function RefrigeratorAdd() {
                 isOpen={searchIsOpen}
                 items={items}
                 onClick={ingredient => {
-                  setSelectIngredient(ingredient);
+                  setSelectIngredient([ingredient]);
                 }}
+                select={selectIngredient}
               />
             </div>
           </div>
