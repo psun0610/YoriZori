@@ -67,8 +67,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 56px;
+  width: 65px;
+  padding: 5px;
   cursor: pointer;
+  border-radius: 10px;
+  /* background-color: rgba(0, 0, 0, 0.082); */
 }
 
 .ingredient_img_box {

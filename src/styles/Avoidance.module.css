@@ -11,3 +11,18 @@
   color: var(--main_text);
   font-size: 22px;
 }
+
+.avoid_selects {
+  width: 95%;
+}
+
+.avoid_selects > div {
+  display: inline-block;
+  width: fit-content;
+  margin: 0 5px;
+  padding: 3px 10px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 20px;
+  border: 2px solid var(--main_button);
+}

@@ -9,11 +9,10 @@ import MainRecipe from "../components/MainRecipe";
 
 const Main = () => {
   const baseURL = "http://localhost:8080";
-  const [ingredients, setIngredients] = useState([]);
-  const lackIngredients = [];
+  const [lackIngredients, setLackIngredients] = useState([]);
   const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
 
-  // 개발용 임시 로그인
+  // // 개발용 임시 로그인
   localStorage.setItem("id", 10);
   localStorage.setItem("token_nickname", "test");
 
@@ -35,17 +34,16 @@ const Main = () => {
         const response = await axios.get(
           `${baseURL}/fridges/${storedId}/ingredients`,
         );
-        setIngredients(response.data);
+
+        // 재료 정보를 받은 후에 부족한 재료를 업데이트
+        const lackIngredients = response.data.filter(
+          ingredient => ingredient.dday <= 3,
+        );
+        setLackIngredients(lackIngredients);
       } catch (error) {
         console.error("Error fetching user information:", error);
       }
     };
-
-    ingredients.forEach(i => {
-      if (ingredients[i].dday <= 3) {
-        lackIngredients.push(ingredients[i]);
-      }
-    });
 
     fetchUserInfo();
   }, []);
@@ -64,7 +62,7 @@ const Main = () => {
         </div>
         <div className={styles.container}>
           {/* 소비기한 임박 재료 리스트 */}
-          {loginUser !== "" && lackIngredients.length < 0 && (
+          {loginUser !== "" && lackIngredients.length > 0 && (
             <div className={styles.close_to_expiration}>
               <h1>
                 <span>소비기한이 임박한 재료</span>가 있어요!
@@ -73,7 +71,7 @@ const Main = () => {
                 {lackIngredients.map((ingredient, index) => (
                   <div key={index}>
                     <Ingredient
-                      name={ingredient.id}
+                      name={ingredient.name}
                       dday={ingredient.dday}
                       src={ingredient.imageUrl}
                     />
