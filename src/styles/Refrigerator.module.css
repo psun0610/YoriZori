@@ -24,7 +24,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 999;
 
   @media (max-width: 600px) {
     right: 30px;
@@ -36,6 +35,86 @@
   margin: 0;
   font-weight: 700;
   color: var(--grey80);
+}
+
+.ingredient_options {
+  display: flex;
+  position: fixed;
+  bottom: 98px;
+  width: calc(600px - 4vh);
+  padding: 20px 0 20px 30px;
+  background-color: white;
+  box-shadow: 0 4px 13px var(--grey40);
+  border-radius: 10px;
+
+  @media (max-width: 600px) {
+    width: calc(100% - 4vh);
+  }
+}
+
+.options_box {
+  width: 280px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.options_box > p {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.options_box p span {
+  color: var(--main_text);
+}
+
+.options_box div {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.options_buttons button {
+  background-color: transparent;
+  border: 0;
+  color: var(--main_text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ingredient {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  width: 20%;
+}
+
+.ingredient_img_box {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+.ingredient_img_box img {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: var(--grey40) 0 0 5px 1px;
+}
+
+.ingredient p {
+  font-size: 13px;
+  margin: 0;
 }
 
 /** RefrigeratorAdd.js **/
