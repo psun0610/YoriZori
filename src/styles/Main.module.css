@@ -97,13 +97,22 @@
   position: absolute;
   top: -7px;
   right: -3px;
-  background-color: var(--red);
   color: white;
   padding: 0 5px 1px;
   font-size: 11px;
   border-radius: 8px;
 }
 
+.ingredient_frozen {
+  background-color: #7cc4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ingredient_frozen p {
+  color: white;
+  font-size: 11px;
+}
 /** 메인 버튼 3개 **/
 .main_buttons {
   text-align: center;
