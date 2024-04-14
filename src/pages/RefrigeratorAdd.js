@@ -72,12 +72,18 @@ function RefrigeratorAdd() {
       alert("재료를 선택해주세요");
       return;
     }
+    let expDate;
+    if (storage === "FROZEN") {
+      expDate = null;
+    } else {
+      expDate = JSON.stringify(endDate).substr(1, 10);
+    }
     axios
       .post(`${baseURL}/fridges/${userId}/ingredients`, {
         fridgeId: userId,
         ingredientId: selectIngredient[0].id,
         putDate: JSON.stringify(startDate).substr(1, 10),
-        expDate: JSON.stringify(endDate).substr(1, 10),
+        expDate: expDate,
         storagePlace: storage,
       })
       .then(() => {
