@@ -4,7 +4,7 @@
   grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
   grid-gap: 35px 50px;
   place-items: center;
-  padding: 5vh 12px 60px;
+  padding: 0 12px;
 }
 
 .wrapper {
@@ -143,4 +143,27 @@
   border-width: 0;
   border-radius: 10px;
   box-shadow: 0 0 6px var(--grey60);
+}
+
+.line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+  margin: 35px auto;
+}
+
+.line p {
+  display: inline-block;
+  color: var(--grey60);
+  font-size: 13px;
+  width: 50px;
+}
+
+.line hr {
+  display: block;
+  background-color: var(--grey40);
+  height: 1px;
+  width: 100%;
+  border: 0;
 }

@@ -6,37 +6,58 @@ import Category from "../components/Category";
 import Ingredient from "../components/Ingredient";
 import styles from "../styles/Refrigerator.module.css";
 
-const refrigerator = () => {
+const Refrigerator = () => {
   const baseURL = "http://localhost:8080";
   const userId = localStorage.getItem("id");
-  const [ingredients, setIngredients] = useState([]);
+  const [responseList, setResponseList] = useState([]);
   const [selectCategory, setSelectCategory] = useState(0);
-  const [filteredIngredients, setFilteredIngredients] = useState([]);
+  const [ingredientList, setIngredientList] = useState({
+    cold: [],
+    outside: [],
+    frozen: [],
+  });
 
-  const handleSelectCategory = select => {
-    setSelectCategory(select);
+  const handleSelectCategory = index => {
+    setSelectCategory(index);
   };
 
   useEffect(() => {
-    const filtered = ingredients.filter(
+    const filtered = responseList.filter(
       ingredient =>
         selectCategory === 0 || ingredient.categoryId === selectCategory,
     );
-    setFilteredIngredients(filtered);
-  }, [selectCategory, ingredients]);
 
-  // 로그인 한 사용자라면 냉장고 axios 요청
+    const coldIngredients = [];
+    const outsideIngredients = [];
+    const frozenIngredients = [];
+
+    filtered.forEach(f => {
+      if (f.storagePlace === "COLD") {
+        coldIngredients.push(f);
+      } else if (f.storagePlace === "OUTSIDE") {
+        outsideIngredients.push(f);
+      } else if (f.storagePlace === "FROZEN") {
+        frozenIngredients.push(f);
+      }
+    });
+
+    setIngredientList({
+      cold: coldIngredients,
+      outside: outsideIngredients,
+      frozen: frozenIngredients,
+    });
+  }, [selectCategory, responseList]);
+
   const navigate = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("token_nickname") === null) {
+    if (!localStorage.getItem("token_nickname")) {
       navigate("/home");
       return;
     }
     axios.get(`${baseURL}/fridges/${userId}/ingredients`).then(response => {
-      setIngredients(response.data);
+      setResponseList(response.data);
     });
   }, []);
-
   const items = [
     "전체",
     "과일",
@@ -58,10 +79,36 @@ const refrigerator = () => {
         <div className={styles.category}>
           <Category items={items} onClick={handleSelectCategory} />
         </div>
+
+        <div className={styles.line} style={{ margin: "10px auto 40px" }}>
+          <p>실온</p>
+          <hr />
+        </div>
         <div className={styles.ingredient_box}>
-          {filteredIngredients.map((ingredient, index) => (
+          {ingredientList.outside.map((ingredient, index) => (
             <div key={index}>
               <Ingredient name={ingredient.name} dday={ingredient.dday} />
+            </div>
+          ))}
+        </div>
+
+        <div className={styles.line}>
+          <p>냉장고</p>
+          <hr />
+        </div>
+        <div className={styles.ingredient_box}>
+          {ingredientList.cold.map((ingredient, index) => (
+            <div key={index}>
+              <Ingredient name={ingredient.name} dday={ingredient.dday} />
+            </div>
+          ))}
+          {ingredientList.frozen.map((ingredient, index) => (
+            <div key={index}>
+              <Ingredient
+                name={ingredient.name}
+                dday={ingredient.dday}
+                isFrozen={true}
+              />
             </div>
           ))}
         </div>
@@ -93,4 +140,4 @@ const refrigerator = () => {
   );
 };
 
-export default refrigerator;
+export default Refrigerator;
