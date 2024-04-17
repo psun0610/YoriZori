@@ -37,7 +37,8 @@
   font-weight: 800;
 }
 .title_sub p {
-  margin-left: 20px;
+  
+  margin: 10px;
   font-weight: 900;
   font-size: 12px;
 }
@@ -79,8 +80,8 @@
 }
 
 .bookmark > img {
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 30px;
 }
 
 .bookmark > p {
