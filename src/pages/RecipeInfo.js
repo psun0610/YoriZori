@@ -2,29 +2,59 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const RecipeInfo = () => {
-  // 로그인 한 사용자인지 확인
   const [loginUser, setLoginUser] = useState("");
+  const [isBookmarked, setIsBookmarked] = useState();
+
+  const { id } = useParams();
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    const fetchInfo = async () => {
+      try {
+        const response = await axios.get(`/recipe${id}.json`);
+
+        setInfo({
+          ...response.data,
+          isBookmarked: response.data.isBookmarked || false,
+        });
+        setIsBookmarked(response.data.isBookmarked || false);
+      } catch (error) {
+        console.error("Error Code:", error);
+      }
+    };
+
+    fetchInfo();
+  }, [id]);
+
   useEffect(() => {
     if (localStorage.getItem("token_nickname") !== null) {
       setLoginUser(localStorage.getItem("id"));
     }
   }, []);
 
+  const toggleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+
+    setInfo(prevInfo => ({ ...prevInfo, isBookmarked: !isBookmarked }));
+  };
+
   return (
     <div>
       <Header name="레시피" />
       <div id="wrapper_contain_header">
         <div className={styles.recipe_img}>
-          <img src="./images/mainpage_food_image.jpg" />
+          <img src={info.imageUrl} alt={info.title} />
         </div>
 
         <div className={styles.container}>
           <div className={styles.info_up}>
             <div>
               <div className={styles.info_between}>
-                <h1 className={styles.title}>계란찜</h1>
+                <h1 className={styles.title}>{info.title}</h1>
                 <div className={styles.button_container}>
                   <button className={styles.basket_button}>
                     <p>장바구니에 추가</p>
@@ -50,9 +80,16 @@ const RecipeInfo = () => {
                       </defs>
                     </svg>
                   </button>
-                  <button className={styles.bookmark}>
-                    <img src="./images/bookmark.png" />
-                    <p>6</p>
+                  <button className={styles.bookmark} onClick={toggleBookmark}>
+                    <img
+                      src={
+                        isBookmarked
+                          ? "/images/bookmark.png"
+                          : "/images/bookmark2.png"
+                      }
+                      alt="Bookmark"
+                    />
+                    <p>{info.scrap}</p>
                   </button>
                 </div>
               </div>
@@ -61,21 +98,29 @@ const RecipeInfo = () => {
               {loginUser && (
                 <div className={styles.title_sub}>
                   <div>
-                    가진 재료<p>|</p>
+                    가진 재료|
+                    {info.haveIngredient && info.haveIngredient.length > 0 ? (
+                      info.haveIngredient.map((haveIngredient, i) => (
+                        <p key={i}>{haveIngredient}</p>
+                      ))
+                    ) : (
+                      <p>재료가 없습니다.</p>
+                    )}
                   </div>
                   <div>
-                    없는 재료<p>|</p>
+                    없는 재료|
+                    {info.needIngredient &&
+                      info.needIngredient.map((needIngredient, i) => (
+                        <p key={i}>{needIngredient}</p>
+                      ))}
                   </div>
                 </div>
               )}
             </div>
           </div>
           <div className={styles.cook}>
-            <img
-              className={styles.cook_img}
-              src="./images/mainpage_food_image.jpg"
-            />
-            <span>1.계란을 풀어준다</span>
+            <img className={styles.cook_img} src={info.cookimg} alt="Cooking" />
+            <span>{info.cooktext}</span>
           </div>
           <div />
         </div>

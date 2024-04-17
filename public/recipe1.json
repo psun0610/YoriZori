@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "title": "오리불고기",
+   "isBookmarked": false,
+    "scrap": 2,
+    "imageUrl": "https://homecuisine.co.kr/files/attach/images/140/241/098/e4e2a7ab18e8650a8fab5c1e455e8606.JPG",
+    "haveIngredient": ["고추장","대파"],
+    "needIngredient": ["오리고기"]
+  }
