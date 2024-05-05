@@ -6,57 +6,47 @@ import axios from "axios";
 import Header from "../components/Header";
 
 const ShoppingBasket = () => {
-  //로그인 한 사용자인지 확인
+  // 로그인 한 사용자인지 확인
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token_nickname") === null) {
       navigate("/home");
     }
   }, []);
-
+  const baseURL = "http://localhost:8080";
   const [items, setItems] = useState([]);
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await axios.get("/shoppingbasket.json");
+        const response = await axios.get(baseURL + `/users/cart`);
         setItems(response.data);
       } catch (error) {
-        console.error("Error Code:", error);
+        console.error("Error fetching items:", error);
       }
     };
 
     fetchItems();
   }, []);
 
-  const handleDeleteItem = itemId => {
-    setItems(prevItems => prevItems.filter(item => item.id !== itemId));
+  const handleDeleteItem = async cartId => {
+    try {
+      await axios.delete(`/users/cart/${cartId}`);
+      setItems(prevItems => prevItems.filter(item => item.cartId !== cartId));
+    } catch (error) {
+      console.error("Error deleting item:", error);
+    }
   };
 
-  //추후 axios 연동 후 delete 코드 구현 예정 밑은 임시 delete 코드
-
-  // const handleDeleteItem = async itemId => {
-  //   try {
-  //     await axios.delete(`/shoppingbasket.json/${itemId}`);
-
-  //     setItems(prevItems => prevItems.filter(item => item.id !== itemId));
-  //   } catch (error) {
-  //     console.error("Error deleting item:", error);
-  //   }
-  // };
-
-  const handleTogglePin = itemId => {
-    const updatedItems = [...items];
-    const index = updatedItems.findIndex(item => item.id === itemId);
-    updatedItems[index].pinned = !updatedItems[index].pinned;
-    if (updatedItems[index].pinned) {
-      const pinnedItem = updatedItems.splice(index, 1);
-      updatedItems.unshift(pinnedItem[0]);
-    } else {
-      const unpinnedItem = updatedItems.splice(index, 1);
-      updatedItems.push(unpinnedItem[0]);
+  const handleTogglePin = async cartId => {
+    try {
+      const response = await axios.put(`/users/cart/${cartId}`, {
+        pinned: !items.find(item => item.cartId === cartId).pinned,
+      });
+      setItems(response.data);
+    } catch (error) {
+      console.error("Error toggling pin:", error);
     }
-    setItems(updatedItems);
   };
 
   return (
@@ -72,7 +62,7 @@ const ShoppingBasket = () => {
           </div>
           <div className={styles.shopping_list}>
             {items.map(item => (
-              <div className={styles.basket_item} key={item.id}>
+              <div className={styles.basket_item} key={item.cartId}>
                 <img
                   src={item.imageUrl}
                   className={styles.item_image}
@@ -82,19 +72,23 @@ const ShoppingBasket = () => {
                 <div className={styles.item_button}>
                   <button
                     className={styles.pinbutton}
-                    onClick={() => handleTogglePin(item.id)}
+                    onClick={() => handleTogglePin(item.cartId)}
                   >
                     <img
                       className={styles.pin}
                       src={item.pinned ? "/images/pin2.png" : "images/pin1.png"}
+                      alt={item.pinned ? "Pinned" : "Unpinned"}
                     />
                   </button>
-
                   <button
                     className={styles.item_cancel}
-                    onClick={() => handleDeleteItem(item.id)}
+                    onClick={() => handleDeleteItem(item.cartId)}
                   >
-                    <img className={styles.cancel} src="/images/cancel.png" />
+                    <img
+                      className={styles.cancel}
+                      src="/images/cancel.png"
+                      alt="Cancel"
+                    />
                   </button>
                 </div>
               </div>

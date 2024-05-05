@@ -6,17 +6,19 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const RecipeInfo = () => {
+  const baseURL = "http://localhost:8080";
   const [loginUser, setLoginUser] = useState("");
   const [isBookmarked, setIsBookmarked] = useState();
 
   const { id } = useParams();
   const [info, setInfo] = useState({});
+  const recipeId = id;
 
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const response = await axios.get(`/recipe${id}.json`);
-
+        const response = await axios.get(baseURL + `/recipes/all/${recipeId}`);
+        
         setInfo({
           ...response.data,
           isBookmarked: response.data.isBookmarked || false,
@@ -47,14 +49,14 @@ const RecipeInfo = () => {
       <Header name="레시피" />
       <div id="wrapper_contain_header">
         <div className={styles.recipe_img}>
-          <img src={info.imageUrl} alt={info.title} />
+          <img src={info.imageUrl} alt={info.name} />
         </div>
 
         <div className={styles.container}>
           <div className={styles.info_up}>
             <div>
               <div className={styles.info_between}>
-                <h1 className={styles.title}>{info.title}</h1>
+                <h1 className={styles.title}>{info.name}</h1>
                 <div className={styles.button_container}>
                   <button className={styles.basket_button}>
                     <p>장바구니에 추가</p>
@@ -100,8 +102,8 @@ const RecipeInfo = () => {
                   <div>
                     가진 재료|
                     {info.haveIngredient && info.haveIngredient.length > 0 ? (
-                      info.haveIngredient.map((haveIngredient, i) => (
-                        <p key={i}>{haveIngredient}</p>
+                      info.haveIngredient.map((ingredient, id) => (
+                        <p key={id}>{ingredient.name}</p>
                       ))
                     ) : (
                       <p>재료가 없습니다.</p>
@@ -110,8 +112,8 @@ const RecipeInfo = () => {
                   <div>
                     없는 재료|
                     {info.needIngredient &&
-                      info.needIngredient.map((needIngredient, i) => (
-                        <p key={i}>{needIngredient}</p>
+                      info.needIngredient.map((ingredient, id) => (
+                        <p key={id}>{ingredient.name}</p>
                       ))}
                   </div>
                 </div>
