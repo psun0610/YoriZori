@@ -2,24 +2,32 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../styles/ShoppingBasket.module.css";
 import Navigation from "../components/Navigation";
-import axios from "axios";
 import Header from "../components/Header";
+import AxiosAuth from "../components/AxiosAuth";
 
 const ShoppingBasket = () => {
-  // 로그인 한 사용자인지 확인
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("token_nickname") === null) {
-      navigate("/home");
-    }
-  }, []);
-  const baseURL = "http://localhost:8080";
   const [items, setItems] = useState([]);
 
+  const navigate = useNavigate();
   useEffect(() => {
+    // Authentication
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      AxiosAuth.post("/auth/validate", {
+        token: localStorage.getItem("accessToken"),
+      }).catch(error => {
+        console.log(error);
+        navigate("/home");
+        return;
+      });
+    } else {
+      navigate("/home");
+      return;
+    }
+
     const fetchItems = async () => {
       try {
-        const response = await axios.get(baseURL + `/users/cart`);
+        const response = await AxiosAuth.get(`/users/cart`);
         setItems(response.data);
       } catch (error) {
         console.error("Error fetching items:", error);
@@ -31,7 +39,7 @@ const ShoppingBasket = () => {
 
   const handleDeleteItem = async cartId => {
     try {
-      await axios.delete(`/users/cart/${cartId}`);
+      await AxiosAuth.delete(`/users/cart/${cartId}`);
       setItems(prevItems => prevItems.filter(item => item.cartId !== cartId));
     } catch (error) {
       console.error("Error deleting item:", error);
@@ -40,7 +48,7 @@ const ShoppingBasket = () => {
 
   const handleTogglePin = async cartId => {
     try {
-      const response = await axios.put(`/users/cart/${cartId}`, {
+      const response = await AxiosAuth.put(`/users/cart/${cartId}`, {
         pinned: !items.find(item => item.cartId === cartId).pinned,
       });
       setItems(response.data);

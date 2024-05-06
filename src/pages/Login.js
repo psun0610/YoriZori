@@ -27,21 +27,23 @@ const Login = () => {
     }
 
     axios
-      .post(baseURL + "/login", {
+      .post(baseURL + "/auth/signin", {
         name: userName,
         password: password,
       })
       .then(response => {
         // 아이디, 비밀번호 Match Check
         if (!response.data.success) {
-          setValidMatch(response.data.message);
+          setValidMatch(response.message);
           return;
         }
 
-        /** 현재 닉네임이 토큰으로 돼있는데 추후 JWT 추가되면 수정 **/
+        localStorage.clear();
         localStorage.clear();
         localStorage.setItem("id", response.data.userId);
-        localStorage.setItem("token_nickname", response.data.nickname);
+        localStorage.setItem("accessToken", response.data.token);
+        localStorage.setItem("refreshToken", response.data.refreshToken);
+        // expirationTime
         navigate("/");
       });
   };

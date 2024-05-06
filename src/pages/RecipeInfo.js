@@ -6,7 +6,6 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 const RecipeInfo = () => {
-  const baseURL = "http://localhost:8080";
   const [loginUser, setLoginUser] = useState("");
   const [isBookmarked, setIsBookmarked] = useState();
 
@@ -17,8 +16,8 @@ const RecipeInfo = () => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const response = await axios.get(baseURL + `/recipes/all/${recipeId}`);
-        
+        const response = await axios.get(`/recipes/all/${recipeId}`);
+
         setInfo({
           ...response.data,
           isBookmarked: response.data.isBookmarked || false,
