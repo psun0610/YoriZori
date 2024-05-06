@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Ingredient from "../components/Ingredient";
 import Navigation from "../components/Navigation";
@@ -10,36 +9,24 @@ import AxiosAuth from "../components/AxiosAuth";
 const Main = () => {
   const [lackIngredients, setLackIngredients] = useState([]);
 
-  const navigate = useNavigate();
   useEffect(() => {
-    // 로그인 유저 확인
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      AxiosAuth.post("/auth/validate", {
-        token: localStorage.getItem("accessToken"),
-      }).catch(error => {
-        console.log(error);
-        navigate("/home");
-      });
-    } else {
-      navigate("/home");
+    if (localStorage.getItem("accessToken")) {
+      const fetchUserInfo = async () => {
+        try {
+          // 로그인 사용자의 재료 정보 가져오기
+          const response = await AxiosAuth.get(`/fridges/ingredients`);
+          // 재료 정보를 받은 후에 부족한 재료를 업데이트
+          const lackIngredients = response.data.filter(
+            ingredient => ingredient.dday <= 3,
+          );
+          setLackIngredients(lackIngredients);
+        } catch (error) {
+          console.log(1);
+        }
+      };
+
+      fetchUserInfo();
     }
-
-    const fetchUserInfo = async () => {
-      try {
-        // 로그인 사용자의 재료 정보 가져오기
-        const response = await AxiosAuth.get(`/fridges/ingredients`);
-        // 재료 정보를 받은 후에 부족한 재료를 업데이트
-        const lackIngredients = response.data.filter(
-          ingredient => ingredient.dday <= 3,
-        );
-        setLackIngredients(lackIngredients);
-      } catch (error) {
-        console.log(1);
-      }
-    };
-
-    fetchUserInfo();
   }, []);
 
   return (
