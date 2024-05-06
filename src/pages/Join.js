@@ -90,7 +90,6 @@ const Join = () => {
           })
           .then(loginResponse => {
             localStorage.clear();
-            localStorage.setItem("id", response.data.ourUsers.id);
             localStorage.setItem("accessToken", loginResponse.data.token);
             localStorage.setItem(
               "refreshToken",
