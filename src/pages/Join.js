@@ -5,8 +5,8 @@ import axios from "axios";
 import "../App.css";
 
 const Join = () => {
-  const baseURL = "http://localhost:8080";
   const navigate = useNavigate();
+  const baseURL = "http://localhost:8080";
 
   const [user, setUser] = useState({
     userName: "",
@@ -70,29 +70,35 @@ const Join = () => {
 
     // 회원가입
     axios
-      .post(baseURL + "/users", {
+      .post(baseURL + "/auth/signup", {
         name: user.userName,
         password: user.password,
         nickname: user.nickName,
       })
-      .then(() => {
+      .then(response => {
+        // 회원가입 실패
+        if (response.data.error === "이미 존재하는 아이디입니다.") {
+          setValid({ ...valid, idDuplicate: true });
+          return;
+        }
+
+        // 회원가입 성공
         axios
-          .post(baseURL + "/login", {
+          .post(baseURL + "/auth/signin", {
             name: user.userName,
             password: user.password,
           })
-          .then(response => {
-            /** 현재 닉네임이 토큰으로 돼있는데 추후 JWT 추가되면 수정 **/
+          .then(loginResponse => {
             localStorage.clear();
-            localStorage.setItem("id", response.data.userId);
-            localStorage.setItem("token_nickname", response.data.nickname);
+            localStorage.setItem("id", response.data.ourUsers.id);
+            localStorage.setItem("accessToken", loginResponse.data.token);
+            localStorage.setItem(
+              "refreshToken",
+              loginResponse.data.refreshToken,
+            );
+            // expirationTime
             navigate("/avoidance");
           });
-      })
-      .catch(error => {
-        if (error.response.data.message === "이미 존재하는 아이디입니다.")
-          setValid({ ...valid, idDuplicate: true });
-        return;
       });
   };
 

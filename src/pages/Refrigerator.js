@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import Navigation from "../components/Navigation";
 import Category from "../components/Category";
 import Ingredient from "../components/Ingredient";
 import styles from "../styles/Refrigerator.module.css";
+import AxiosAuth from "../components/AxiosAuth";
 
 const Refrigerator = () => {
-  const baseURL = "http://localhost:8080";
   const userId = localStorage.getItem("id");
   const [responseList, setResponseList] = useState([]);
   const [selectCategory, setSelectCategory] = useState(0);
@@ -52,11 +51,21 @@ const Refrigerator = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (!localStorage.getItem("token_nickname")) {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      AxiosAuth.post("/auth/validate", {
+        token: localStorage.getItem("accessToken"),
+      }).catch(error => {
+        console.log(error);
+        navigate("/home");
+        return;
+      });
+    } else {
       navigate("/home");
       return;
     }
-    axios.get(`${baseURL}/fridges/${userId}/ingredients`).then(response => {
+
+    AxiosAuth.get(`/fridges/ingredients`).then(response => {
       setResponseList(response.data);
     });
   }, []);
@@ -83,15 +92,15 @@ const Refrigerator = () => {
   };
 
   const handleDelete = ingredient => {
-    axios
-      .delete(`${baseURL}/fridges/${userId}/ingredients/${ingredient.id}`)
-      .then(() => {
+    AxiosAuth.delete(`/fridges/${userId}/ingredients/${ingredient.id}`).then(
+      () => {
         const updatedList = responseList.filter(
           item => item.id !== ingredient.id,
         );
         setResponseList(updatedList); // 새로운 목록으로 상태 업데이트
         setSelectedIngredient(null);
-      });
+      },
+    );
   };
 
   // 수정 삭제 창 외에 다른 곳을 눌렀을 때는 다시 닫히게 하기

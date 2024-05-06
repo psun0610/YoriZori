@@ -1,15 +1,8 @@
-import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
 
 function JoinComplete() {
-  // 로그인 한 사용자인지 확인
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("token_nickname") === null) {
-      navigate("/home");
-    }
-  }, []);
   return (
     <div
       style={{

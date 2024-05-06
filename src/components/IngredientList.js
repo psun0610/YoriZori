@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styles from "../styles/SearchBox.module.css";
 import styles2 from "../styles/Main.module.css";
+import AxiosAuth from "./AxiosAuth";
 
 // 검색에 사용되는 재료 리스트 컴포넌트
 function IngredientList(props) {
   const [ingredients, setIngredients] = useState([]);
   const [filteredIngredients, setFilteredIngredients] = useState([]);
 
-  const baseURL = "http://localhost:8080";
-
   useEffect(() => {
-    axios.get(baseURL + "/ingredients").then(response => {
+    AxiosAuth.get("/ingredients").then(response => {
       setIngredients(response.data);
     });
   }, []);
