@@ -1,47 +1,35 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Ingredient from "../components/Ingredient";
-
 import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
+import AxiosAuth from "../components/AxiosAuth";
 
 const Main = () => {
-  const baseURL = "http://localhost:8080";
   const [lackIngredients, setLackIngredients] = useState([]);
   const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
-
-  // // 개발용 임시 로그인
-  localStorage.setItem("id", 10);
-  localStorage.setItem("token_nickname", "test");
 
   useEffect(() => {
     const fetchUserInfo = async () => {
       // 로컬 스토리지에서 로그인 사용자 정보 가져오기
-      const storedId = localStorage.getItem("id");
-      const storedNickname = localStorage.getItem("token_nickname");
+      const userId = localStorage.getItem("id");
+      setLoginUser(userId);
 
-      // 로그인 사용자 정보가 없는 경우(null 또는 undefined) 반환
-      if (!storedId || !storedNickname) {
-        return;
-      }
-
-      setLoginUser(storedId);
-
-      try {
-        // 로그인 사용자의 재료 정보 가져오기
-        const response = await axios.get(
-          `${baseURL}/fridges/${storedId}/ingredients`,
-        );
-
-        // 재료 정보를 받은 후에 부족한 재료를 업데이트
-        const lackIngredients = response.data.filter(
-          ingredient => ingredient.dday <= 3,
-        );
-        setLackIngredients(lackIngredients);
-      } catch (error) {
-        console.error("Error fetching user information:", error);
+      if (loginUser !== "") {
+        try {
+          // 로그인 사용자의 재료 정보 가져오기
+          const response = await AxiosAuth.get(
+            `/fridges/${userId}/ingredients`,
+          );
+          // 재료 정보를 받은 후에 부족한 재료를 업데이트
+          const lackIngredients = response.data.filter(
+            ingredient => ingredient.dday <= 3,
+          );
+          setLackIngredients(lackIngredients);
+        } catch (error) {
+          console.log(1);
+        }
       }
     };
 

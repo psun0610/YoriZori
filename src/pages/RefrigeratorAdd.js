@@ -9,18 +9,12 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import dayjs from "dayjs";
-import axios from "axios";
+import AxiosAuth from "../components/AxiosAuth";
 
 function RefrigeratorAdd() {
   // 로그인 한 사용자인지 확인
   const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("token_nickname") === null) {
-      navigate("/home");
-    }
-  }, []);
 
-  const baseURL = "http://localhost:8080";
   const userId = localStorage.getItem("id");
   const [selectIngredient, setSelectIngredient] = useState([]);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
@@ -78,14 +72,13 @@ function RefrigeratorAdd() {
     } else {
       expDate = JSON.stringify(endDate).substr(1, 10);
     }
-    axios
-      .post(`${baseURL}/fridges/${userId}/ingredients`, {
-        fridgeId: userId,
-        ingredientId: selectIngredient[0].id,
-        putDate: JSON.stringify(startDate).substr(1, 10),
-        expDate: expDate,
-        storagePlace: storage,
-      })
+    AxiosAuth.post(`/fridges/ingredients`, {
+      fridgeId: userId,
+      ingredientId: selectIngredient[0].id,
+      putDate: JSON.stringify(startDate).substr(1, 10),
+      expDate: expDate,
+      storagePlace: storage,
+    })
       .then(() => {
         navigate("/refrigerator");
       })
