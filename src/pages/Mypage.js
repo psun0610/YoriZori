@@ -3,13 +3,24 @@ import styles from "../styles/Mypage.module.css";
 import { useNavigate } from "react-router";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
+import AxiosAuth from "../components/AxiosAuth";
 
 const Mypage = () => {
+  // 로그인 유저 확인
   const navigate = useNavigate();
-  // 로그인 한 사용자인지 확인
   useEffect(() => {
-    if (localStorage.getItem("token_nickname") === null) {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      AxiosAuth.post("/auth/validate", {
+        token: localStorage.getItem("accessToken"),
+      }).catch(error => {
+        console.log(error);
+        navigate("/home");
+        return;
+      });
+    } else {
       navigate("/home");
+      return;
     }
   }, []);
 

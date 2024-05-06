@@ -1,20 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Avoidance.module.css";
 import SearchBox from "../components/SearchBox";
-import axios from "axios";
+import AxiosAuth from "../components/AxiosAuth";
 
 function Avoidance() {
-  const baseURL = "http://localhost:8080";
-  const userId = localStorage.getItem("id");
-  // 로그인 한 사용자인지 확인
   const navigate = useNavigate();
-  useEffect(() => {
-    if (localStorage.getItem("token_nickname") === null) {
-      navigate("/home");
-    }
-  }, []);
-
   const items = [
     "전체",
     "과일",
@@ -39,14 +30,11 @@ function Avoidance() {
     }
   };
 
-  // 제출 기능 아직 미개발
   const handleSubmit = () => {
     let selectArray = select.map(s => s.id);
-    axios
-      .post(`${baseURL}/users/${userId}/avoid-ingredients`, selectArray)
-      .then(() => {
-        navigate("/join_complete");
-      });
+    AxiosAuth.post(`/users/avoid-ingredients`, selectArray).then(() => {
+      navigate("/join_complete");
+    });
   };
   return (
     <div
