@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Ingredient from "../components/Ingredient";
 import Navigation from "../components/Navigation";
@@ -8,28 +9,33 @@ import AxiosAuth from "../components/AxiosAuth";
 
 const Main = () => {
   const [lackIngredients, setLackIngredients] = useState([]);
-  const [loginUser, setLoginUser] = useState(""); // 로그인 사용자 정보 상태
 
+  const navigate = useNavigate();
   useEffect(() => {
-    const fetchUserInfo = async () => {
-      // 로컬 스토리지에서 로그인 사용자 정보 가져오기
-      const userId = localStorage.getItem("id");
-      setLoginUser(userId);
+    // 로그인 유저 확인
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      AxiosAuth.post("/auth/validate", {
+        token: localStorage.getItem("accessToken"),
+      }).catch(error => {
+        console.log(error);
+        navigate("/home");
+      });
+    } else {
+      navigate("/home");
+    }
 
-      if (loginUser !== "") {
-        try {
-          // 로그인 사용자의 재료 정보 가져오기
-          const response = await AxiosAuth.get(
-            `/fridges/${userId}/ingredients`,
-          );
-          // 재료 정보를 받은 후에 부족한 재료를 업데이트
-          const lackIngredients = response.data.filter(
-            ingredient => ingredient.dday <= 3,
-          );
-          setLackIngredients(lackIngredients);
-        } catch (error) {
-          console.log(1);
-        }
+    const fetchUserInfo = async () => {
+      try {
+        // 로그인 사용자의 재료 정보 가져오기
+        const response = await AxiosAuth.get(`/fridges/ingredients`);
+        // 재료 정보를 받은 후에 부족한 재료를 업데이트
+        const lackIngredients = response.data.filter(
+          ingredient => ingredient.dday <= 3,
+        );
+        setLackIngredients(lackIngredients);
+      } catch (error) {
+        console.log(1);
       }
     };
 
@@ -50,7 +56,7 @@ const Main = () => {
         </div>
         <div className={styles.container}>
           {/* 소비기한 임박 재료 리스트 */}
-          {loginUser !== "" && lackIngredients.length > 0 && (
+          {lackIngredients.length > 0 && (
             <div className={styles.close_to_expiration}>
               <h1>
                 <span>소비기한이 임박한 재료</span>가 있어요!
@@ -72,8 +78,7 @@ const Main = () => {
           <div
             className={styles.main_buttons}
             style={{
-              marginTop:
-                !loginUser || lackIngredients.length <= 0 ? "20px" : "5px",
+              marginTop: lackIngredients.length <= 0 ? "20px" : "5px",
             }}
           >
             <div className={styles.button_box1}>

@@ -7,7 +7,6 @@ import styles from "../styles/Refrigerator.module.css";
 import AxiosAuth from "../components/AxiosAuth";
 
 const Refrigerator = () => {
-  const userId = localStorage.getItem("id");
   const [responseList, setResponseList] = useState([]);
   const [selectCategory, setSelectCategory] = useState(0);
   const [ingredientList, setIngredientList] = useState({
@@ -92,15 +91,13 @@ const Refrigerator = () => {
   };
 
   const handleDelete = ingredient => {
-    AxiosAuth.delete(`/fridges/${userId}/ingredients/${ingredient.id}`).then(
-      () => {
-        const updatedList = responseList.filter(
-          item => item.id !== ingredient.id,
-        );
-        setResponseList(updatedList); // 새로운 목록으로 상태 업데이트
-        setSelectedIngredient(null);
-      },
-    );
+    AxiosAuth.delete(`/fridges/ingredients/${ingredient.id}`).then(() => {
+      const updatedList = responseList.filter(
+        item => item.id !== ingredient.id,
+      );
+      setResponseList(updatedList); // 새로운 목록으로 상태 업데이트
+      setSelectedIngredient(null);
+    });
   };
 
   // 수정 삭제 창 외에 다른 곳을 눌렀을 때는 다시 닫히게 하기

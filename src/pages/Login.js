@@ -25,7 +25,6 @@ const Login = () => {
     } else {
       setValidEmpty("");
     }
-
     axios
       .post(baseURL + "/auth/signin", {
         name: userName,
@@ -33,14 +32,11 @@ const Login = () => {
       })
       .then(response => {
         // 아이디, 비밀번호 Match Check
-        if (!response.data.success) {
-          setValidMatch(response.message);
+        if (response.data.statusCode === 500) {
+          setValidMatch("아이디와 비밀번호를 다시 확인해주세요");
           return;
         }
-
         localStorage.clear();
-        localStorage.clear();
-        localStorage.setItem("id", response.data.userId);
         localStorage.setItem("accessToken", response.data.token);
         localStorage.setItem("refreshToken", response.data.refreshToken);
         // expirationTime
