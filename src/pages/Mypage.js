@@ -16,11 +16,9 @@ const Mypage = () => {
       }).catch(error => {
         console.log(error);
         navigate("/home");
-        return;
       });
     } else {
       navigate("/home");
-      return;
     }
   }, []);
 

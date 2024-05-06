@@ -91,6 +91,7 @@
 .ingredient p {
   font-size: 12px;
   margin: 0;
+  text-align: center;
 }
 
 .ingredient_day {
@@ -224,11 +225,11 @@
   display: flex;
   margin: 2px 0;
 }
-.lack_ingredients p{
+.lack_ingredients p {
   color: var(--main_button);
   font-weight: 500;
   font-size: 15px;
-  padding-top:3px;
+  padding-top: 3px;
 }
 .lack_ingredients div {
   background-color: var(--main_button);
