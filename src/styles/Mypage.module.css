@@ -74,4 +74,5 @@
 
 .my_list li {
   margin: 15px 0;
+  cursor: pointer;
 }
