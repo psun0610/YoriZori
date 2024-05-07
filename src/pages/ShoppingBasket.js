@@ -5,11 +5,14 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 
+
 const ShoppingBasket = () => {
   const [items, setItems] = useState([]);
 
+
   const navigate = useNavigate();
   useEffect(() => {
+   // Authorization
     const token = localStorage.getItem("accessToken");
     if (token) {
       AxiosAuth.post("/auth/validate", {
@@ -17,11 +20,9 @@ const ShoppingBasket = () => {
       }).catch(error => {
         console.log(error);
         navigate("/home");
-        return;
       });
     } else {
       navigate("/home");
-      return;
     }
 
     const fetchItems = async () => {
