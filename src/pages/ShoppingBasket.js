@@ -5,12 +5,14 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 
+
 const ShoppingBasket = () => {
   const [items, setItems] = useState([]);
 
+
   const navigate = useNavigate();
   useEffect(() => {
-    // Authentication
+   // Authentication
     const token = localStorage.getItem("accessToken");
     if (token) {
       AxiosAuth.post("/auth/validate", {

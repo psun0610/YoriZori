@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import axios from "axios";
+import AxiosAuth from "../components/AxiosAuth";
+
 
 function Recipe(props) {
-  const baseURL = "http://localhost:8080";
-  const { searchText, category } = props;
+ const baseURL = "http://localhost:8080";
+  const { searchText, category,LoginUser} = props;
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
@@ -14,7 +16,13 @@ function Recipe(props) {
 
   const fetchRecipes = async () => {
     try {
-      const response = await axios.get(baseURL + "/recipes/all");
+      let response;
+     if(LoginUser){
+        response = await AxiosAuth.get("/recipes/user-filtered");
+     }else{
+      response = await axios.get(baseURL + "/recipes/all");
+     }
+      
       setRecipes(response.data);
     } catch (error) {
       console.error("Error Code:", error);

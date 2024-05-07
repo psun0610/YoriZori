@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-import axios from "axios";
+import AxiosAuth from "../components/AxiosAuth";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
-const RecipeInfo = () => {
+const RecipeInfo = (props) => {
+  const {LoginUser} = props;
   const [loginUser, setLoginUser] = useState("");
   const [isBookmarked, setIsBookmarked] = useState();
-
+  const baseURL = "http://localhost:8080";
   const { id } = useParams();
   const [info, setInfo] = useState({});
   const recipeId = id;
@@ -16,7 +18,12 @@ const RecipeInfo = () => {
   useEffect(() => {
     const fetchInfo = async () => {
       try {
-        const response = await axios.get(`/recipes/all/${recipeId}`);
+        let response;
+        if (LoginUser) {
+          response = await AxiosAuth.get(`/recipes/uesr-filtered/${recipeId}`);
+        } else {
+          response = await axios.get(baseURL + `/recipes/all/${recipeId}`);
+        }
 
         setInfo({
           ...response.data,
