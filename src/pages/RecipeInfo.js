@@ -6,48 +6,59 @@ import AxiosAuth from "../components/AxiosAuth";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-const RecipeInfo = (props) => {
-  const {LoginUser} = props;
-  const [loginUser, setLoginUser] = useState("");
+const RecipeInfo = () => {
   const [isBookmarked, setIsBookmarked] = useState();
   const baseURL = "http://localhost:8080";
   const { id } = useParams();
   const [info, setInfo] = useState({});
   const recipeId = id;
 
+  const token = localStorage.getItem("accessToken");
+
   useEffect(() => {
     const fetchInfo = async () => {
       try {
         let response;
-        if (LoginUser) {
-          response = await AxiosAuth.get(`/recipes/uesr-filtered/${recipeId}`);
+        if (token) {
+          response = await AxiosAuth.get(`/recipes/user-filtered/${recipeId}`);
         } else {
           response = await axios.get(baseURL + `/recipes/all/${recipeId}`);
         }
 
-        setInfo({
-          ...response.data,
-          isBookmarked: response.data.isBookmarked || false,
-        });
-        setIsBookmarked(response.data.isBookmarked || false);
+        setInfo(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error Code:", error);
       }
     };
 
     fetchInfo();
-  }, [id]);
+  }, [id, token]);
 
-  useEffect(() => {
-    if (localStorage.getItem("token_nickname") !== null) {
-      setLoginUser(localStorage.getItem("id"));
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token_nickname") !== null) {
+  //     setLoginUser(localStorage.getItem("id"));
+  //   }
+  // }, []);
 
   const toggleBookmark = () => {
     setIsBookmarked(!isBookmarked);
 
     setInfo(prevInfo => ({ ...prevInfo, isBookmarked: !isBookmarked }));
+  };
+
+  const addToCart = async () => {
+    try {
+      const ingredientIds = info.insufficientIngredients.map(
+        ingredient => ingredient.id,
+      );
+      console.log(ingredientIds);
+
+      const response = await AxiosAuth.post("/users/cart", ingredientIds);
+      console.log("Added to cart:", response.data);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+    }
   };
 
   return (
@@ -64,7 +75,7 @@ const RecipeInfo = (props) => {
               <div className={styles.info_between}>
                 <h1 className={styles.title}>{info.name}</h1>
                 <div className={styles.button_container}>
-                  <button className={styles.basket_button}>
+                  <button className={styles.basket_button} onClick={addToCart}>
                     <p>장바구니에 추가</p>
                     <svg
                       width="14"
@@ -103,7 +114,7 @@ const RecipeInfo = (props) => {
               </div>
 
               {/** 재료 로그인 한 사용자만 볼 수 있게 함 (전체 재료 출력 필요함) */}
-              {loginUser && (
+              {token && (
                 <div className={styles.title_sub}>
                   <div>
                     가진 재료|
@@ -117,8 +128,8 @@ const RecipeInfo = (props) => {
                   </div>
                   <div>
                     없는 재료|
-                    {info.needIngredient &&
-                      info.needIngredient.map((ingredient, id) => (
+                    {info.insufficientIngredients &&
+                      info.insufficientIngredients.map((ingredient, id) => (
                         <p key={id}>{ingredient.name}</p>
                       ))}
                   </div>
