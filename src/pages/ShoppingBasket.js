@@ -10,11 +10,10 @@ const ShoppingBasket = () => {
 
   const navigate = useNavigate();
   useEffect(() => {
-    // Authentication
     const token = localStorage.getItem("accessToken");
     if (token) {
       AxiosAuth.post("/auth/validate", {
-        token: localStorage.getItem("accessToken"),
+        token: token,
       }).catch(error => {
         console.log(error);
         navigate("/home");

@@ -1,10 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/Avoidance.module.css";
 import SearchBox from "../components/SearchBox";
 import AxiosAuth from "../components/AxiosAuth";
 
 function Avoidance() {
+  // 로그인 유저 확인
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      AxiosAuth.post("/auth/validate", {
+        token: token,
+      }).catch(error => {
+        console.log(error);
+        navigate("/home");
+      });
+    } else {
+      navigate("/home");
+    }
+  }, []);
+
   const navigate = useNavigate();
   const items = [
     "전체",

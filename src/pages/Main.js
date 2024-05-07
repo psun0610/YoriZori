@@ -12,17 +12,13 @@ const Main = () => {
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       const fetchUserInfo = async () => {
-        try {
-          // 로그인 사용자의 재료 정보 가져오기
-          const response = await AxiosAuth.get(`/fridges/ingredients`);
-          // 재료 정보를 받은 후에 부족한 재료를 업데이트
-          const lackIngredients = response.data.filter(
-            ingredient => ingredient.dday <= 3,
-          );
-          setLackIngredients(lackIngredients);
-        } catch (error) {
-          console.log(1);
-        }
+        // 로그인 사용자의 재료 정보 가져오기
+        const response = await AxiosAuth.get(`/fridges/ingredients`);
+        // 재료 정보를 받은 후에 부족한 재료를 업데이트
+        const lackIngredients = response.data.filter(
+          ingredient => ingredient.dday <= 3,
+        );
+        setLackIngredients(lackIngredients);
       };
 
       fetchUserInfo();
