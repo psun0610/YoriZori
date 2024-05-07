@@ -12,8 +12,21 @@ import dayjs from "dayjs";
 import AxiosAuth from "../components/AxiosAuth";
 
 function RefrigeratorAdd() {
-  // 로그인 한 사용자인지 확인
+  // 로그인 유저 확인
   const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      AxiosAuth.post("/auth/validate", {
+        token: token,
+      }).catch(error => {
+        console.log(error);
+        navigate("/home");
+      });
+    } else {
+      navigate("/home");
+    }
+  }, []);
 
   const userId = localStorage.getItem("id");
   const [selectIngredient, setSelectIngredient] = useState([]);
