@@ -7,22 +7,24 @@ import AxiosAuth from "../components/AxiosAuth";
 
 function Recipe(props) {
  const baseURL = "http://localhost:8080";
-  const { searchText, category,LoginUser} = props;
+  const { searchText, category} = props;
   const [recipes, setRecipes] = useState([]);
-
+  const token = localStorage.getItem("accessToken");
+  
   useEffect(() => {
     fetchRecipes();
   }, []);
 
   const fetchRecipes = async () => {
-    try {
-      let response;
-     if(LoginUser){
+     try {
+       let response;
+      if(token){
         response = await AxiosAuth.get("/recipes/user-filtered");
-     }else{
-      response = await axios.get(baseURL + "/recipes/all");
-     }
-      
+        
+      }else{
+       response = await axios.get(baseURL + "/recipes/all");
+      }
+     console.log(response);
       setRecipes(response.data);
     } catch (error) {
       console.error("Error Code:", error);

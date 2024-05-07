@@ -5,14 +5,12 @@ import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 
-
 const ShoppingBasket = () => {
   const [items, setItems] = useState([]);
 
-
   const navigate = useNavigate();
   useEffect(() => {
-   // Authorization
+    // Authorization
     const token = localStorage.getItem("accessToken");
     if (token) {
       AxiosAuth.post("/auth/validate", {
@@ -48,14 +46,23 @@ const ShoppingBasket = () => {
 
   const handleTogglePin = async cartId => {
     try {
-      const response = await AxiosAuth.put(`/users/cart/${cartId}`, {
-        pinned: !items.find(item => item.cartId === cartId).pinned,
-      });
-      setItems(response.data);
+        const updatedItems = items.map(item => {
+  
+            if (item.cartId === cartId) {
+                return { ...item, pinned: !item.pinned };
+            }
+            return item; 
+        });
+
+        setItems(updatedItems);
+        console.log(updatedItems);
+
+        const updatedItem = updatedItems.find(item => item.cartId === cartId);
+        await AxiosAuth.put(`/users/cart`, updatedItem);
     } catch (error) {
-      console.error("Error toggling pin:", error);
+        console.error("Error toggling pin:", error);
     }
-  };
+};
 
   return (
     <div>
