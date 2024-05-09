@@ -89,3 +89,18 @@
   color: #ff7a00;
   transform: translateY(-5px);
 }
+.message{
+  background-color:  #d4d0cd;
+width:25%;
+  border-radius: 15px;
+ position:absolute;
+ bottom:7%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ text-align: center;
+}
+.message > p{
+  color: white;
+  margin-right: 5px;
+  font-size: 20px;
+}
