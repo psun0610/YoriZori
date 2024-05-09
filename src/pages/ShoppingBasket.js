@@ -9,6 +9,7 @@ const ShoppingBasket = () => {
   const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
+
   useEffect(() => {
     // Authorization
     const token = localStorage.getItem("accessToken");
@@ -22,18 +23,27 @@ const ShoppingBasket = () => {
     } else {
       navigate("/home");
     }
-
     const fetchItems = async () => {
       try {
         const response = await AxiosAuth.get(`/users/cart`);
-        setItems(response.data);
+        console.log(response);
+        
+        const uniqueItems = [];
+        response.data.forEach(item => {
+          if (!uniqueItems.some(uniqueItem => uniqueItem.ingredientId === item.ingredientId)) {
+            uniqueItems.push(item);
+          }
+        });
+  
+        const sortedItems = uniqueItems.sort((a, b) => b.pinned - a.pinned);
+        setItems(sortedItems);
       } catch (error) {
         console.error("Error fetching items:", error);
       }
     };
-
+  
     fetchItems();
-  }, []);
+  }, [items]);
 
   const handleDeleteItem = async cartId => {
     try {
@@ -46,23 +56,21 @@ const ShoppingBasket = () => {
 
   const handleTogglePin = async cartId => {
     try {
-        const updatedItems = items.map(item => {
+      const updatedItems = items.map(item => {
+        if (item.cartId === cartId) {
+          return { ...item, pinned: !item.pinned };
+        }
+        return item;
+      });
   
-            if (item.cartId === cartId) {
-                return { ...item, pinned: !item.pinned };
-            }
-            return item; 
-        });
-
-        setItems(updatedItems);
-        console.log(updatedItems);
-
-        const updatedItem = updatedItems.find(item => item.cartId === cartId);
-        await AxiosAuth.put(`/users/cart`, updatedItem);
+      setItems(updatedItems);
+  
+      const updatedItem = updatedItems.find(item => item.cartId === cartId);
+      await AxiosAuth.put(`/users/cart`, updatedItem);
     } catch (error) {
-        console.error("Error toggling pin:", error);
+      console.error("Error toggling pin:", error);
     }
-};
+  };
 
   return (
     <div>

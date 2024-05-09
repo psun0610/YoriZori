@@ -5,6 +5,7 @@ import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "react-toastify/dist/ReactToastify.css";
 
 const RecipeInfo = () => {
   const [isBookmarked, setIsBookmarked] = useState();
@@ -12,6 +13,7 @@ const RecipeInfo = () => {
   const { id } = useParams();
   const [info, setInfo] = useState({});
   const recipeId = id;
+  const [cartMessage, setCartMessage] = useState(""); 
 
   const token = localStorage.getItem("accessToken");
 
@@ -56,6 +58,13 @@ const RecipeInfo = () => {
 
       const response = await AxiosAuth.post("/users/cart", ingredientIds);
       console.log("Added to cart:", response.data);
+
+      setCartMessage("장바구니에 추가되었습니다.");
+      
+    
+      setTimeout(() => {
+        setCartMessage("");
+      }, 5000);
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -99,6 +108,7 @@ const RecipeInfo = () => {
                       </defs>
                     </svg>
                   </button>
+
                   <button className={styles.bookmark} onClick={toggleBookmark}>
                     <img
                       src={
@@ -141,7 +151,9 @@ const RecipeInfo = () => {
             <img className={styles.cook_img} src={info.cookimg} alt="Cooking" />
             <span>{info.cooktext}</span>
           </div>
-          <div />
+
+          <div className={styles.message}><p>{cartMessage}</p></div>
+         
         </div>
       </div>
       <Navigation />
