@@ -5,15 +5,14 @@ import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import "react-toastify/dist/ReactToastify.css";
 
 const RecipeInfo = () => {
   const [isBookmarked, setIsBookmarked] = useState();
-  const baseURL = "http://localhost:8080";
+  //const baseURL = "http://localhost:8080";
   const { id } = useParams();
   const [info, setInfo] = useState({});
   const recipeId = id;
-  const [cartMessage, setCartMessage] = useState(""); 
+  const [cartMessage, setCartMessage] = useState("");
 
   const token = localStorage.getItem("accessToken");
 
@@ -24,7 +23,7 @@ const RecipeInfo = () => {
         if (token) {
           response = await AxiosAuth.get(`/recipes/user-filtered/${recipeId}`);
         } else {
-          response = await axios.get(baseURL + `/recipes/all/${recipeId}`);
+          response = await axios.get("/recipe1.json");
         }
 
         setInfo(response.data);
@@ -43,12 +42,25 @@ const RecipeInfo = () => {
   //   }
   // }, []);
 
-  const toggleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
+  const toggleBookmark = async () => {
+    try {
+      setIsBookmarked(!isBookmarked);
 
-    setInfo(prevInfo => ({ ...prevInfo, isBookmarked: !isBookmarked }));
+      const newScrapcount = isBookmarked
+        ? info.scrapcount - 1
+        : info.scrapcount + 1;
+
+      setInfo(prevInfo => ({
+        ...prevInfo,
+        scrap: !isBookmarked,
+        scrapcount: newScrapcount,
+      }));
+
+      await AxiosAuth.put(``, { scrap: !isBookmarked });
+    } catch (error) {
+      console.error("Error toggling bookmark:", error);
+    }
   };
-
   const addToCart = async () => {
     try {
       const ingredientIds = info.insufficientIngredients.map(
@@ -60,8 +72,7 @@ const RecipeInfo = () => {
       console.log("Added to cart:", response.data);
 
       setCartMessage("장바구니에 추가되었습니다.");
-      
-    
+
       setTimeout(() => {
         setCartMessage("");
       }, 5000);
@@ -83,6 +94,7 @@ const RecipeInfo = () => {
             <div>
               <div className={styles.info_between}>
                 <h1 className={styles.title}>{info.name}</h1>
+
                 <div className={styles.button_container}>
                   <button className={styles.basket_button} onClick={addToCart}>
                     <p>장바구니에 추가</p>
@@ -118,42 +130,55 @@ const RecipeInfo = () => {
                       }
                       alt="Bookmark"
                     />
-                    <p>{info.scrap}</p>
+                    <p>{info.scrapcount}</p>
                   </button>
                 </div>
               </div>
 
-              {/** 재료 로그인 한 사용자만 볼 수 있게 함 (전체 재료 출력 필요함) */}
-              {token && (
-                <div className={styles.title_sub}>
-                  <div>
-                    가진 재료|
-                    {info.haveIngredient && info.haveIngredient.length > 0 ? (
-                      info.haveIngredient.map((ingredient, id) => (
-                        <p key={id}>{ingredient.name}</p>
-                      ))
-                    ) : (
-                      <p>재료가 없습니다.</p>
-                    )}
-                  </div>
-                  <div>
-                    없는 재료|
-                    {info.insufficientIngredients &&
-                      info.insufficientIngredients.map((ingredient, id) => (
-                        <p key={id}>{ingredient.name}</p>
-                      ))}
-                  </div>
+              <div className={styles.title_sub}>
+                {/* <div>
+                  가진 재료|
+                  {info.haveIngredient && info.haveIngredient.length > 0 ? (
+                    info.haveIngredient.map((ingredient, id) => (
+                      <p key={id}>{ingredient.name}</p>
+                    ))
+                  ) : (
+                    <p>재료가 없습니다.</p>
+                  )}
+                </div> */}
+                <div>
+                  부족한 재료 |
+                  {info.insufficientIngredients &&
+                    info.insufficientIngredients.map((ingredient, id) => (
+                      <p key={id}>{ingredient.name}</p>
+                    ))}
                 </div>
-              )}
+              </div>
             </div>
           </div>
+          <div className={styles.all}>전체 재료 | {info.allIngredient}</div>
           <div className={styles.cook}>
-            <img className={styles.cook_img} src={info.cookimg} alt="Cooking" />
-            <span>{info.cooktext}</span>
+            {/* cookimg와 cooktext를 묶어서 표시 */}
+            {info.cookimg &&
+              info.cooktext &&
+              info.cookimg.length === info.cooktext.length &&
+              info.cookimg.map((img, index) => (
+                <div key={index} className={styles.cook_item}>
+                  <img
+                    className={styles.cook_img}
+                    src={info.cookimg[index]}
+                    alt={info.name}
+                  />
+                  <span className={styles.cook_text}>
+                    {info.cooktext[index]}
+                  </span>
+                </div>
+              ))}
           </div>
 
-          <div className={styles.message}><p>{cartMessage}</p></div>
-         
+          <div className={styles.message}>
+            <p>{cartMessage}</p>
+          </div>
         </div>
       </div>
       <Navigation />
