@@ -2,21 +2,16 @@
   "id": 1,
   "name": "오리불고기",
   "isBookmarked": false,
-  "scrap": 2,
+  "scrapcount": 2,
+  "scarp":false,
   "imageUrl": "https://homecuisine.co.kr/files/attach/images/140/241/098/e4e2a7ab18e8650a8fab5c1e455e8606.JPG",
-  "haveIngredient": [
-      {
-          "id": 1,
-          "name": "란"
-      },   {
-        "id": 2,
-        "name": "계란"
-    }
-  ],
-  "needIngredient": [
+  "insufficientIngredients": [
     {
       "id": 1,
       "name": "계란"
   }
-  ]
+  ],
+  "allIngredient":"오리고기, 오리고기, 오리고기, 오리고기, 오리고기 , 오리고기, 오리고기",
+  "cookimg":["/images/mainpage_food_image.jpg","/images/mainpage_food_image.jpg","/images/mainpage_food_image.jpg","/images/mainpage_food_image.jpg"],
+  "cooktext":["안녕", "반가워","사랑해","잘가"]
 }

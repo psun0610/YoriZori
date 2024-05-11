@@ -4,6 +4,7 @@ import styles from "../styles/ShoppingBasket.module.css";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
+import { Link } from "react-router-dom";
 
 const ShoppingBasket = () => {
   const [items, setItems] = useState([]);
@@ -117,10 +118,13 @@ const ShoppingBasket = () => {
               </div>
             ))}
           </div>
+          <Link to="/shoppingbasketadd">
           <button className={styles.add_button}>
+            
             재료추가
             <img className={styles.add} src="/images/add.png" alt="Add" />
           </button>
+          </Link>
         </div>
       </div>
       <Navigation />
