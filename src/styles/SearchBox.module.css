@@ -1,7 +1,7 @@
 .search_box {
   max-width: 95%;
   margin: 0 auto;
-  padding: 2.3vh 1.7vh;
+  padding: 2.3vh 2vh;
   box-shadow: 0 0 7px var(--grey60);
   border-radius: 10px;
   position: relative;
@@ -49,8 +49,10 @@
   background: transparent;
 }
 .category_button_list {
-  padding: 15px 0;
+  padding-top: 20px;
+  padding-bottom: 10px;
   text-align: center;
+  
 }
 
 .category_button {

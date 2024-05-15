@@ -27,7 +27,7 @@ const ShoppingBasket = () => {
     const fetchItems = async () => {
       try {
         const response = await AxiosAuth.get(`/users/cart`);
-        console.log(response);
+        //console.log(response);
         
         const uniqueItems = [];
         response.data.forEach(item => {
