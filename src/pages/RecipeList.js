@@ -25,16 +25,12 @@ const RecipeList = () => {
 
   const items = [
     "전체",
-    "메인요리",
-    "밑반찬",
-    "면/만두",
-    "국/찌개",
-    "간식",
-    "샐러드",
-    "해장",
-    "밥/죽/떡",
-    "야식",
-    "디저트",
+    "반찬",
+    "국&찌개",
+    "후식",
+    "일품",
+    "밥",
+    "기타",
   ];
 
   return (
@@ -42,7 +38,7 @@ const RecipeList = () => {
       <Header name="레시피" />
       <div id="wrapper_contain_header">
         <div className={styles.wrapper}>
-          <Category items={items} onClick={handleCategorySelect} />
+          <Category items={items} onClick={handleCategorySelect}/>
           
           <div
             className={styleSearch.search_box}

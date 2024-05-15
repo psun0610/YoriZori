@@ -181,7 +181,7 @@
 }
 
 .recipe {
-  cursor: default;
+  cursor: pointer;
 }
 
 .recipe img {
@@ -193,9 +193,7 @@
 }
 
 .recipe_title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+ 
 }
 .recipe_title h2 {
   font-size: 16px;
@@ -220,16 +218,15 @@
   margin: 0;
   margin-bottom: 5px;
 }
-
-.lack_ingredients {
-  display: flex;
-  margin: 2px 0;
-}
-.lack_ingredients p {
+.success_message{
   color: var(--main_button);
   font-weight: 500;
   font-size: 15px;
   padding-top: 3px;
+}
+.lack_ingredients {
+  display: flex;
+  margin: 2px 0;
 }
 .lack_ingredients div {
   background-color: var(--main_button);
@@ -238,4 +235,28 @@
   padding: 1px 7px 3px;
   margin-right: 5px;
   border-radius: 8px;
+}
+.bookmark {
+ 
+  background-color: transparent;
+ 
+  padding-top: 5px;
+  padding-left: 3px;
+}
+
+.bookmark > img {
+ 
+  height: 20px;
+  width: 20px;
+}
+
+.bookmark > p {
+  text-align: center;
+  font-size: 12px;
+  color: #ff7a00;
+  transform: translateY(-5px);
+}
+.up{
+  display: flex;
+  justify-content: space-between;
 }

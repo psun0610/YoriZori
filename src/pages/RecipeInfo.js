@@ -8,7 +8,7 @@ import axios from "axios";
 
 const RecipeInfo = () => {
   const [isBookmarked, setIsBookmarked] = useState();
-  //const baseURL = "http://localhost:8080";
+  const baseURL = "http://localhost:8080";
   const { id } = useParams();
   const [info, setInfo] = useState({});
   const recipeId = id;
@@ -23,7 +23,7 @@ const RecipeInfo = () => {
         if (token) {
           response = await AxiosAuth.get(`/recipes/user-filtered/${recipeId}`);
         } else {
-          response = await axios.get("/recipe1.json");
+          response = await axios.get(baseURL + `/recipes/all/${recipeId}`);
         }
 
         setInfo(response.data);
@@ -46,14 +46,14 @@ const RecipeInfo = () => {
     try {
       setIsBookmarked(!isBookmarked);
 
-      const newScrapcount = isBookmarked
-        ? info.scrapcount - 1
-        : info.scrapcount + 1;
+      const newBookmarkCount = isBookmarked
+        ? info.bookmarkCount - 1
+        : info.bookmarkCount + 1;
 
       setInfo(prevInfo => ({
         ...prevInfo,
-        scrap: !isBookmarked,
-        scrapcount: newScrapcount,
+        id: info.id,
+        bookmarkCount: newBookmarkCount,
       }));
 
       await AxiosAuth.put(``, { scrap: !isBookmarked });
@@ -130,7 +130,7 @@ const RecipeInfo = () => {
                       }
                       alt="Bookmark"
                     />
-                    <p>{info.scrapcount}</p>
+                    <p>{info.bookmarkCount}</p>
                   </button>
                 </div>
               </div>
@@ -156,7 +156,7 @@ const RecipeInfo = () => {
               </div>
             </div>
           </div>
-          <div className={styles.all}>전체 재료 | {info.allIngredient}</div>
+          <div className={styles.all}>전체 재료 | {info.rcp_PARTS_DTLS}</div>
           <div className={styles.cook}>
             {/* cookimg와 cooktext를 묶어서 표시 */}
             {info.cookimg &&
@@ -166,11 +166,11 @@ const RecipeInfo = () => {
                 <div key={index} className={styles.cook_item}>
                   <img
                     className={styles.cook_img}
-                    src={info.cookimg[index]}
+                    src={info.manual_IMG[index]}
                     alt={info.name}
                   />
                   <span className={styles.cook_text}>
-                    {info.cooktext[index]}
+                    {info.manual[index]}
                   </span>
                 </div>
               ))}
