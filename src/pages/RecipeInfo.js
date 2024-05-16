@@ -156,17 +156,17 @@ const RecipeInfo = () => {
               </div>
             </div>
           </div>
-          <div className={styles.all}>전체 재료 | {info.rcp_PARTS_DTLS}</div>
+          <div className={styles.all}>전체 재료 | {info.ingredientDetails}</div>
           <div className={styles.cook}>
             {/* cookimg와 cooktext를 묶어서 표시 */}
-            {info.cookimg &&
-              info.cooktext &&
-              info.cookimg.length === info.cooktext.length &&
-              info.cookimg.map((img, index) => (
+            {info.manualImg &&
+              info.manual &&
+              info.manualImg.length === info.manual.length &&
+              info.manualImg.map((img, index) => (
                 <div key={index} className={styles.cook_item}>
                   <img
                     className={styles.cook_img}
-                    src={info.manual_IMG[index]}
+                    src={info.manualImg[index]}
                     alt={info.name}
                   />
                   <span className={styles.cook_text}>

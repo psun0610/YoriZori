@@ -35,7 +35,7 @@ function Recipe(props) {
     } else {
       return recipe.categoryId === category;
     }
-  });
+  }).sort((a, b) => a.insufficientIngredientsCount - b.insufficientIngredientsCount);
 
   return (
     <>
