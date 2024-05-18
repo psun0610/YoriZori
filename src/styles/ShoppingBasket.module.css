@@ -19,7 +19,8 @@
 }
 
 .ingredient_count {
-  margin-right: 20px;
+  display:flex;
+  padding-left:25px;
 }
 .item_button{
   display: flex;
@@ -112,7 +113,7 @@
   border-radius: 10px;
   cursor: pointer;
   display: inline-flex;
-  
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   /* align-items: center;
   position: absolute; 
   bottom: 0; 

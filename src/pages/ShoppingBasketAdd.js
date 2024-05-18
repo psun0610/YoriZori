@@ -68,7 +68,7 @@ const ShoppingBasketAdd = () => {
 
   return (
     <div>
-      <Header name="냉장고 재료 등록" />
+      <Header name="장바구니 재료 등록" />
       <div id="wrapper_contain_header" className={styles.refrigerator_add}>
         <div>
           {/* 재료 선택 */}
