@@ -13,7 +13,7 @@ const RecipeInfo = () => {
   const { id } = useParams();
   const [info, setInfo] = useState({});
   const recipeId = id;
-  const [cartMessage, setCartMessage] = useState(""); 
+  const [cartMessage, setCartMessage] = useState("");
 
   const token = localStorage.getItem("accessToken");
 
@@ -60,8 +60,7 @@ const RecipeInfo = () => {
       console.log("Added to cart:", response.data);
 
       setCartMessage("장바구니에 추가되었습니다.");
-      
-    
+
       setTimeout(() => {
         setCartMessage("");
       }, 5000);
@@ -152,8 +151,9 @@ const RecipeInfo = () => {
             <span>{info.cooktext}</span>
           </div>
 
-          <div className={styles.message}><p>{cartMessage}</p></div>
-         
+          <div className={styles.message}>
+            <p>{cartMessage}</p>
+          </div>
         </div>
       </div>
       <Navigation />

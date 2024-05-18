@@ -221,8 +221,14 @@ const Refrigerator = () => {
               <div className={styles.options_buttons}>
                 <button
                   onClick={() => {
-                    navigate("/refrigerator_edit");
+                    navigate("/refrigerator_add", {
+                      state: {
+                        isEditMode: true,
+                        selectedIngredient: selectedIngredient,
+                      },
+                    });
                   }}
+                  style={{ cursor: "pointer" }}
                 >
                   재료 수정
                   <svg
@@ -249,7 +255,10 @@ const Refrigerator = () => {
                   </svg>
                 </button>
 
-                <button onClick={() => handleDelete(selectedIngredient)}>
+                <button
+                  onClick={() => handleDelete(selectedIngredient)}
+                  style={{ cursor: "pointer" }}
+                >
                   재료 삭제
                   <svg
                     width="20"
