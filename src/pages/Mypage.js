@@ -27,10 +27,15 @@ const Mypage = () => {
       <Header name="마이페이지" />
       <div id="wrapper_contain_header" className={styles.wrapper}>
         <div className={styles.mypage_top}>
-          <div className={styles.bookmark}>
-            <p>레시피북마크</p>
-            <img src="./images/bookmark.png" alt="bookmark"></img>
-          </div>
+          
+            <div className={styles.bookmark}   onClick={() => {
+              navigate("/recipebookmark");
+            }}>
+              <p>레시피북마크</p>
+              <img src="./images/bookmark.png" alt="bookmark"></img>
+            </div>
+          
+
           <div className={styles.hate}>
             <div className={styles.hate_top}>
               <span className={styles.hate_text}>나의 기피 음식</span>

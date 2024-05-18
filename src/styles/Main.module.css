@@ -227,6 +227,7 @@
 .lack_ingredients {
   display: flex;
   margin: 2px 0;
+  flex-wrap: wrap
 }
 .lack_ingredients div {
   background-color: var(--main_button);
@@ -234,6 +235,7 @@
   color: white;
   padding: 1px 7px 3px;
   margin-right: 5px;
+  margin-bottom:3px;
   border-radius: 8px;
 }
 .bookmark {

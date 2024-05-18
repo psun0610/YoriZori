@@ -82,7 +82,7 @@ const ShoppingBasket = () => {
             <span className={styles.ingredient_count}>
               담은 재료 {items.length}개
             </span>
-            <button className={styles.select_button}>선택하기</button>
+            {/* <button className={styles.select_button}>선택하기</button> */}
           </div>
           <div className={styles.shopping_list}>
             {items.map(item => (
