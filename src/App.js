@@ -12,7 +12,6 @@ import MemberEdit from "./pages/MemberEdit";
 import Avoidance from "./pages/Avoidance";
 import JoinComplete from "./pages/JoinComplete";
 import RefrigeratorAdd from "./pages/RefrigeratorAdd";
-import RefrigeratorEdit from "./pages/RefrigeratorEdit";
 import RecipeInfo from "./pages/RecipeInfo";
 import ShoppingBasketAdd from "./pages/ShoppingBasketAdd";
 import RecipeBookmark from "./pages/RecipeBookmark";
@@ -34,7 +33,7 @@ const App = () => {
       <Route path="/avoidance" element={<Avoidance />} />
       <Route path="/join_complete" element={<JoinComplete />} />
       <Route path="/refrigerator_add" element={<RefrigeratorAdd />} />
-      <Route path="/refrigerator_edit" element={<RefrigeratorEdit />} />
+
       <Route path="/recipebookmark" element={<RecipeBookmark />} />
     </Routes>
   );
