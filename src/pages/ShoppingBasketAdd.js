@@ -60,7 +60,9 @@ const ShoppingBasketAdd = () => {
       console.log(ingredientId);
       const response = await AxiosAuth.post("/users/cart", [ingredientId]);
       console.log("Added to cart:", response.data);
+     
       navigate("/shoppingbasket")
+      
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -112,6 +114,7 @@ const ShoppingBasketAdd = () => {
           }}
           onClick={handleSubmitClick}
         ></input>
+        
       </div>
       <Navigation />
     </div>

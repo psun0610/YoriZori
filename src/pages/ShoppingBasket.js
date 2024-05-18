@@ -28,21 +28,25 @@ const ShoppingBasket = () => {
       try {
         const response = await AxiosAuth.get(`/users/cart`);
         //console.log(response);
-        
+
         const uniqueItems = [];
         response.data.forEach(item => {
-          if (!uniqueItems.some(uniqueItem => uniqueItem.ingredientId === item.ingredientId)) {
+          if (
+            !uniqueItems.some(
+              uniqueItem => uniqueItem.ingredientId === item.ingredientId,
+            )
+          ) {
             uniqueItems.push(item);
           }
         });
-  
+
         const sortedItems = uniqueItems.sort((a, b) => b.pinned - a.pinned);
         setItems(sortedItems);
       } catch (error) {
         console.error("Error fetching items:", error);
       }
     };
-  
+
     fetchItems();
   }, [items]);
 
@@ -63,9 +67,9 @@ const ShoppingBasket = () => {
         }
         return item;
       });
-  
+
       setItems(updatedItems);
-  
+
       const updatedItem = updatedItems.find(item => item.cartId === cartId);
       await AxiosAuth.put(`/users/cart`, updatedItem);
     } catch (error) {
@@ -100,7 +104,9 @@ const ShoppingBasket = () => {
                   >
                     <img
                       className={styles.pin}
-                      src={item.pinned ? "/images/pin2.png" : "images/pin1.png"}
+                      src={
+                        item.pinned ? "/images/pin22.png" : "images/pin11.png"
+                      }
                       alt={item.pinned ? "Pinned" : "Unpinned"}
                     />
                   </button>
@@ -119,11 +125,10 @@ const ShoppingBasket = () => {
             ))}
           </div>
           <Link to="/shoppingbasketadd">
-          <button className={styles.add_button}>
-            
-            재료추가
-            <img className={styles.add} src="/images/add.png" alt="Add" />
-          </button>
+            <button className={styles.add_button}>
+              재료추가
+              <img className={styles.add} src="/images/add.png" alt="Add" />
+            </button>
           </Link>
         </div>
       </div>

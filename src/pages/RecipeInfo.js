@@ -57,14 +57,12 @@ const RecipeInfo = () => {
         //   recipeBookmarkId,
         // );
         await AxiosAuth.delete(`/users/bookmarks2/${recipeId}`);
-        newBookmarkCount = info.bookmarkCount - 1;
+        newBookmarkCount = Math.max(info.bookmarkCount - 1, 0);
       } else {
         await AxiosAuth.post("/users/bookmarks", recipeId);
         newBookmarkCount = info.bookmarkCount + 1;
       }
-      await AxiosAuth.patch(`/recipes/update/${recipeId}`, 
-        newBookmarkCount
-      );
+      await AxiosAuth.patch(`/recipes/update/${recipeId}`, newBookmarkCount);
 
       setInfo(prevInfo => ({
         ...prevInfo,
@@ -168,7 +166,7 @@ const RecipeInfo = () => {
                       info.insufficientIngredients.map((ingredient, id) => (
                         <p key={id}>{ingredient.name}</p>
                       ))}
-                  </div> 
+                  </div>
                 )}
               </div>
             </div>
