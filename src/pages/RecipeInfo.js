@@ -168,7 +168,7 @@ const RecipeInfo = () => {
                       info.insufficientIngredients.map((ingredient, id) => (
                         <p key={id}>{ingredient.name}</p>
                       ))}
-                  </div>
+                  </div> 
                 )}
               </div>
             </div>
