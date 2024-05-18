@@ -33,7 +33,6 @@ const App = () => {
       <Route path="/avoidance" element={<Avoidance />} />
       <Route path="/join_complete" element={<JoinComplete />} />
       <Route path="/refrigerator_add" element={<RefrigeratorAdd />} />
-
       <Route path="/recipebookmark" element={<RecipeBookmark />} />
     </Routes>
   );
