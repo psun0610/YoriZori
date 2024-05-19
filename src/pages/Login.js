@@ -39,7 +39,7 @@ const Login = () => {
         localStorage.clear();
         localStorage.setItem("accessToken", response.data.token);
         localStorage.setItem("refreshToken", response.data.refreshToken);
-        // expirationTime
+        localStorage.setItem("nickname", response.data.nickname);
         navigate("/");
       });
   };
