@@ -89,13 +89,14 @@ const Join = () => {
             password: user.password,
           })
           .then(loginResponse => {
+            console.log(loginResponse.data);
             localStorage.clear();
             localStorage.setItem("accessToken", loginResponse.data.token);
             localStorage.setItem(
               "refreshToken",
               loginResponse.data.refreshToken,
             );
-            // expirationTime
+            localStorage.setItem("nickname", loginResponse.data.nickname);
             navigate("/avoidance");
           });
       });
