@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import axios from "axios";
 import AxiosAuth from "../components/AxiosAuth";
 
 function Recipe(props) {
+  const [bookmarkCheck, setBookmarkCheck] = useState({});
   const baseURL = "http://localhost:8080";
   const { searchText, category } = props;
+  const { id } = useParams();
   const [recipes, setRecipes] = useState([]);
   const token = localStorage.getItem("accessToken");
 
   useEffect(() => {
     fetchRecipes();
-  }, []);
+  }, [id, token]);
 
   const fetchRecipes = async () => {
     try {
@@ -22,20 +24,45 @@ function Recipe(props) {
       } else {
         response = await axios.get(baseURL + "/recipes/all");
       }
-      console.log(response);
       setRecipes(response.data);
     } catch (error) {
-      console.error("Error Code:", error);
+      console.error("Error fetching recipes:", error);
     }
   };
 
-  const filteredRecipes = recipes.filter(recipe => {
-    if (category === 0) {
-      return true;
-    } else {
-      return recipe.categoryId === category;
+  const fetchBookmarkCheck = async (recipeId) => {
+    try {
+      const response = await AxiosAuth.get(`/users/check-bookmark`, {
+        params: { recipeId },
+      });
+      setBookmarkCheck(prevState => ({
+        ...prevState,
+        [recipeId]: response.data.bookmarkCheck,
+      }));
+    } catch (error) {
+      console.error(`Error fetching bookmark status for recipe ${recipeId}:`, error);
     }
-  }).sort((a, b) => a.insufficientIngredientsCount - b.insufficientIngredientsCount);
+  };
+
+  useEffect(() => {
+    if (token) {
+      recipes.forEach(recipe => {
+        fetchBookmarkCheck(recipe.id);
+      });
+    }
+  }, [recipes, token]);
+
+  const filteredRecipes = recipes
+    .filter(recipe => {
+      if (category === 0) {
+        return true;
+      } else {
+        return recipe.categoryId === category;
+      }
+    })
+    .sort(
+      (a, b) => a.insufficientIngredientsCount - b.insufficientIngredientsCount,
+    );
 
   return (
     <>
@@ -69,18 +96,19 @@ function Recipe(props) {
                       </div>
                     )}
                   </div>
-                  <div className={styles.bookmark}>
-                    <img
-                      src={
-                        recipe.BookmarkCheck
-                          ? "/images/bookmark.png"
-                          : "/images/bookmark2.png"
-                      }
-                      alt="Bookmark"
-                    />
-
-                    <p>{recipe.bookmarkCount}</p>
-                  </div>
+                  {token && (
+                    <div className={styles.bookmark}>
+                      <img
+                        src={
+                          bookmarkCheck[recipe.id]
+                            ? "/images/bookmark.png"
+                            : "/images/bookmark2.png"
+                        }
+                        alt="Bookmark"
+                      />
+                      <p>{recipe.bookmarkCount}</p>
+                    </div>
+                  )}
                 </div>
                 <div className={styles.lack_ingredients}>
                   {token &&
