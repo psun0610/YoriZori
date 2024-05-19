@@ -60,7 +60,9 @@ const ShoppingBasketAdd = () => {
       console.log(ingredientId);
       const response = await AxiosAuth.post("/users/cart", [ingredientId]);
       console.log("Added to cart:", response.data);
+     
       navigate("/shoppingbasket")
+      
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -68,7 +70,7 @@ const ShoppingBasketAdd = () => {
 
   return (
     <div>
-      <Header name="냉장고 재료 등록" />
+      <Header name="장바구니 재료 등록" />
       <div id="wrapper_contain_header" className={styles.refrigerator_add}>
         <div>
           {/* 재료 선택 */}
@@ -112,6 +114,7 @@ const ShoppingBasketAdd = () => {
           }}
           onClick={handleSubmitClick}
         ></input>
+        
       </div>
       <Navigation />
     </div>

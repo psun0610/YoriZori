@@ -14,6 +14,7 @@ import JoinComplete from "./pages/JoinComplete";
 import RefrigeratorAdd from "./pages/RefrigeratorAdd";
 import RecipeInfo from "./pages/RecipeInfo";
 import ShoppingBasketAdd from "./pages/ShoppingBasketAdd";
+import RecipeBookmark from "./pages/RecipeBookmark";
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
       <Route path="/avoidance" element={<Avoidance />} />
       <Route path="/join_complete" element={<JoinComplete />} />
       <Route path="/refrigerator_add" element={<RefrigeratorAdd />} />
+      <Route path="/recipebookmark" element={<RecipeBookmark />} />
     </Routes>
   );
 };
