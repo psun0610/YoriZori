@@ -52,7 +52,6 @@
   padding-top: 20px;
   padding-bottom: 10px;
   text-align: center;
-  
 }
 
 .category_button {
@@ -73,7 +72,7 @@
 
 /* main.module.css */
 .ingredient_list_container {
-  max-height: 35vh;
+  height: 35vh;
   overflow-y: auto;
 }
 .ingredient_list {
