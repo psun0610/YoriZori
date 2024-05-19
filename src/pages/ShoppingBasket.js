@@ -104,9 +104,7 @@ const ShoppingBasket = () => {
                   >
                     <img
                       className={styles.pin}
-                      src={
-                        item.pinned ? "/images/pin22.png" : "images/pin11.png"
-                      }
+                      src={item.pinned ? "/images/pin3.png" : "images/pin1.png"}
                       alt={item.pinned ? "Pinned" : "Unpinned"}
                     />
                   </button>
