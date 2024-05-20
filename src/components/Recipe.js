@@ -6,7 +6,7 @@ import AxiosAuth from "../components/AxiosAuth";
 
 function Recipe(props) {
   const [bookmarkCheck, setBookmarkCheck] = useState({});
-  const baseURL = "http://localhost:8080";
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const { searchText, category } = props;
   const { id } = useParams();
   const [recipes, setRecipes] = useState([]);
@@ -30,7 +30,7 @@ function Recipe(props) {
     }
   };
 
-  const fetchBookmarkCheck = async (recipeId) => {
+  const fetchBookmarkCheck = async recipeId => {
     try {
       const response = await AxiosAuth.get(`/users/check-bookmark`, {
         params: { recipeId },
@@ -40,7 +40,10 @@ function Recipe(props) {
         [recipeId]: response.data.bookmarkCheck,
       }));
     } catch (error) {
-      console.error(`Error fetching bookmark status for recipe ${recipeId}:`, error);
+      console.error(
+        `Error fetching bookmark status for recipe ${recipeId}:`,
+        error,
+      );
     }
   };
 
