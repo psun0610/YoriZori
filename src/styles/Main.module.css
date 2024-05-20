@@ -26,13 +26,13 @@
 .main_phrase h1 {
   color: var(--yellow);
   font-weight: bold;
-  font-size: 24px;
+  font-size: 22px;
   margin-bottom: 5px;
 }
 
 .main_phrase p {
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0;
 }
 
@@ -150,7 +150,7 @@
 }
 
 .main_button h1 {
-  font-size: 15px;
+  font-size: 14px;
   margin-left: 3px;
   font-weight: 600;
 }
@@ -163,13 +163,13 @@
 }
 
 .recipe_main_title h1 {
-  font-size: 18px;
+  font-size: 16px;
   margin-right: 12px;
   font-weight: 700;
 }
 
 .recipe_main_title a {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--grey80);
 }
 
