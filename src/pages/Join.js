@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/LoginJoin.module.css";
-import axios from "axios";
+import AxiosCommon from "../components/AxiosCommon";
 import "../App.css";
 
 const Join = () => {
   const navigate = useNavigate();
-  const baseURL = process.env.REACT_APP_BASE_URL;
   const [user, setUser] = useState({
     userName: "",
     password: "",
@@ -68,37 +67,30 @@ const Join = () => {
     }
 
     // 회원가입
-    axios
-      .post(baseURL + "/auth/signup", {
+    AxiosCommon.post("/auth/signup", {
+      name: user.userName,
+      password: user.password,
+      nickname: user.nickName,
+    }).then(response => {
+      // 회원가입 실패
+      if (response.data.error === "이미 존재하는 아이디입니다.") {
+        setValid({ ...valid, idDuplicate: true });
+        return;
+      }
+
+      // 회원가입 성공
+      AxiosCommon.post("/auth/signin", {
         name: user.userName,
         password: user.password,
-        nickname: user.nickName,
-      })
-      .then(response => {
-        // 회원가입 실패
-        if (response.data.error === "이미 존재하는 아이디입니다.") {
-          setValid({ ...valid, idDuplicate: true });
-          return;
-        }
-
-        // 회원가입 성공
-        axios
-          .post(baseURL + "/auth/signin", {
-            name: user.userName,
-            password: user.password,
-          })
-          .then(loginResponse => {
-            console.log(loginResponse.data);
-            localStorage.clear();
-            localStorage.setItem("accessToken", loginResponse.data.token);
-            localStorage.setItem(
-              "refreshToken",
-              loginResponse.data.refreshToken,
-            );
-            localStorage.setItem("nickname", loginResponse.data.nickname);
-            navigate("/avoidance");
-          });
+      }).then(loginResponse => {
+        console.log(loginResponse.data);
+        localStorage.clear();
+        localStorage.setItem("accessToken", loginResponse.data.token);
+        localStorage.setItem("refreshToken", loginResponse.data.refreshToken);
+        localStorage.setItem("nickname", loginResponse.data.nickname);
+        navigate("/avoidance");
       });
+    });
   };
 
   return (
