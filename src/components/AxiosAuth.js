@@ -4,7 +4,7 @@ let ACCESS_TOKEN = localStorage.getItem("accessToken");
 let REFRESH_TOKEN = localStorage.getItem("refreshToken");
 
 const AxiosAuth = axios.create({
-  baseURL: "http://localhost:8080",
+  baseURL: "http://ec2-13-125-66-179.ap-northeast-2.compute.amazonaws.com:8080",
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${ACCESS_TOKEN}`,

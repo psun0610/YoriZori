@@ -10,7 +10,8 @@ const RecipeInfo = () => {
   const [bookmarkCheck, setBookmarkCheck] = useState();
   const [info, setInfo] = useState({});
   const [cartMessage, setCartMessage] = useState("");
-  const baseURL = "http://localhost:8080";
+  const baseURL =
+    "http://ec2-13-125-66-179.ap-northeast-2.compute.amazonaws.com:8080";
   const { id } = useParams();
   //const location = useLocation();
   const token = localStorage.getItem("accessToken");
