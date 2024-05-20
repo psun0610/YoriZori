@@ -8,22 +8,28 @@ import AxiosAuth from "../components/AxiosAuth";
 
 const Main = () => {
   const [lackIngredients, setLackIngredients] = useState([]);
-
+  const [recommendRecipes, setRecommendRecipes] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
-      const fetchUserInfo = async () => {
-        // 로그인 사용자의 재료 정보 가져오기
-        const response = await AxiosAuth.get(`/fridges/ingredients`);
-        // 재료 정보를 받은 후에 부족한 재료를 업데이트
-        const lackIngredients = response.data.filter(
-          ingredient => ingredient.dday <= 3,
-        );
-        setLackIngredients(lackIngredients);
-      };
-
       fetchUserInfo();
+      GetRecommendRecipe();
     }
   }, []);
+
+  const fetchUserInfo = async () => {
+    // 로그인 사용자의 재료 정보 가져오기
+    const response = await AxiosAuth.get(`/fridges/ingredients`);
+    // 재료 정보를 받은 후에 부족한 재료를 업데이트
+    const lackIngredients = response.data.filter(
+      ingredient => ingredient.dday <= 3,
+    );
+    setLackIngredients(lackIngredients);
+  };
+
+  const GetRecommendRecipe = async () => {
+    const response = await AxiosAuth.get(`/recipes/recommendations`);
+    setRecommendRecipes(response.data);
+  };
 
   return (
     <div>
@@ -125,7 +131,15 @@ const Main = () => {
               <Link to="/recipelist">더보기{">"}</Link>
             </div>
             <div className={styles.recipe_list}>
-              <MainRecipe />
+              {recommendRecipes.map((recipe, index) => (
+                <Link
+                  to={`/recipeinfo/${recipe.id}`}
+                  className={styles.recipe}
+                  key={index}
+                >
+                  <MainRecipe recipe={recipe} />
+                </Link>
+              ))}
             </div>
           </div>
         </div>
