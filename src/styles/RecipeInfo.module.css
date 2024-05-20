@@ -12,7 +12,7 @@
 }
 
 .info_up {
-  margin: 1.5vh auto 2.5vh;
+  margin: 10px 0;
 }
 
 .info_between {
@@ -22,7 +22,7 @@
 }
 
 .title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   height: 100%;
 }
@@ -34,14 +34,13 @@
   align-items: center;
   margin: 2px 0;
   font-size: 13px;
-  font-weight: 800;
-  flex-wrap: wrap
+  font-weight: 600;
+  flex-wrap: wrap;
 }
 .title_sub p {
-  
-  margin: 10px;
-  font-weight: 900;
-  font-size: 12px;
+  margin: 0 10px;
+  color: var(--main_text);
+  font-weight: 500;
 }
 .button_container {
   height: 100%;
@@ -66,65 +65,56 @@
   margin-right: 5px;
   font-size: 13px;
 }
-.all{
-  display: flex;
-  align-items: center;
-  margin: 2px 0;
-  font-size: 15px;
-  font-weight: 800;
+.all {
+  font-size: 13px;
+  font-weight: 600;
   justify-content: space-around;
-  padding-bottom:30px;
-  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
-.cook{
- 
-}
 .cook_img {
   width: 100%;
   height: 300px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0 6px var(--grey40);
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: 10px;
 }
-.cook_text{
-  color: rgb(79, 108, 65);
+.cook_text {
   display: flex;
   justify-content: space-evenly;
-  font-size: 20px;
-  padding-bottom: 20px;
-  padding-top:10px;
+  font-size: 14px;
+  padding-bottom: 30px;
+  padding-top: 10px;
 }
 .bookmark {
   border: none;
   cursor: pointer;
   background-color: transparent;
-  margin-left: 14px;
+  margin-left: 13px;
 }
 
 .bookmark > img {
-  height: 30px;
-  width: 30px;
+  height: 23px;
+  width: 23px;
 }
 
 .bookmark > p {
-  font-size: 12px;
+  font-size: 11px;
   color: #ff7a00;
   transform: translateY(-5px);
 }
-.message{
-  background-color:  #d4d0cd;
-width:25%;
+.message {
+  background-color: #d4d0cd;
+  width: 25%;
   border-radius: 15px;
- position:absolute;
- bottom:7%;
- left: 50%;
- transform: translate(-50%, -50%);
- text-align: center;
+  position: absolute;
+  bottom: 7%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
-.message > p{
+.message > p {
   color: white;
   margin-right: 5px;
   font-size: 20px;
 }
-
