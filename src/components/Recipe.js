@@ -108,7 +108,9 @@ function Recipe(props) {
                         }
                         alt="Bookmark"
                       />
-                      <p>{recipe.bookmarkCount}</p>
+                      <p style={!bookmarkCheck ? { color: "grey" } : {}}>
+                        {recipe.bookmarkCount}
+                      </p>
                     </div>
                   )}
                 </div>
