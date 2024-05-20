@@ -19,7 +19,7 @@
 
       h1 {
         margin-left: 10px;
-        font-size: 17px;
+        font-size: 15px;
         font-weight: 500;
       }
     }
@@ -35,7 +35,7 @@
       box-shadow: 0 0 6px var(--grey60);
 
       p {
-        font-size: 14px;
+        font-size: 13px;
       }
       img {
         width: 20px;
@@ -53,7 +53,7 @@
       p {
         color: var(--main_text);
         font-weight: 600;
-        font-size: 15px;
+        font-size: 14px;
         margin-right: 6px;
       }
       svg {
@@ -66,6 +66,10 @@
       display: flex;
       flex-wrap: wrap;
       gap: 2px 10px;
+
+      p {
+        font-size: 13px;
+      }
     }
   }
 }
@@ -77,5 +81,6 @@
     box-sizing: border-box;
     padding-bottom: 12px;
     cursor: pointer;
+    font-size: 14px;
   }
 }

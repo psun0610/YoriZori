@@ -141,7 +141,9 @@ const RecipeInfo = () => {
                         }
                         alt="Bookmark"
                       />
-                      <p>{info.bookmarkCount}</p>
+                      <p style={!bookmarkCheck ? { color: "grey" } : {}}>
+                        {info.bookmarkCount}
+                      </p>
                     </button>
                   </div>
                 )}
@@ -158,7 +160,7 @@ const RecipeInfo = () => {
                     <p>재료가 없습니다.</p>
                   )}
                 </div> */}
-                {token && (
+                {token && info.insufficientIngredientsCount != 0 && (
                   <div>
                     부족한 재료 |
                     {info.insufficientIngredients &&
@@ -170,7 +172,9 @@ const RecipeInfo = () => {
               </div>
             </div>
           </div>
-          <div className={styles.all}>전체 재료 | {info.ingredientDetails}</div>
+          <div className={styles.all}>
+            전체 재료 | <span>{info.ingredientDetails}</span>
+          </div>
           <div className={styles.cook}>
             {/* cookimg와 cooktext를 묶어서 표시 */}
             {info.manualImg &&

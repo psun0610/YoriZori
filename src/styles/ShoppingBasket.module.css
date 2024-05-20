@@ -1,10 +1,10 @@
 .shopping_basket_container {
-  padding-top: 50px;
+  padding-top: 40px;
 
   width: 100%;
   height: 1;
   text-align: center;
-  
+
   /* justify-content: flex-end; */
 }
 
@@ -15,14 +15,15 @@
 }
 
 .basket_info {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .ingredient_count {
-  display:flex;
-  padding-left:25px;
+  display: flex;
+  padding-left: 25px;
+  font-size: 14px;
 }
-.item_button{
+.item_button {
   display: flex;
   flex-direction: column;
 }
@@ -34,15 +35,15 @@
   border-radius: 5px;
   cursor: pointer;
 }
-.shopping_list{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
-  padding-bottom:20px;
+.shopping_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  padding-bottom: 20px;
 }
 .basket_items {
   display: flex;
   flex-wrap: wrap;
-  margin-right: 11px; 
+  margin-right: 11px;
   margin-bottom: 10px;
 }
 
@@ -66,7 +67,7 @@
 
 .item_name {
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   margin: 5px;
   text-align: center;
 }
@@ -80,7 +81,7 @@
   cursor: pointer;
 }
 
-.pinbutton{
+.pinbutton {
   border: none;
   background-color: transparent;
   padding: 0;
@@ -94,16 +95,12 @@
   border: none;
   margin: 5px;
   cursor: pointer;
-
-  
 }
-
 
 .cancel {
   width: 10px;
   height: 10px;
 }
-
 
 .add_button {
   background-color: #ffafdf;

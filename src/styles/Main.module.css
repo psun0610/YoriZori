@@ -192,12 +192,10 @@
   cursor: pointer;
 }
 
-.recipe_title {
-}
 .recipe_title h2 {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
-  margin: 3px 0;
+  margin-top: 3px;
 }
 
 .pink_descript {
@@ -221,7 +219,7 @@
   color: var(--main_text);
   font-weight: 700;
   font-size: 13px;
-  padding-top: 3px;
+  padding-top: 2px;
 }
 .lack_ingredients {
   display: flex;
@@ -251,7 +249,7 @@
 
 .bookmark > p {
   text-align: center;
-  font-size: 12px;
+  font-size: 10px;
   color: #ff7a00;
   transform: translateY(-5px);
 }
