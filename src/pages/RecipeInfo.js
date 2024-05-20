@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
 import Navigation from "../components/Navigation";
 import Header from "../components/Header";
-import AxiosAuth from "../components/AxiosAuth";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import AxiosAuth from "../components/AxiosAuth";
+import AxiosCommon from "../components/AxiosCommon";
 
 const RecipeInfo = () => {
   const [bookmarkCheck, setBookmarkCheck] = useState();
   const [info, setInfo] = useState({});
   const [cartMessage, setCartMessage] = useState("");
-  const baseURL = process.env.REACT_APP_BASE_URL;
   const { id } = useParams();
   //const location = useLocation();
   const token = localStorage.getItem("accessToken");
@@ -23,7 +22,7 @@ const RecipeInfo = () => {
       try {
         const response = token
           ? await AxiosAuth.get(`/recipes/user-filtered/${recipeId}`)
-          : await axios.get(`${baseURL}/recipes/all/${recipeId}`);
+          : await AxiosCommon.get(`/recipes/all/${recipeId}`);
         setInfo(response.data);
       } catch (error) {
         console.error("Error fetching recipe info:", error);

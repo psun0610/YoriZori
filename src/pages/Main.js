@@ -73,8 +73,8 @@ const Main = () => {
             <div className={styles.button_box1}>
               <Link to="/refrigerator" className={styles.main_button}>
                 <svg
-                  width="40"
-                  height="40"
+                  width="35"
+                  height="35"
                   viewBox="0 0 28 30"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -90,8 +90,8 @@ const Main = () => {
             <div className={styles.button_box2}>
               <Link to="/recipelist" className={styles.main_button}>
                 <svg
-                  width="27"
-                  height="27"
+                  width="22"
+                  height="22"
                   viewBox="0 0 19 19"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,8 +105,8 @@ const Main = () => {
               </Link>
               <Link to="/shoppingbasket" className={styles.main_button}>
                 <svg
-                  width="27"
-                  height="27"
+                  width="22"
+                  height="22"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
