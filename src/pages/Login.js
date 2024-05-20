@@ -1,12 +1,11 @@
 /** 일치하는 아이디가 있는지, 비밀번호가 맞는지 알려주는 텍스트 작성할 것 */
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import AxiosCommon from "../components/AxiosCommon";
 import styles from "../styles/LoginJoin.module.css";
 import "../App.css";
 
 const Login = () => {
-  const baseURL = process.env.REACT_APP_BASE_URL;
   const navigate = useNavigate();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,23 +24,21 @@ const Login = () => {
     } else {
       setValidEmpty("");
     }
-    axios
-      .post(baseURL + "/auth/signin", {
-        name: userName,
-        password: password,
-      })
-      .then(response => {
-        // 아이디, 비밀번호 Match Check
-        if (response.data.statusCode === 500) {
-          setValidMatch("아이디와 비밀번호를 다시 확인해주세요");
-          return;
-        }
-        localStorage.clear();
-        localStorage.setItem("accessToken", response.data.token);
-        localStorage.setItem("refreshToken", response.data.refreshToken);
-        localStorage.setItem("nickname", response.data.nickname);
-        navigate("/");
-      });
+    AxiosCommon.post("/auth/signin", {
+      name: userName,
+      password: password,
+    }).then(response => {
+      // 아이디, 비밀번호 Match Check
+      if (response.data.statusCode === 500) {
+        setValidMatch("아이디와 비밀번호를 다시 확인해주세요");
+        return;
+      }
+      localStorage.clear();
+      localStorage.setItem("accessToken", response.data.token);
+      localStorage.setItem("refreshToken", response.data.refreshToken);
+      localStorage.setItem("nickname", response.data.nickname);
+      navigate("/");
+    });
   };
 
   useEffect(() => {

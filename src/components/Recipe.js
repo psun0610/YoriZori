@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from "../styles/Main.module.css";
-import axios from "axios";
+import AxiosCommon from "../components/AxiosCommon";
 import AxiosAuth from "../components/AxiosAuth";
 
 function Recipe(props) {
   const [bookmarkCheck, setBookmarkCheck] = useState({});
-  const baseURL = process.env.REACT_APP_BASE_URL;
   const { searchText, category } = props;
   const { id } = useParams();
   const [recipes, setRecipes] = useState([]);
@@ -22,7 +21,7 @@ function Recipe(props) {
       if (token) {
         response = await AxiosAuth.get("/recipes/user-filtered");
       } else {
-        response = await axios.get(baseURL + "/recipes/all");
+        response = await AxiosCommon.get("/recipes/all");
       }
       setRecipes(response.data);
     } catch (error) {

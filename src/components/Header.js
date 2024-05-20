@@ -45,7 +45,7 @@ const Header = props => {
       </div>
       <div
         style={{
-          fontSize: "15px",
+          fontSize: "14px",
           fontWeight: "500",
         }}
       >

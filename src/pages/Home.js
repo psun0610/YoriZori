@@ -9,7 +9,7 @@ const Home = () => {
       <p className={styles.home_first}>로그인 후 이용할 수 있어요!</p>
       <div className={styles.home_buttons}>
         <Link to="/login">
-          <div className={`button pink_back`}>로그인 하기</div>
+          <div className={`button pink_back`}>로그인</div>
         </Link>
         <Link to="/join">
           <div className={`button white_back`}>회원가입</div>
