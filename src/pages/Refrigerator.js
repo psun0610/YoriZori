@@ -135,7 +135,11 @@ const Refrigerator = () => {
         <div className={styles.ingredient_box}>
           {ingredientList.outside.map((ingredient, index) => (
             <div key={index} onClick={() => handleIngredientClick(ingredient)}>
-              <Ingredient name={ingredient.name} dday={ingredient.dday} />
+              <Ingredient
+                name={ingredient.name}
+                dday={ingredient.dday}
+                src={ingredient.imageUrl}
+              />
             </div>
           ))}
         </div>
@@ -148,7 +152,11 @@ const Refrigerator = () => {
         <div className={styles.ingredient_box}>
           {ingredientList.cold.map((ingredient, index) => (
             <div key={index} onClick={() => handleIngredientClick(ingredient)}>
-              <Ingredient name={ingredient.name} dday={ingredient.dday} />
+              <Ingredient
+                name={ingredient.name}
+                dday={ingredient.dday}
+                src={ingredient.imageUrl}
+              />
             </div>
           ))}
           {ingredientList.frozen.map((ingredient, index) => (
@@ -157,6 +165,7 @@ const Refrigerator = () => {
                 name={ingredient.name}
                 dday={ingredient.dday}
                 isFrozen={true}
+                src={ingredient.imageUrl}
               />
             </div>
           ))}
