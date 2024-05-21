@@ -78,7 +78,7 @@ const RecipeInfo = () => {
       const ingredientIds = info.insufficientIngredients.map(
         ingredient => ingredient.id,
       );
-      await AxiosAuth.post("/users/cart", { ingredientIds });
+      await AxiosAuth.post("/users/cart", ingredientIds);
       setCartMessage("장바구니에 추가되었습니다.");
       setTimeout(() => setCartMessage(""), 5000);
     } catch (error) {
