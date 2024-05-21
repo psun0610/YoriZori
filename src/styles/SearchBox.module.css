@@ -81,4 +81,5 @@
   grid-gap: 20px;
   place-items: center;
   cursor: default;
+  align-items: start;
 }
