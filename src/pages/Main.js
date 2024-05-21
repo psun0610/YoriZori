@@ -7,12 +7,15 @@ import MainRecipe from "../components/MainRecipe";
 import AxiosAuth from "../components/AxiosAuth";
 
 const Main = () => {
+  const [authUser, setAuthUser] = useState(false);
   const [lackIngredients, setLackIngredients] = useState([]);
   const [recommendRecipes, setRecommendRecipes] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       fetchUserInfo();
       GetRecommendRecipe();
+    } else {
+      GetGuestRecommendRecipe();
     }
   }, []);
 
@@ -24,10 +27,16 @@ const Main = () => {
       ingredient => ingredient.dday <= 3,
     );
     setLackIngredients(lackIngredients);
+    setAuthUser(true);
   };
 
   const GetRecommendRecipe = async () => {
     const response = await AxiosAuth.get(`/recipes/recommendations`);
+    setRecommendRecipes(response.data);
+  };
+
+  const GetGuestRecommendRecipe = async () => {
+    const response = await AxiosAuth.get(`/recipes/recommendations/guest`);
     setRecommendRecipes(response.data);
   };
 
@@ -137,7 +146,7 @@ const Main = () => {
                   className={styles.recipe}
                   key={index}
                 >
-                  <MainRecipe recipe={recipe} />
+                  <MainRecipe recipe={recipe} authUser={authUser} />
                 </Link>
               ))}
             </div>
