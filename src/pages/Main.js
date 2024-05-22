@@ -18,7 +18,7 @@ const Main = () => {
     } else {
       GetGuestRecommendRecipe();
     }
-  }, [lackIngredients, recommendRecipes]);
+  }, []);
 
   const fetchUserInfo = async () => {
     // 로그인 사용자의 재료 정보 가져오기
