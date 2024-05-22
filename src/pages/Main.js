@@ -5,19 +5,20 @@ import Ingredient from "../components/Ingredient";
 import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 import AxiosAuth from "../components/AxiosAuth";
+import AxiosCommon from "../components/AxiosCommon";
 
 const Main = () => {
   const [authUser, setAuthUser] = useState(false);
   const [lackIngredients, setLackIngredients] = useState([]);
   const [recommendRecipes, setRecommendRecipes] = useState([]);
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("accessToken") !== null) {
       fetchUserInfo();
       GetRecommendRecipe();
     } else {
       GetGuestRecommendRecipe();
     }
-  }, []);
+  }, [lackIngredients, recommendRecipes]);
 
   const fetchUserInfo = async () => {
     // 로그인 사용자의 재료 정보 가져오기
@@ -36,7 +37,7 @@ const Main = () => {
   };
 
   const GetGuestRecommendRecipe = async () => {
-    const response = await AxiosAuth.get(`/recipes/recommendations/guest`);
+    const response = await AxiosCommon.get(`/recipes/recommendations/guest`);
     setRecommendRecipes(response.data);
   };
 
