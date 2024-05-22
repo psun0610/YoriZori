@@ -30,6 +30,7 @@ AxiosAuth.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
     if (error.response.status === 401 && !originalRequest._retry) {
+      console.log("refreshToken Error");
       await refreshAccessToken();
       return AxiosAuth(originalRequest);
     }

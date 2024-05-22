@@ -22,13 +22,15 @@ const Mypage = () => {
       navigate("/home");
     }
 
-    AxiosAuth.get("/users/avoid-ingredients")
-      .then(response => {
-        setAvoidIngredients(response.data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    async () => {
+      await AxiosAuth.get("/users/avoid-ingredients")
+        .then(response => {
+          setAvoidIngredients(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    };
   }, []);
 
   const nickname = localStorage.getItem("nickname");
