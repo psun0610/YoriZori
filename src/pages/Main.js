@@ -11,14 +11,25 @@ const Main = () => {
   const [authUser, setAuthUser] = useState(false);
   const [lackIngredients, setLackIngredients] = useState([]);
   const [recommendRecipes, setRecommendRecipes] = useState([]);
+  const [token, setToken] = useState("");
+
   useEffect(() => {
-    if (localStorage.getItem("accessToken") !== null) {
-      fetchUserInfo();
-      GetRecommendRecipe();
-    } else {
-      GetGuestRecommendRecipe();
-    }
-  }, []);
+    setToken(localStorage.getItem("accessToken"));
+    console.log(token);
+    const fetchUserData = async () => {
+      if (token) {
+        try {
+          await fetchUserInfo();
+          await GetRecommendRecipe();
+        } catch (error) {
+          console.error("Error fetching user data", error);
+        }
+      } else {
+        await GetGuestRecommendRecipe();
+      }
+    };
+    fetchUserData();
+  }, [token]);
 
   const fetchUserInfo = async () => {
     // 로그인 사용자의 재료 정보 가져오기
