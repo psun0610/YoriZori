@@ -12,7 +12,7 @@
 2. 보유 식재료를 바탕으로 **레시피 추천**
 3. 장을 볼 때 참고할 수 있는 **장바구니 리스트** 
 
-<img src="https://github.com/user-attachments/assets/034b7a2c-429d-4989-9620-7a64df1f9007" alt="요리조리 로고 small" style="zoom:50%;" />
+<img src="https://github.com/user-attachments/assets/034b7a2c-429d-4989-9620-7a64df1f9007" alt="요리조리 로고 small" style="height:150" />
 
 ## 🔎2. 프로젝트 기획 동기
 
@@ -28,9 +28,11 @@
 
 
 ## 🧑‍💻3. Contributor
-
-<a href="https://github.com/seunggi99"><img src="https://github.com/user-attachments/assets/632b98bb-587b-4903-9488-1013c6cd4bfa" alt="image" style="border-radius:50%; object-fit:contain;" width="180" height="180"/></a><a href="https://github.com/zzihoos"><img src="https://github.com/user-attachments/assets/42a6f748-7349-4cf4-94ae-6e14d443538a" alt="image" style="border-radius:50%; object-fit:contain;" width="180" height="180"/></a><a href="https://github.com/psun0610"><img src="https://github.com/user-attachments/assets/9ddc6e86-f8c2-4817-bf56-f1129f6947fb" alt="image" style="border-radius:50%; object-fit:contain;" width="180" height="180"/></a>
-
+<div style="display:flex; justify-content:center;">
+  <a href="https://github.com/seunggi99"><img src="https://github.com/user-attachments/assets/632b98bb-587b-4903-9488-1013c6cd4bfa" height="150"/></a>
+  <a href="https://github.com/zzihoos"><img src="https://github.com/user-attachments/assets/42a6f748-7349-4cf4-94ae-6e14d443538a" height="150"/></a>
+  <a href="https://github.com/psun0610"><img src="https://github.com/user-attachments/assets/9ddc6e86-f8c2-4817-bf56-f1129f6947fb" height="150"/></a>
+</div>
 
 
 ## ⚙️4. 프로젝트 소개
@@ -48,16 +50,16 @@
 
 - 🖥️**사용 기술**
   - 백엔드
-    <img src="https://img.shields.io/badge/JAVA-FF7800?style=for-the-badge&logo=Java&logoColor=white"/><img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white"/><img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Springsecurity&logoColor=white"/><img src="https://img.shields.io/badge/spring scheduler-6DB33F?style=for-the-badge&logo=springscheduler&logoColor=white"/>
-    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/><img src="https://img.shields.io/badge/spring Data JPA-000000?style=for-the-badge&logo=spring&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white"/><img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"/>
+    <img src="https://img.shields.io/badge/JAVA-FF7800?style=for-the-badge&logo=Java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Springsecurity&logoColor=white"/> <img src="https://img.shields.io/badge/spring scheduler-6DB33F?style=for-the-badge&logo=springscheduler&logoColor=white"/>
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"/> <img src="https://img.shields.io/badge/spring Data JPA-000000?style=for-the-badge&logo=spring&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"/>
   - 프론트엔드
     
-    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black"/><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/><img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=darkred"/><img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/><img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/><img src="https://img.shields.io/badge/SASS-CC6699?style=for-the-badge&logo=sass&logoColor=white"/><img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=darkred"/> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/SASS-CC6699?style=for-the-badge&logo=sass&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
     
   - 협업
   
-    <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white"/><img src="https://img.shields.io/badge/GITHUB-5865F2?style=for-the-badge&logo=discord&logoColor=white"/><img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"/>
+    <img src="https://img.shields.io/badge/GITHUB-181717?style=for-the-badge&logo=github&logoColor=white"/> <img src="https://img.shields.io/badge/GITHUB-5865F2?style=for-the-badge&logo=discord&logoColor=white"/> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white"/>
 
 
 
