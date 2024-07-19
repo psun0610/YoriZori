@@ -257,7 +257,8 @@
 
 - 북마크 저장된 레시피 표시
 
-![image-20240720004853124](C:\Users\박선영\AppData\Roaming\Typora\typora-user-images\image-20240720004853124.png)
+![image](https://github.com/user-attachments/assets/aa605b67-74d6-420a-a5e0-48f519fcdd35)
+
 
 <br/>
 
