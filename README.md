@@ -22,14 +22,14 @@
 
 # 🔎2. 프로젝트 기획 동기
 
-자취생으로 살면서 항상 "오늘 뭐 먹지?"가 가장 큰 고민이었습니다.
+자취생으로 살면서 항상 **"오늘 뭐 먹지?"**가 가장 큰 고민이었습니다.
 지금 내 냉장고에 있는 재료를 한 눈에 관리하면서 레시피도 추천받을 수 있는 앱이 있으면 자취생들에게 아주 편할 것 같았습니다.
 
 개발을 하기 전에 먼저 기존 시스템을 찾아보았습니다.
 만개의 레시피, 원더 프리지와 같은 냉장고 어플들을 위주로 찾아보았습니다.
 많은 앱들이 냉장고 재료를 관리해주는 기능은 있으나 그 재료를 기반으로 레시피 추천을 해주진 않는다거나, 반대로 레시피 추천은 많지만 재료 기반 추천 기능은 없었습니다.
 
-그래서 **"나의"** 냉장고 관리와 **"내가"** 가진 재료를 이용한 레시피 추천 기능을 합친 **요리조리**를 개발하게 되었습니다.
+그래서 **나의** 냉장고 관리와 **내가 가진 재료**를 이용한 레시피 추천 기능을 합친 **요리조리**를 개발하게 되었습니다.
 
 <br/>
 
@@ -51,13 +51,14 @@
   
 - **🚩개인 개발 목표**
   
-  - React 프레임워크 컴포넌트 사용법을 익히고 자바스크립트와 scss 익숙해지기
-  - 팀원들과의 협업에 익숙해지기 
+  - React 프레임워크 컴포넌트 구조화 익히기
   
 - ⭐**개발 역할 분담**
-  - 백엔드: 김승기
-  - 프론트엔드: **박선영**(팀장), 신지호
-
+  - 기획: 박선영, 신지호, 김승기
+  - 디자인: 박선영
+  - **백엔드**: 김승기
+  - **프론트엔드**: 박선영, 신지호
+  
 - 🖥️**사용 기술**
   - 백엔드
     <img src="https://img.shields.io/badge/JAVA-FF7800?style=for-the-badge&logo=Java&logoColor=white"/> <img src="https://img.shields.io/badge/SpringBoot-6DB33F?style=for-the-badge&logo=Springboot&logoColor=white"/> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Springsecurity&logoColor=white"/> <img src="https://img.shields.io/badge/spring scheduler-6DB33F?style=for-the-badge&logo=springscheduler&logoColor=white"/>
@@ -65,7 +66,7 @@
     <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"/>
   - 프론트엔드
     
-    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=darkred"/> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/SASS-CC6699?style=for-the-badge&logo=sass&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=darkred"/> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/ScSS-CC6699?style=for-the-badge&logo=scss&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
     
   - 협업
   
@@ -84,6 +85,10 @@
 
 
 # 📋6. 기능 소개
+
+모든 페이지는 **반응형**으로 구성되어 PC 환경과 모바일 환경 모두에 최적화 되도록 만들었습니다.
+
+
 
 
 ## 📌6.1 회원가입
@@ -244,7 +249,3 @@
 <br/>
 
 
-
-# 💡느낀점과 배운점
-
--
