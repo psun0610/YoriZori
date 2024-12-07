@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
-import Navigation from "../components/Navigation";
 import { useNavigate } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
 import AxiosAuth from "../components/AxiosAuth";
@@ -53,16 +52,14 @@ const ShoppingBasketAdd = () => {
     };
   }, [wrapperRef]);
 
-
   const handleSubmitClick = async () => {
     try {
       const ingredientId = selectIngredient[0].id;
       console.log(ingredientId);
       const response = await AxiosAuth.post("/users/cart", [ingredientId]);
       console.log("Added to cart:", response.data);
-     
-      navigate("/shoppingbasket")
-      
+
+      navigate("/shoppingbasket");
     } catch (error) {
       console.error("Error adding to cart:", error);
     }
@@ -114,9 +111,7 @@ const ShoppingBasketAdd = () => {
           }}
           onClick={handleSubmitClick}
         ></input>
-        
       </div>
-      <Navigation />
     </div>
   );
 };

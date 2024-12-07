@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
 import SearchBox from "../components/SearchBox";
 import Header from "../components/Header";
-import Navigation from "../components/Navigation";
 /** 달력 */
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -279,7 +278,6 @@ function RefrigeratorAdd() {
           ></input>
         )}
       </div>
-      <Navigation />
     </div>
   );
 }

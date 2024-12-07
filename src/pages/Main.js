@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
 import Ingredient from "../components/Ingredient";
-import Navigation from "../components/Navigation";
 import MainRecipe from "../components/MainRecipe";
 import AxiosAuth from "../components/AxiosAuth";
 import AxiosCommon from "../components/AxiosCommon";
@@ -165,7 +164,6 @@ const Main = () => {
           </div>
         </div>
       </div>
-      <Navigation />
     </div>
   );
 };

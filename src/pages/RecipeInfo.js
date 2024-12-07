@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
-import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import { useParams } from "react-router-dom";
 import AxiosAuth from "../components/AxiosAuth";
@@ -197,8 +196,6 @@ const RecipeInfo = () => {
           </div>
         </div>
       </div>
-
-      <Navigation />
     </div>
   );
 };

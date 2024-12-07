@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/RecipeList.module.css";
 import styleSearch from "../styles/SearchBox.module.css";
-import Navigation from "../components/Navigation";
 import Category from "../components/Category";
 import Recipe from "../components/Recipe";
 import Header from "../components/Header";
@@ -23,23 +22,15 @@ const RecipeList = () => {
     setSelectedCategory(index);
   };
 
-  const items = [
-    "전체",
-    "반찬",
-    "국&찌개",
-    "후식",
-    "일품",
-    "밥",
-    "기타",
-  ];
+  const items = ["전체", "반찬", "국&찌개", "후식", "일품", "밥", "기타"];
 
   return (
     <div>
       <Header name="레시피" />
       <div id="wrapper_contain_header">
         <div className={styles.wrapper}>
-          <Category items={items} onClick={handleCategorySelect}/>
-          
+          <Category items={items} onClick={handleCategorySelect} />
+
           <div
             className={styleSearch.search_box}
             style={{ marginTop: "1.5vh" }}
@@ -70,7 +61,6 @@ const RecipeList = () => {
           </div>
         </div>
       </div>
-      <Navigation />
     </div>
   );
 };

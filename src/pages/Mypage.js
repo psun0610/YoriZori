@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Mypage.module.scss";
 import { useNavigate } from "react-router";
-import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 
@@ -134,7 +133,6 @@ const Mypage = () => {
           <li>계정 탈퇴</li>
         </ul>
       </div>
-      <Navigation />
     </div>
   );
 };
