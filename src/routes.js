@@ -16,20 +16,54 @@ import RecipeBookmark from "./pages/RecipeBookmark";
 
 const routes = [
   { path: "/", component: Main, showNav: true },
-  { path: "/join", component: Join, showNav: false },
-  { path: "/login", component: Login, showNav: false },
-  { path: "/home", component: Home, showNav: false },
-  { path: "/mypage", component: Mypage, showNav: true },
-  { path: "/recipeinfo/:id", component: RecipeInfo, showNav: true },
-  { path: "/recipelist", component: RecipeList, showNav: true },
+  { path: "/join", component: Join },
+  { path: "/login", component: Login },
+  { path: "/home", component: Home },
+  {
+    path: "/mypage",
+    component: Mypage,
+    showNav: true,
+    name: "냉장고 재료 등록",
+  },
+  {
+    path: "/recipeinfo/:id",
+    component: RecipeInfo,
+    showNav: true,
+    name: "레시피",
+  },
+  {
+    path: "/recipelist",
+    component: RecipeList,
+    showNav: true,
+    name: "레시피",
+  },
   { path: "/refrigerator", component: Refrigerator, showNav: true },
-  { path: "/shoppingbasket", component: ShoppingBasket, showNav: true },
-  { path: "/shoppingbasketadd", component: ShoppingBasketAdd, showNav: true },
-  { path: "/memberedit", component: MemberEdit, showNav: false },
-  { path: "/avoidance", component: Avoidance, showNav: false },
-  { path: "/join_complete", component: JoinComplete, showNav: false },
-  { path: "/refrigerator_add", component: RefrigeratorAdd, showNav: false },
-  { path: "/recipebookmark", component: RecipeBookmark, showNav: true },
+  {
+    path: "/shoppingbasket",
+    component: ShoppingBasket,
+    showNav: true,
+    name: "장바구니",
+  },
+  {
+    path: "/shoppingbasketadd",
+    component: ShoppingBasketAdd,
+    showNav: true,
+    name: "장바구니 재료 등록",
+  },
+  { path: "/memberedit", component: MemberEdit },
+  { path: "/avoidance", component: Avoidance },
+  { path: "/join_complete", component: JoinComplete },
+  {
+    path: "/refrigerator_add",
+    component: RefrigeratorAdd,
+    showNav: false,
+  },
+  {
+    path: "/recipebookmark",
+    component: RecipeBookmark,
+    showNav: true,
+    name: "레시피 북마크",
+  },
 ];
 
 export default routes;

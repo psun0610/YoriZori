@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/RecipeInfo.module.css";
-import Header from "../components/Header";
 import { useParams } from "react-router-dom";
 import AxiosAuth from "../components/AxiosAuth";
 import AxiosCommon from "../components/AxiosCommon";
@@ -87,7 +86,6 @@ const RecipeInfo = () => {
 
   return (
     <div>
-      <Header name="레시피" />
       <div id="wrapper_contain_header">
         <div className={styles.recipe_img}>
           <img src={info.imageUrl} alt={info.name} />

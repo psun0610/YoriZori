@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import Header from "../components/Header";
 import { useNavigate } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
 import AxiosAuth from "../components/AxiosAuth";
@@ -67,7 +66,6 @@ const ShoppingBasketAdd = () => {
 
   return (
     <div>
-      <Header name="장바구니 재료 등록" />
       <div id="wrapper_contain_header" className={styles.refrigerator_add}>
         <div>
           {/* 재료 선택 */}

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../styles/ShoppingBasket.module.css";
-import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 import { Link } from "react-router-dom";
 
@@ -78,7 +77,6 @@ const ShoppingBasket = () => {
 
   return (
     <div>
-      <Header name="장바구니" />
       <div id="wrapper_contain_header">
         <div className={styles.shopping_basket_container}>
           <div className={styles.basket_info}>
