@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Navigation from "../components/Navigation";
 import Category from "../components/Category";
 import Ingredient from "../components/Ingredient";
 import styles from "../styles/Refrigerator.module.css";
@@ -294,7 +293,6 @@ const Refrigerator = () => {
           </div>
         )}
       </div>
-      <Navigation />
     </div>
   );
 };

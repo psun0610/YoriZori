@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../styles/ShoppingBasket.module.css";
-import Navigation from "../components/Navigation";
 import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 import { Link } from "react-router-dom";
@@ -130,7 +129,6 @@ const ShoppingBasket = () => {
           </Link>
         </div>
       </div>
-      <Navigation />
     </div>
   );
 };
