@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import routes from "./routes";
 import Navigation from "./components/Navigation";
+import Header from "./components/Header";
 
 const App = () => {
   return (
@@ -18,9 +19,11 @@ const Main = () => {
   const shouldShowNav = routes.find(
     route => route.path === location.pathname,
   )?.showNav;
+  const name = routes.find(route => route.path === location.pathname)?.name;
 
   return (
     <>
+      {name && <Header name={name} />}
       <Routes>
         {routes.map(({ path, component: Component }) => (
           <Route key={path} path={path} element={<Component />} />

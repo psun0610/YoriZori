@@ -3,7 +3,6 @@ import styles from "../styles/RecipeList.module.css";
 import styleSearch from "../styles/SearchBox.module.css";
 import Category from "../components/Category";
 import Recipe from "../components/Recipe";
-import Header from "../components/Header";
 
 const RecipeList = () => {
   const [searchText, setSearchText] = useState("");
@@ -26,7 +25,6 @@ const RecipeList = () => {
 
   return (
     <div>
-      <Header name="레시피" />
       <div id="wrapper_contain_header">
         <div className={styles.wrapper}>
           <Category items={items} onClick={handleCategorySelect} />

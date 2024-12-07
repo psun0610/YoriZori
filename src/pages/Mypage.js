@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Mypage.module.scss";
 import { useNavigate } from "react-router";
-import Header from "../components/Header";
 import AxiosAuth from "../components/AxiosAuth";
 
 const Mypage = () => {
@@ -36,7 +35,6 @@ const Mypage = () => {
 
   return (
     <div>
-      <Header name="마이페이지" />
       <div id="wrapper_contain_header" className={styles.wrapper}>
         <div className={styles.user_info}>
           <div className={styles.top}>
