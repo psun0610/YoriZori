@@ -3,7 +3,7 @@ import styles from "../styles/Main.module.css";
 
 function MainRecipe({ recipe, authUser }) {
   return (
-    <>
+    <article>
       <img src={recipe.imageUrl} alt={recipe.name} />
       <div>
         <div className={styles.recipe_title}>
@@ -25,7 +25,7 @@ function MainRecipe({ recipe, authUser }) {
             <p className={styles.success_message}>지금 만들 수 있어요!</p>
           ))}
       </div>
-    </>
+    </article>
   );
 }
 

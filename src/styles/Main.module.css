@@ -3,37 +3,15 @@
 }
 
 /** 메인 이미지 **/
-.main_image {
-  position: relative;
-}
-
-.main_image img {
+.main_header {
   width: 100%;
-  height: 170px;
-  opacity: 0.6;
+  height: 150px;
+  padding: 15px;
+  background-image: url("../../public/images/logo.jpg");
   background-repeat: no-repeat;
-  object-fit: cover;
-  filter: blur(1.7px);
-}
-
-.main_phrase {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  text-shadow: var(--black) 0 0 8px;
-}
-
-.main_phrase h1 {
-  color: var(--yellow);
-  font-weight: bold;
-  font-size: 22px;
-  margin-bottom: 5px;
-}
-
-.main_phrase p {
-  color: white;
-  font-size: 12px;
-  margin: 0;
+  background-size: contain;
+  background-position: center;
+  background-origin: content-box;
 }
 
 /** 소비기한 임박 재료 리스트 **/
