@@ -6,15 +6,40 @@ import MainRecipe from "../components/MainRecipe";
 import AxiosAuth from "../components/AxiosAuth";
 import AxiosCommon from "../components/AxiosCommon";
 
+/** 소비기한 임박 재료 리스트 */
+const NearExp = ({ nearExp }) => {
+  return (
+    <>
+      {nearExp.length > 0 && (
+        <section className={styles.close_to_expiration}>
+          <h1>
+            <span>소비기한이 임박한 재료</span>가 있어요!
+          </h1>
+          <div className={styles.ingredient_box}>
+            {nearExp.map((ingredient, index) => (
+              <div key={index}>
+                <Ingredient
+                  name={ingredient.name}
+                  dday={ingredient.dday}
+                  src={ingredient.imageUrl}
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+    </>
+  );
+};
+
 const Main = () => {
   const [authUser, setAuthUser] = useState(false);
-  const [lackIngredients, setLackIngredients] = useState([]);
   const [recommendRecipes, setRecommendRecipes] = useState([]);
+  const [nearExp, setNearExp] = useState([]);
   const [token, setToken] = useState("");
 
   useEffect(() => {
     setToken(localStorage.getItem("accessToken"));
-    console.log(token);
     const fetchUserData = async () => {
       if (token) {
         try {
@@ -33,11 +58,8 @@ const Main = () => {
   const fetchUserInfo = async () => {
     // 로그인 사용자의 재료 정보 가져오기
     const response = await AxiosAuth.get(`/fridges/ingredients`);
-    // 재료 정보를 받은 후에 부족한 재료를 업데이트
-    const lackIngredients = response.data.filter(
-      ingredient => ingredient.dday <= 3,
-    );
-    setLackIngredients(lackIngredients);
+    const nearExp = response.data.filter(ingredient => ingredient.dday <= 3);
+    setNearExp(nearExp);
     setAuthUser(true);
   };
 
@@ -54,40 +76,13 @@ const Main = () => {
   return (
     <div>
       <div id="wrapper">
-        <header></header>
-        {/* 메인 이미지 */}
-        <div className={styles.main_image}>
-          <img src="/images/mainpage_food_image.jpg" />
-          <div className={styles.main_phrase}>
-            <h1>요리조리</h1>
-            <p>냉장고 관리를 간편하게 해보세요!</p>
-          </div>
-        </div>
+        <header className={styles.main_header}></header>
         <div className={styles.container}>
-          {/* 소비기한 임박 재료 리스트 */}
-          {lackIngredients.length > 0 && (
-            <div className={styles.close_to_expiration}>
-              <h1>
-                <span>소비기한이 임박한 재료</span>가 있어요!
-              </h1>
-              <div className={styles.ingredient_box}>
-                {lackIngredients.map((ingredient, index) => (
-                  <div key={index}>
-                    <Ingredient
-                      name={ingredient.name}
-                      dday={ingredient.dday}
-                      src={ingredient.imageUrl}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
           {/* 메인 버튼 3개 */}
-          <div
+          <nav
             className={styles.main_buttons}
             style={{
-              marginTop: lackIngredients.length <= 0 ? "20px" : "5px",
+              marginTop: nearExp.length <= 0 ? "20px" : "5px",
             }}
           >
             <div className={styles.button_box1}>
@@ -142,14 +137,15 @@ const Main = () => {
                 <h1>장바구니</h1>
               </Link>
             </div>
-          </div>
-
+          </nav>
+          {/* 소비기한 임박 재료 리스트 */}
+          <NearExp nearExp={nearExp} />
           {/** 오늘의 추천 레시피 */}
-          <div>
-            <div className={styles.recipe_main_title}>
+          <section>
+            <header className={styles.recipe_main_title}>
               <h1>오늘의 추천 레시피</h1>
               <Link to="/recipelist">더보기{">"}</Link>
-            </div>
+            </header>
             <div className={styles.recipe_list}>
               {recommendRecipes.map((recipe, index) => (
                 <Link
@@ -161,7 +157,7 @@ const Main = () => {
                 </Link>
               ))}
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>
