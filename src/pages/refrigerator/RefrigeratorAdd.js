@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
-import styles from "../styles/Refrigerator.module.css";
+import styles from "../../styles/Refrigerator.module.css";
 import SearchBox from "../components/SearchBox";
 import Header from "../components/Header";
 /** 달력 */
