@@ -10,9 +10,12 @@ function Category(props) {
     props.onClick(index);
   };
   return (
-    <div className={styles.category_button_list}>
+    <nav
+      aria-label="재료 카테고리 네비게이션"
+      className={styles.category_button_list}
+    >
       {props.items.map((item, index) => (
-        <div
+        <button
           key={index}
           className={`${styles.category_button} ${
             selectedItem === index ? styles.selected : ""
@@ -20,9 +23,9 @@ function Category(props) {
           onClick={() => handleItemClick(index)}
         >
           {item}
-        </div>
+        </button>
       ))}
-    </div>
+    </nav>
   );
 }
 

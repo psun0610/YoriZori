@@ -122,9 +122,7 @@ const Refrigerator = () => {
   return (
     <div>
       <div id="wrapper" className={styles.wrapper}>
-        <div className={styles.category}>
-          <Category items={items} onClick={handleSelectCategory} />
-        </div>
+        <Category items={items} onClick={handleSelectCategory} />
 
         {/* 실온 재료 리스트 */}
         <div className={styles.line} style={{ margin: "10px auto 40px" }}>
@@ -171,7 +169,11 @@ const Refrigerator = () => {
         </div>
 
         {/** 재료 등록 버튼 */}
-        <Link to="/refrigerator_add" className={styles.ingredient_add_button}>
+        <Link
+          to="/refrigerator_add"
+          className={styles.ingredient_add_button}
+          aria-label="재료 등록"
+        >
           <svg
             width="36"
             height="36"
