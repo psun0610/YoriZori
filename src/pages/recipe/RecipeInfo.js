@@ -92,7 +92,7 @@ const RecipeInfo = () => {
         </div>
 
         <div className={styles.container}>
-          <div className={styles.info_up}>
+          <header className={styles.info_up}>
             <div>
               <div className={styles.info_between}>
                 <h1 className={styles.title}>{info.name}</h1>
@@ -167,11 +167,11 @@ const RecipeInfo = () => {
                   </div>
                 )}
               </div>
+              <div className={styles.all}>
+                전체 재료 | <span>{info.ingredientDetails}</span>
+              </div>
             </div>
-          </div>
-          <div className={styles.all}>
-            전체 재료 | <span>{info.ingredientDetails}</span>
-          </div>
+          </header>
           <div className={styles.cook}>
             {/* cookimg와 cooktext를 묶어서 표시 */}
             {info.manualImg &&

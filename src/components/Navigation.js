@@ -6,7 +6,7 @@ const Navigation = () => {
   const currentURL = useLocation().pathname;
 
   return (
-    <nav className="nav">
+    <nav aria-label="메인 네비게이션" className="nav">
       <Link to="/refrigerator">
         <div className="nav_content">
           <svg
