@@ -63,6 +63,7 @@
   font-weight: 500;
   font-size: 13px;
   background-color: transparent;
+  border: 0;
 }
 
 .category_button.selected {

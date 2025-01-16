@@ -30,7 +30,7 @@ function IngredientList(props) {
     <div className={styles.ingredient_list_container}>
       <div className={styles.ingredient_list}>
         {filteredIngredients.map((ingredient, index) => (
-          <div
+          <button
             key={index}
             className={styles2.ingredient}
             onClick={() => {
@@ -47,7 +47,7 @@ function IngredientList(props) {
               <img src={ingredient.imageUrl} />
             </div>
             <p>{ingredient.name}</p>
-          </div>
+          </button>
         ))}
       </div>
     </div>
