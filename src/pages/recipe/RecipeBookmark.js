@@ -1,5 +1,5 @@
 import React from "react";
-import Bookmark from "../components/Bookmark";
+import Bookmark from "../../components/Bookmark";
 import styles from "../../styles/RecipeList.module.css";
 
 const RecipeBookmark = () => {
