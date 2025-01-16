@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../styles/RecipeInfo.module.css";
+import styles from "../../styles/RecipeInfo.module.css";
 import { useParams } from "react-router-dom";
 import AxiosAuth from "../components/AxiosAuth";
 import AxiosCommon from "../components/AxiosCommon";
