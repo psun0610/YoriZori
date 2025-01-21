@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Main.module.css";
-import Ingredient from "../components/Ingredient";
-import MainRecipe from "../components/MainRecipe";
-import AxiosAuth from "../components/AxiosAuth";
-import AxiosCommon from "../components/AxiosCommon";
+import Ingredient from "../../components/Ingredient";
+import MainRecipe from "../../components/MainRecipe";
+import AxiosAuth from "../../utils/AxiosAuth";
+import AxiosCommon from "../../utils/AxiosCommon";
 
 /** 소비기한 임박 재료 리스트 */
 const NearExp = ({ nearExp }) => {

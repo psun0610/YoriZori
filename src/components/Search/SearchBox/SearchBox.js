@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/SearchBox.module.css";
-import SearchWindow from "./SearchWindow";
+import SearchWindow from "../SearchWindow/SearchWindow";
 import Category from "./Category";
 import IngredientList from "./IngredientList";
 

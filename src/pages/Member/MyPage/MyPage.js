@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../../styles/Mypage.module.scss";
 import { useNavigate } from "react-router";
-import AxiosAuth from "../../components/AxiosAuth";
+import AxiosAuth from "../../../utils/AxiosAuth";
 
 const Mypage = () => {
   // 로그인 유저 확인

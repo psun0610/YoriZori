@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import styles from "../../styles/Refrigerator.module.css";
-import SearchBox from "../../components/SearchBox";
-import Header from "../../components/Header";
+import SearchBox from "../../../components/SearchBox";
+import Header from "../../../layout/Header";
 /** 달력 */
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import dayjs from "dayjs";
-import AxiosAuth from "../../components/AxiosAuth";
+import AxiosAuth from "../../../utils/AxiosAuth";
 
 function RefrigeratorAdd() {
   const navigate = useNavigate();

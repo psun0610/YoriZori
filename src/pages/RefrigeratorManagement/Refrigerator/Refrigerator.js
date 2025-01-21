@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Category from "../../components/Category";
-import Ingredient from "../../components/Ingredient";
+import Category from "../../../components/Search/Category/Category";
+import Ingredient from "../../../components/Ingredient";
 import styles from "../../styles/Refrigerator.module.css";
-import AxiosAuth from "../../components/AxiosAuth";
+import AxiosAuth from "../../../utils/AxiosAuth";
 
 const Refrigerator = () => {
   const [responseList, setResponseList] = useState([]);

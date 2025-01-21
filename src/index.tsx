@@ -1,4 +1,3 @@
-import React from "react";
 import App from "./App";
 import "./App.css";
 import "./index.css";
@@ -7,6 +6,6 @@ import { createRoot } from "react-dom/client";
 
 serviceWorkerRegistration.register();
 
-const container = document.getElementById("root");
+const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
-root.render(<App tab="home" />);
+root.render(<App />);

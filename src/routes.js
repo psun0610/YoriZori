@@ -1,17 +1,17 @@
-import Home from "./pages/member/Home";
-import Join from "./pages/member/Join";
-import Login from "./pages/member/Login";
-import Main from "./pages/Main";
-import Mypage from "./pages/member/Mypage";
-import RecipeList from "./pages/recipe/RecipeList";
-import Refrigerator from "./pages/refrigerator/Refrigerator";
-import ShoppingBasket from "./pages/ShoppingBasket";
-import MemberEdit from "./pages/member/MemberEdit";
-import Avoidance from "./pages/member/Avoidance";
-import JoinComplete from "./pages/member/JoinComplete";
-import RefrigeratorAdd from "./pages/refrigerator/RefrigeratorAdd";
+import Home from "./pages/Member/LoginRequired/LoginRequired";
+import Join from "./pages/Member/Join/Join";
+import Login from "./pages/Member/Login/Login";
+import Main from "./pages/Main/Main";
+import Mypage from "./pages/Member/MyPage/MyPage";
+import RecipeList from "./pages/Recipe/RecipeList";
+import Refrigerator from "./pages/RefrigeratorManagement/Refrigerator/Refrigerator";
+import ShoppingBasket from "./pages/BasketManagement";
+import MemberEdit from "./pages/Member/MemberEdit/MemberEdit";
+import Avoidance from "./pages/Member/Avoidance";
+import JoinComplete from "./pages/Member/JoinComplete/JoinComplete";
+import RefrigeratorAdd from "./pages/RefrigeratorManagement/RefrigeratorAdd/RefrigeratorAdd";
 import RecipeInfo from "./pages/recipe/RecipeInfo";
-import ShoppingBasketAdd from "./pages/ShoppingBasketAdd";
+import ShoppingBasketAdd from "./pages/BasketManagement/BasketAdd/ShoppingBasketAdd";
 import RecipeBookmark from "./pages/recipe/RecipeBookmark";
 
 const routes = [
@@ -50,7 +50,7 @@ const routes = [
     showNav: true,
     name: "장바구니 재료 등록",
   },
-  { path: "/memberedit", component: MemberEdit },
+  { path: "/Memberedit", component: MemberEdit },
   { path: "/avoidance", component: Avoidance },
   { path: "/join_complete", component: JoinComplete },
   {

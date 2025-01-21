@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
-import AxiosAuth from "../components/AxiosAuth";
-import SearchBox from "../components/SearchBox";
+import AxiosAuth from "../../../utils/AxiosAuth";
+import SearchBox from "../../components/SearchBox";
 
 const ShoppingBasketAdd = () => {
   const navigate = useNavigate();
