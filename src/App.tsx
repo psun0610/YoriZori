@@ -1,8 +1,7 @@
-import React from "react";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import routes from "./routes";
-import Navigation from "./components/Navigation";
-import Header from "./components/Header";
+import routes from "./routes.js";
+import Navigation from "./layout/Navigation/Navigation.js";
+import Header from "./layout/Header/index.js";
 
 const App = () => {
   return (

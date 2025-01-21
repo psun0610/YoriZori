@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styles from "../../styles/LoginJoin.module.css";
-import AxiosAuth from "../../components/AxiosAuth";
+import AxiosAuth from "../../../utils/AxiosAuth";
 
 function JoinComplete() {
   // 로그인 유저 확인

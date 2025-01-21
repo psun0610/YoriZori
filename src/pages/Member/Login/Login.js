@@ -1,7 +1,7 @@
 /** 일치하는 아이디가 있는지, 비밀번호가 맞는지 알려주는 텍스트 작성할 것 */
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import AxiosCommon from "../../components/AxiosCommon";
+import AxiosCommon from "../../../utils/AxiosCommon";
 import styles from "../../styles/LoginJoin.module.css";
 import "../../App.css";
 
