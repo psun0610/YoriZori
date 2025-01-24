@@ -1,18 +1,18 @@
-import Home from "./pages/Member/LoginRequired/LoginRequired";
-import Join from "./pages/Member/Join/Join";
-import Login from "./pages/Member/Login/Login";
-import Main from "./pages/Main/Main";
-import Mypage from "./pages/Member/MyPage/MyPage";
-import RecipeList from "./pages/Recipe/RecipeList";
-import Refrigerator from "./pages/RefrigeratorManagement/Refrigerator/Refrigerator";
-import ShoppingBasket from "./pages/BasketManagement";
-import MemberEdit from "./pages/Member/MemberEdit/MemberEdit";
-import Avoidance from "./pages/Member/Avoidance";
-import JoinComplete from "./pages/Member/JoinComplete/JoinComplete";
-import RefrigeratorAdd from "./pages/RefrigeratorManagement/RefrigeratorAdd/RefrigeratorAdd";
-import RecipeInfo from "./pages/recipe/RecipeInfo";
-import ShoppingBasketAdd from "./pages/BasketManagement/BasketAdd/ShoppingBasketAdd";
-import RecipeBookmark from "./pages/recipe/RecipeBookmark";
+import Home from "pages/Member/LoginRequired";
+import Join from "pages/Member/Join";
+import Login from "pages/Member/Login";
+import Main from "pages/Main";
+import Mypage from "pages/Member/MyPage";
+import RecipeList from "pages/Recipe/RecipeList";
+import Refrigerator from "pages/RefrigeratorManagement/Refrigerator";
+import Basket from "pages/BasketManagement/Basket";
+import MemberEdit from "pages/Member/MemberEdit";
+import Avoidance from "pages/Member/Avoidance";
+import JoinComplete from "pages/Member/JoinComplete";
+import RefrigeratorAdd from "pages/RefrigeratorManagement/RefrigeratorAdd";
+import RecipeInfo from "pages/Recipe/RecipeInfo";
+import BasketAdd from "pages/BasketManagement/BasketAdd";
+import RecipeBookmark from "pages/Recipe/RecipeBookmark";
 
 const routes = [
   { path: "/", component: Main, showNav: true },
@@ -39,22 +39,22 @@ const routes = [
   },
   { path: "/refrigerator", component: Refrigerator, showNav: true },
   {
-    path: "/shoppingbasket",
-    component: ShoppingBasket,
+    path: "/basket",
+    component: Basket,
     showNav: true,
     name: "장바구니",
   },
   {
-    path: "/shoppingbasketadd",
-    component: ShoppingBasketAdd,
+    path: "/basket/add",
+    component: BasketAdd,
     showNav: true,
     name: "장바구니 재료 등록",
   },
-  { path: "/Memberedit", component: MemberEdit },
+  { path: "/member/edit", component: MemberEdit },
   { path: "/avoidance", component: Avoidance },
-  { path: "/join_complete", component: JoinComplete },
+  { path: "/join/complete", component: JoinComplete },
   {
-    path: "/refrigerator_add",
+    path: "/refrigerator/add",
     component: RefrigeratorAdd,
     showNav: false,
   },

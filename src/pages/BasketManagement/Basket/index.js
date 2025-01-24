@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import styles from "../styles/ShoppingBasket.module.css";
-import AxiosAuth from "../components/AxiosAuth";
+// import styles from "../styles/ShoppingBasket.module.css";
+import AxiosAuth from "utils/AxiosAuth";
 import { Link } from "react-router-dom";
 
-const ShoppingBasket = () => {
+const Basket = () => {
   const [items, setItems] = useState([]);
 
   const navigate = useNavigate();
@@ -131,4 +131,4 @@ const ShoppingBasket = () => {
   );
 };
 
-export default ShoppingBasket;
+export default Basket;

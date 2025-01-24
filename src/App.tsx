@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import routes from "./routes.js";
-import Navigation from "./layout/Navigation/Navigation.js";
-import Header from "./layout/Header/index.js";
+import Navigation from "./layout/Navigation";
+import Header from "./layout/Header";
 
 const App = () => {
   return (

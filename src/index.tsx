@@ -1,6 +1,5 @@
 import App from "./App";
-import "./App.css";
-import "./index.css";
+import "./styles/index.css";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import { createRoot } from "react-dom/client";
 

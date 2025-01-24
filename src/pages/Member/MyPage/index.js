@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Mypage.module.scss";
+// import styles from "../../styles/Mypage.module.scss";
 import { useNavigate } from "react-router";
 import AxiosAuth from "../../../utils/AxiosAuth";
 

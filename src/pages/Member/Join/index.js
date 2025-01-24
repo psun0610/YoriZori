@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "../../styles/LoginJoin.module.css";
-import AxiosCommon from "../../../utils/AxiosCommon";
-import "../../App.css";
+// import styles from "../../styles/LoginJoin.module.css";
+import AxiosCommon from "utils/AxiosCommon";
+// import "../../App.css";
 
 const Join = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../styles/SearchBox.module.css";
+// import styles from "../styles/SearchBox.module.css";
 
 // 검색창 input 컴포넌트
 function SearchWindow(props) {

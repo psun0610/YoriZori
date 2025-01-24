@@ -40,13 +40,42 @@ a {
   color: inherit;
   text-decoration: none;
 }
-/* 
-header {
-  position: fixed;
-  top: 0;
-} */
 
 footer {
   position: fixed;
   bottom: 0;
+}
+#wrapper {
+  box-sizing: border-box;
+  height: auto;
+  min-height: calc(100vh - 70px);
+}
+
+#wrapper_contain_header {
+  box-sizing: border-box;
+  height: auto;
+  min-height: calc(100vh - 120px);
+}
+
+.pink_back {
+  background-color: var(--main_button);
+  color: white;
+}
+
+.white_back {
+  background-color: white;
+  border: 3px solid var(--main_button);
+  color: var(--black);
+}
+
+.button {
+  box-sizing: border-box;
+  margin: 8px auto;
+  padding: 10px;
+  font-size: 13px;
+  border-radius: 10px;
+  text-align: center;
+  border: 0;
+  width: 80%;
+  cursor: pointer;
 }

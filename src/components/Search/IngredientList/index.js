@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/SearchBox.module.css";
-import styles2 from "../styles/Main.module.css";
-import AxiosAuth from "./AxiosAuth";
+// import styles from "../styles/SearchBox.module.css";
+// import styles2 from "../styles/Main.module.css";
+import AxiosAuth from "utils/AxiosAuth";
 
 // 검색에 사용되는 재료 리스트 컴포넌트
 function IngredientList(props) {
