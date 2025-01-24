@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import styles from "../styles/Main.module.css";
-import AxiosCommon from "../components/AxiosCommon";
-import AxiosAuth from "../components/AxiosAuth";
+// import styles from "../styles/Main.module.css";
+import AxiosCommon from "../utils/AxiosCommon";
+import AxiosAuth from "../utils/AxiosAuth";
 
 function Recipe(props) {
   const [bookmarkCheck, setBookmarkCheck] = useState({});

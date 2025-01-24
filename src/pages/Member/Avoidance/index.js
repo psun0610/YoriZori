@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../../styles/Avoidance.module.css";
-import SearchBox from "../../components/SearchBox";
-import AxiosAuth from "../../components/AxiosAuth";
+// import styles from "../../styles/Avoidance.module.css";
+import SearchBox from "components/Search/SearchBox";
+import AxiosAuth from "utils/AxiosAuth";
 
 function Avoidance() {
   // 로그인 유저 확인

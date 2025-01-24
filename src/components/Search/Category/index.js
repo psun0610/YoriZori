@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../styles/SearchBox.module.css";
+// import styles from "../styles/SearchBox.module.css";
 
 // 재료, 레시피 검색에 사용되는 검색 컴포넌트
 // props로 items 배열이 들어와야함

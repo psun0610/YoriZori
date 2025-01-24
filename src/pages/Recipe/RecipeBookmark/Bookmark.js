@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import styles from "../styles/Main.module.css";
-import AxiosAuth from "../components/AxiosAuth";
+// import styles from "../styles/Main.module.css";
+import AxiosAuth from "utils/AxiosAuth";
 
 function Bookmark() {
   const [recipes, setRecipes] = useState([]);
@@ -10,9 +10,7 @@ function Bookmark() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  
-      fetchRecipes();
-    
+    fetchRecipes();
   }, [id, token]);
 
   const fetchRecipes = async () => {
@@ -25,10 +23,10 @@ function Bookmark() {
   };
 
   const filteredRecipes = recipes.sort(
-    (a, b) => a.insufficientIngredientsCount - b.insufficientIngredientsCount
+    (a, b) => a.insufficientIngredientsCount - b.insufficientIngredientsCount,
   );
 
-  const handleRecipeClick = (recipe) => {
+  const handleRecipeClick = recipe => {
     navigate(`/recipeinfo/${recipe.recipeId}`, { state: { recipe } });
   };
 
@@ -49,22 +47,20 @@ function Bookmark() {
                   <div>
                     {recipe.insufficientIngredientsCount !== 0 ? (
                       <p className={styles.lack_descript}>
-                        부족한 재료 <span>{recipe.insufficientIngredientsCount}</span>개
+                        부족한 재료{" "}
+                        <span>{recipe.insufficientIngredientsCount}</span>개
                       </p>
                     ) : (
-                      <p className={styles.success_message}>지금 만들 수 있어요!</p>
+                      <p className={styles.success_message}>
+                        지금 만들 수 있어요!
+                      </p>
                     )}
                   </div>
                 )}
               </div>
               {token && (
                 <div className={styles.bookmark}>
-                  <img
-                    src={
-                      "/images/bookmark.png"
-                    }
-                    alt="bookmark"
-                  />
+                  <img src={"/images/bookmark.png"} alt="bookmark" />
                   <p>{recipe.bookmarkCount}</p>
                 </div>
               )}

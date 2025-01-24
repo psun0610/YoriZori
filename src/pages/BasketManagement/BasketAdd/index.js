@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
-import styles from "../styles/Refrigerator.module.css";
-import AxiosAuth from "../../../utils/AxiosAuth";
-import SearchBox from "../../components/SearchBox";
+// import styles from "../styles/Refrigerator.module.css";
+import AxiosAuth from "utils/AxiosAuth";
+import SearchBox from "components/Search/SearchBox";
 
-const ShoppingBasketAdd = () => {
+const BasketAdd = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -114,4 +114,4 @@ const ShoppingBasketAdd = () => {
   );
 };
 
-export default ShoppingBasketAdd;
+export default BasketAdd;
