@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-// import styles from "../../styles/LoginJoin.module.css";
 import AxiosAuth from "../../../utils/AxiosAuth";
+import * as S from "./style";
+import { PinkButton } from "styles/Button.style";
 
 function JoinComplete() {
   // 로그인 유저 확인
@@ -22,16 +23,8 @@ function JoinComplete() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <div className={styles.join_complete_title}>
+    <S.Wrapper>
+      <S.Title>
         <svg
           width="54"
           height="54"
@@ -68,16 +61,14 @@ function JoinComplete() {
         <h1>
           회원이 되신 것을 <span>환영합니다!</span>
         </h1>
-      </div>
-      <p className={styles.join_complete_sub}>
-        요리조리의 다양한 기능을 이용해보세요!
-      </p>
+      </S.Title>
+      <S.SubTitle>요리조리의 다양한 기능을 이용해보세요!</S.SubTitle>
       <div style={{ width: "100%" }}>
         <Link to="/">
-          <div className={`button pink_back`}>시작하기</div>
+          <PinkButton>시작하기</PinkButton>
         </Link>
       </div>
-    </div>
+    </S.Wrapper>
   );
 }
 

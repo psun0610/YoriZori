@@ -1,9 +1,9 @@
-/** 일치하는 아이디가 있는지, 비밀번호가 맞는지 알려주는 텍스트 작성할 것 */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AxiosCommon from "../../../utils/AxiosCommon";
-// import styles from "../../styles/LoginJoin.module.css";
-// import "../../App.css";
+import * as S from "../style";
+import { JoinButton, Logo } from "./style";
+import { PinkButton } from "styles/Button.style";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Login = () => {
   const [validEmpty, setValidEmpty] = useState("");
   const [validMatch, setValidMatch] = useState("");
 
-  const handleSubmitClick = e => {
+  const handleSubmitClick = (e: FormEvent) => {
     e.preventDefault();
     // input이 비어있는지 확인
     if (userName.trim() === "") {
@@ -47,48 +47,46 @@ const Login = () => {
   }, [userName, password]);
 
   return (
-    <form className={styles.home}>
-      <img src="../../images/logo.jpg" alt="logo" className={styles.logo}></img>
-      <div className={styles.input_container}>
+    <S.Form>
+      <Logo />
+      <S.InputContainer>
         <input
           name="userName"
           value={userName}
           onChange={e => setUsername(e.target.value)}
         ></input>
-        <p className={userName ? ` ${styles.active}` : ""}>아이디</p>
-      </div>
+        <S.Label isActive={!!userName}>아이디</S.Label>
+      </S.InputContainer>
 
       {userName && (
-        <div className={styles.input_container}>
+        <S.InputContainer>
           <input
             name="password"
             type="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
           ></input>
-          <p className={password ? ` ${styles.active}` : ""}>비밀번호</p>
-        </div>
+          <S.Label isActive={!!password}>비밀번호</S.Label>
+        </S.InputContainer>
       )}
       {validEmpty !== "" ? (
-        <p className={styles.inconsistency}>{validEmpty}를 입력하세요</p>
+        <S.WarningMessage>{validEmpty}를 입력하세요</S.WarningMessage>
       ) : (
         ""
       )}
       {validMatch !== "" ? (
-        <p className={styles.inconsistency}>{validMatch}</p>
+        <S.WarningMessage>{validMatch}</S.WarningMessage>
       ) : (
         ""
       )}
-      <input
+      <PinkButton
+        as="input"
         type="submit"
         value="로그인"
-        className={`button pink_back`}
         onClick={handleSubmitClick}
-      ></input>
-      <Link to="../join" className={styles.join_button}>
-        회원가입
-      </Link>
-    </form>
+      ></PinkButton>
+      <JoinButton to="../join">회원가입</JoinButton>
+    </S.Form>
   );
 };
 
