@@ -1,19 +1,37 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
-// import styles from "../../styles/LoginJoin.module.css";
 import AxiosCommon from "utils/AxiosCommon";
-// import "../../App.css";
+import * as S from "../style";
+import { PinkButton } from "styles/Button.style";
+
+interface UserState {
+  userName: string;
+  password: string;
+  confirmPassword: string;
+  nickName: string;
+}
+
+interface ValidState {
+  validEmpty: boolean;
+  passwordNoMatch: boolean;
+  idDuplicate: boolean;
+}
 
 const Join = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState({
+  const [user, setUser] = useState<UserState>({
     userName: "",
     password: "",
     confirmPassword: "",
     nickName: "",
   });
+  const [valid, setValid] = useState<ValidState>({
+    validEmpty: false,
+    passwordNoMatch: false,
+    idDuplicate: false,
+  });
 
-  const handleChange = e => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({
       ...user,
@@ -21,14 +39,9 @@ const Join = () => {
     });
   };
 
-  // Validation 설정
-  const [valid, setValid] = useState({
-    validEmpty: false,
-    passwordNoMatch: false,
-    idDuplicate: false,
-  });
-
-  // 비밀번호 Match Validation
+  /**
+   * 비밀번호 Match Validation
+   */
   useEffect(() => {
     setValid({
       ...valid,
@@ -36,7 +49,9 @@ const Join = () => {
     });
   }, [user.password, user.confirmPassword]);
 
-  // 모든 항목을 채워달라는 에러 메시지 없애는 useEffect
+  /**
+   * Warning 메시지 없애는 useEffect
+   */
   useEffect(() => {
     setValid(prevValid => ({
       ...prevValid,
@@ -44,6 +59,10 @@ const Join = () => {
     }));
   }, [user.userName, user.password, user.confirmPassword, user.nickName]);
 
+  /**
+   * 아이디 중복 체크 ->
+   * input 확인 -> 회원가입 api 호출
+   */
   useEffect(() => {
     setValid(prevValid => ({
       ...prevValid,
@@ -51,7 +70,7 @@ const Join = () => {
     }));
   }, [user.userName]);
 
-  const handleSubmitClick = e => {
+  const handleSubmitClick = (e: FormEvent) => {
     e.preventDefault();
     // input이 비어있는지 확인
     if (
@@ -83,7 +102,6 @@ const Join = () => {
         name: user.userName,
         password: user.password,
       }).then(loginResponse => {
-        console.log(loginResponse.data);
         localStorage.clear();
         localStorage.setItem("accessToken", loginResponse.data.token);
         localStorage.setItem("refreshToken", loginResponse.data.refreshToken);
@@ -94,68 +112,65 @@ const Join = () => {
   };
 
   return (
-    <form className={styles.home}>
-      <h1 className={styles.join_h1}>회원가입</h1>
-
-      <div className={styles.input_container}>
+    <S.Form>
+      <S.Title>회원가입</S.Title>
+      <S.InputContainer>
         <input
           name="userName"
           value={user.userName}
-          onChange={handleChange}
+          onChange={handleInputChange}
         ></input>
-        <p className={user.userName ? ` ${styles.active}` : ""}>아이디</p>
-      </div>
+        <S.Label isActive={!!user.userName}>아이디</S.Label>
+      </S.InputContainer>
       {valid.idDuplicate && (
-        <p className={styles.inconsistency}>이미 존재하는 아이디입니다</p>
+        <S.WarningMessage>이미 존재하는 아이디입니다</S.WarningMessage>
       )}
 
-      <div className={styles.input_container}>
+      <S.InputContainer>
         <input
           name="password"
           value={user.password}
-          onChange={handleChange}
+          onChange={handleInputChange}
           type="password"
         ></input>
-        <p className={user.password ? ` ${styles.active}` : ""}>비밀번호</p>
-      </div>
+        <S.Label isActive={!!user.password}>비밀번호</S.Label>
+      </S.InputContainer>
 
-      <div className={styles.input_container}>
+      <S.InputContainer>
         <input
           name="confirmPassword"
           value={user.confirmPassword}
-          onChange={handleChange}
+          onChange={handleInputChange}
           type="password"
         ></input>
-        <p className={user.confirmPassword ? ` ${styles.active}` : ""}>
-          비밀번호 확인
-        </p>
-      </div>
+        <S.Label isActive={!!user.confirmPassword}>비밀번호 확인</S.Label>
+      </S.InputContainer>
 
       {valid.passwordNoMatch && (
-        <p className={styles.inconsistency}>비밀번호가 일치하지 않습니다</p>
+        <S.WarningMessage>비밀번호가 일치하지 않습니다</S.WarningMessage>
       )}
 
-      <div className={styles.input_container}>
+      <S.InputContainer>
         <input
           name="nickName"
           value={user.nickName}
-          onChange={handleChange}
+          onChange={handleInputChange}
         ></input>
-        <p className={user.nickName ? ` ${styles.active}` : ""}>닉네임</p>
-      </div>
+        <S.Label isActive={!!user.nickName}>닉네임</S.Label>
+      </S.InputContainer>
 
       {valid.validEmpty && (
-        <p className={styles.inconsistency}>모든 항목을 채워주세요</p>
+        <S.WarningMessage>모든 항목을 채워주세요</S.WarningMessage>
       )}
 
-      <input
+      <PinkButton
+        as="input"
         type="submit"
         value="확인"
-        className={`button pink_back`}
         style={{ marginTop: "20px" }}
         onClick={handleSubmitClick}
-      ></input>
-    </form>
+      ></PinkButton>
+    </S.Form>
   );
 };
 
