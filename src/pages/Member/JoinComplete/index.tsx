@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import AxiosAuth from "../../../utils/AxiosAuth";
 import * as S from "./style";
 import { PinkButton } from "styles/Button.style";
+import { Wrapper } from "../style";
 
 function JoinComplete() {
   // 로그인 유저 확인
@@ -23,7 +24,7 @@ function JoinComplete() {
   }, []);
 
   return (
-    <S.Wrapper>
+    <Wrapper>
       <S.Title>
         <svg
           width="54"
@@ -68,7 +69,7 @@ function JoinComplete() {
           <PinkButton>시작하기</PinkButton>
         </Link>
       </div>
-    </S.Wrapper>
+    </Wrapper>
   );
 }
 
