@@ -2,7 +2,7 @@ import { useState, useEffect, FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AxiosCommon from "../../../utils/AxiosCommon";
 import * as S from "../style";
-import { JoinButton, Logo } from "./style";
+import { JoinButton } from "./style";
 import { PinkButton } from "styles/Button.style";
 
 const Login = () => {
@@ -48,7 +48,7 @@ const Login = () => {
 
   return (
     <S.Form>
-      <Logo />
+      <S.Logo />
       <S.InputContainer>
         <input
           name="userName"
