@@ -63,10 +63,10 @@ const Avoidance = () => {
 
   return (
     <S.Container>
-      <S.Title isSelect={userSelectList.length != 0}>
+      <S.Title isSelect={userSelectList.length !== 0}>
         평소에 <span>기피하는 음식</span>이 있으신가요?
       </S.Title>
-      <S.SelectList isSelect={userSelectList.length != 0}>
+      <S.SelectList isSelect={userSelectList.length !== 0}>
         {userSelectList.map(select => (
           <div
             key={select.id}
