@@ -48,7 +48,7 @@ function IngredientList({
             isSelect={userSelectList.includes(ingredient)}
           >
             <S.ImageBox>
-              <img src={ingredient.imageUrl} />
+              <img src={ingredient.imageUrl} alt={ingredient.name} />
             </S.ImageBox>
             <p>{ingredient.name}</p>
           </S.IngredientButton>

@@ -21,6 +21,9 @@ const ITEMS = [
 ];
 
 const Avoidance = () => {
+  const navigate = useNavigate();
+  const [userSelectList, setUserSelectList] = useState<IngredientType[]>([]);
+
   // 로그인 유저 확인
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
@@ -34,10 +37,7 @@ const Avoidance = () => {
     } else {
       navigate("/home");
     }
-  }, []);
-
-  const navigate = useNavigate();
-  const [userSelectList, setUserSelectList] = useState<IngredientType[]>([]);
+  }, [navigate]);
 
   /**
    * 재료를 선택하거나 취소하는 함수
