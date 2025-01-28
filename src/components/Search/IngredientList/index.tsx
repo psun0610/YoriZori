@@ -7,14 +7,14 @@ interface IngredientListProps {
   selectCategory: number;
   searchText: string;
   userSelectList: IngredientType[];
-  onClick: (select: IngredientType) => void;
+  onItemSelect: (select: IngredientType) => void;
 }
 
 function IngredientList({
   selectCategory,
   searchText,
   userSelectList,
-  onClick,
+  onItemSelect,
 }: IngredientListProps) {
   const [ingredients, setIngredients] = useState<IngredientType[]>([]);
   const [filteredIngredients, setFilteredIngredients] = useState<
@@ -43,7 +43,7 @@ function IngredientList({
           <S.IngredientButton
             key={index}
             onClick={() => {
-              onClick(ingredient);
+              onItemSelect(ingredient);
             }}
             isSelect={userSelectList.includes(ingredient)}
           >

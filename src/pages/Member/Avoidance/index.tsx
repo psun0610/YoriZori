@@ -43,7 +43,7 @@ const Avoidance = () => {
    * 재료를 선택하거나 취소하는 함수
    * @param select 선택한 재료
    */
-  const handleSelect = (select: IngredientType) => {
+  const handleItemSelect = (select: IngredientType) => {
     if (userSelectList.includes(select)) {
       setUserSelectList(userSelectList.filter(i => i !== select));
     } else {
@@ -83,8 +83,8 @@ const Avoidance = () => {
         ITEMS={ITEMS}
         placeholder={"검색하기"}
         isOpen={true}
-        onClick={handleSelect}
         userSelectList={userSelectList}
+        onItemSelect={handleItemSelect}
       />
       <S.Notice>
         {userSelectList.length === 0 ? (

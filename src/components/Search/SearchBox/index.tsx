@@ -10,14 +10,14 @@ interface SearchBoxProps {
   placeholder: string;
   ITEMS: string[];
   userSelectList: IngredientType[];
-  onClick: (select: IngredientType) => void;
+  onItemSelect: (select: IngredientType) => void;
 }
 
 function SearchBox({
   ITEMS,
   isOpen,
   placeholder,
-  onClick,
+  onItemSelect,
   userSelectList,
 }: SearchBoxProps) {
   const [searchText, setSearchText] = useState("");
@@ -47,9 +47,7 @@ function SearchBox({
         <IngredientList
           searchText={searchText}
           selectCategory={selectCategory}
-          onClick={(ingredient: IngredientType) => {
-            onClick(ingredient);
-          }}
+          onItemSelect={onItemSelect}
           userSelectList={userSelectList} // 선택된 재료 상태 전달
         />
       </S.Category>
