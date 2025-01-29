@@ -9,7 +9,7 @@ import Basket from "pages/BasketManagement/Basket";
 import MemberEdit from "pages/Member/MemberEdit";
 import Avoidance from "pages/Member/Avoidance";
 import JoinComplete from "pages/Member/JoinComplete";
-import RefrigeratorAdd from "pages/RefrigeratorManagement/RefrigeratorAdd";
+import RefrigeratorAddEdit from "pages/RefrigeratorManagement/RefrigeratorAddEdit";
 import RecipeInfo from "pages/Recipe/RecipeInfo";
 import BasketAdd from "pages/BasketManagement/BasketAdd";
 import RecipeBookmark from "pages/Recipe/RecipeBookmark";
@@ -54,8 +54,8 @@ const routes = [
   { path: "/avoidance", component: Avoidance },
   { path: "/join/complete", component: JoinComplete },
   {
-    path: "/refrigerator/add",
-    component: RefrigeratorAdd,
+    path: "/refrigerator/submit",
+    component: RefrigeratorAddEdit,
     showNav: false,
   },
   {
