@@ -38,10 +38,7 @@
   background-color: transparent;
   font-size: 14px;
   position: relative;
-  transition:
-    border-bottom 0.3s ease,
-    padding-top 0.3s ease,
-    top 0.3s ease; /* top 속성에 대한 전환 효과 추가 */
+  transition: border-bottom 0.3s ease, padding-top 0.3s ease, top 0.3s ease; /* top 속성에 대한 전환 효과 추가 */
 }
 
 .input_container > input:focus {
@@ -58,9 +55,7 @@
   padding: 0;
   color: var(--grey60);
   pointer-events: none;
-  transition:
-    top 0.3s ease,
-    font-size 0.3s ease;
+  transition: top 0.3s ease, font-size 0.3s ease;
   font-size: 13px;
 }
 
@@ -91,32 +86,4 @@
 .inconsistency {
   color: var(--red);
   width: 80%;
-}
-
-/* JoinComplete.js */
-.join_complete_title {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.join_complete_title svg {
-  margin-right: 5px;
-}
-.join_complete_title h1,
-.join_complete_title span {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--grey80);
-}
-
-.join_complete_title span {
-  color: var(--main_text);
-}
-
-.join_complete_sub {
-  text-align: center;
-  color: var(--grey80);
-  font-size: 15px;
-  margin: 7px 0;
 }
