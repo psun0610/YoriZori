@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AxiosAuth from "utils/AxiosAuth";
 import * as S from "./style";
+import { ImageBox } from "styles/Ingredient.style";
 import { IngredientType } from "types/IngredientType";
 
 interface IngredientListProps {
@@ -40,18 +41,18 @@ function IngredientList({
     <S.Container>
       <S.IngredientList>
         {filteredIngredients.map((ingredient, index) => (
-          <S.IngredientButton
+          <S.NewIngredientButton
             key={index}
             onClick={() => {
               onItemSelect(ingredient);
             }}
             isSelect={userSelectList.includes(ingredient)}
           >
-            <S.ImageBox>
+            <ImageBox>
               <img src={ingredient.imageUrl} alt={ingredient.name} />
-            </S.ImageBox>
+            </ImageBox>
             <p>{ingredient.name}</p>
-          </S.IngredientButton>
+          </S.NewIngredientButton>
         ))}
       </S.IngredientList>
     </S.Container>
