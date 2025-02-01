@@ -7,7 +7,7 @@ export const CategoryNav = styled.nav`
 `;
 
 export const Button = styled.button<{ isSelect: boolean }>`
-  background-color: ${isSelect =>
+  background-color: ${({ isSelect }) =>
     isSelect ? "var(--main_button)" : "transparent"};
   color: ${({ isSelect }) => (isSelect ? "white" : "black")};
   display: inline-block;
