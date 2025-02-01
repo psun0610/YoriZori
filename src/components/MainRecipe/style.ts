@@ -30,6 +30,16 @@ export const LackIngredientList = styled.div`
   display: flex;
   margin: 2px 0;
   flex-wrap: wrap;
+
+  div {
+    background-color: var(--main_button);
+    font-size: 12px;
+    color: white;
+    padding: 1px 7px 3px;
+    margin-right: 5px;
+    margin-bottom: 3px;
+    border-radius: 8px;
+  }
 `;
 
 export const RightPossible = styled.p`
