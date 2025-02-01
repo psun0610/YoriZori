@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const DdayBadge = styled.div<{ backColor: string }>`
+export const DdayBadge = styled.div.attrs<{ $backColor: string }>(props => ({
+  style: {
+    backgroundColor: props.$backColor,
+  },
+}))`
   position: absolute;
   top: -7px;
   right: -3px;
@@ -8,5 +12,4 @@ export const DdayBadge = styled.div<{ backColor: string }>`
   padding: 0 5px 1px;
   font-size: 11px;
   border-radius: 8px;
-  background-color: ${({ backColor }) => backColor};
 `;
