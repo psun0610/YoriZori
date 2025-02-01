@@ -25,7 +25,7 @@ function Category({ ITEMS, onClick }: CategoryProps) {
       {ITEMS.map((item, index) => (
         <S.Button
           key={index}
-          isSelect={selectedItem === index}
+          $isSelect={selectedItem === index}
           onClick={() => handleItemClick(index)}
         >
           {item}
