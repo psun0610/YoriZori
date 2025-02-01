@@ -1,73 +1,79 @@
 import { useNavigate } from "react-router-dom";
 import * as S from "./EditDeleteButton.style";
-import { IngredientType } from "types/IngredientType";
+import { IngredientDetailType } from "../IngredientDetailType";
+import { forwardRef } from "react";
 
-interface Props {
-  selectedIngredient: IngredientType;
+interface EditDelteButtonProps {
+  selectedIngredient: IngredientDetailType;
+  handleDelete: (ingredient: IngredientDetailType) => void;
 }
 
-const EditDelteButton = ({ selectedIngredient }: Props) => {
-  const navigate = useNavigate();
+const EditDelteButton = forwardRef<HTMLDivElement, EditDelteButtonProps>(
+  ({ selectedIngredient, handleDelete }, ref) => {
+    const navigate = useNavigate();
 
-  return (
-    <S.Container ref={ingredientRef}>
-      <S.Ingredient>
-        <S.IngredientImgBox>
-          <img src={selectedIngredient.imageUrl} />
-        </S.IngredientImgBox>
-        <p>{selectedIngredient.name}</p>
-      </S.Ingredient>
-
-      <S.OptionsBox>
-        {selectedIngredient.storagePlace === "FROZEN" && <p>냉동되어 있어요</p>}
-        {selectedIngredient.storagePlace !== "FROZEN" && (
-          <>
-            {selectedIngredient.dday < 0 && (
-              <p>{selectedIngredient.name}의 소비기한이 지났어요😭</p>
-            )}
-            {selectedIngredient.dday === 0 && (
-              <p>
-                {selectedIngredient.name}의 소비기한이 <span>오늘</span>
-                까지에요
-              </p>
-            )}
-            {selectedIngredient.dday > 0 && (
-              <p>
-                {selectedIngredient.name}의 소비기한이{" "}
-                <span>{selectedIngredient.dday}일</span> 남았어요!
-              </p>
-            )}
-          </>
-        )}
+    return (
+      <S.Container ref={ref}>
+        <S.Ingredient>
+          <S.IngredientImgBox>
+            <img src={selectedIngredient.imageUrl} />
+          </S.IngredientImgBox>
+          <p>{selectedIngredient.name}</p>
+        </S.Ingredient>
 
         <S.OptionsBox>
-          <button
-            onClick={() => {
-              navigate("/refrigerator_add", {
-                state: {
-                  isEditMode: true,
-                  selectedIngredient: selectedIngredient,
-                },
-              });
-            }}
-            style={{ cursor: "pointer" }}
-          >
-            재료 수정
-            <EditSvg />
-          </button>
+          {selectedIngredient.storagePlace === "FROZEN" && (
+            <p>냉동되어 있어요</p>
+          )}
+          {selectedIngredient.storagePlace !== "FROZEN" && (
+            <>
+              {selectedIngredient.dday < 0 && (
+                <p>{selectedIngredient.name}의 소비기한이 지났어요😭</p>
+              )}
+              {selectedIngredient.dday === 0 && (
+                <p>
+                  {selectedIngredient.name}의 소비기한이 <span>오늘</span>
+                  까지에요
+                </p>
+              )}
+              {selectedIngredient.dday > 0 && (
+                <p>
+                  {selectedIngredient.name}의 소비기한이{" "}
+                  <span>{selectedIngredient.dday}일</span> 남았어요!
+                </p>
+              )}
+            </>
+          )}
 
-          <button
-            onClick={() => handleDelete(selectedIngredient)}
-            style={{ cursor: "pointer" }}
-          >
-            재료 삭제
-            <DeleteSvg />
-          </button>
+          <S.OptionsBox>
+            <button
+              onClick={() => {
+                navigate("/refrigerator_add", {
+                  state: {
+                    isEditMode: true,
+                    selectedIngredient: selectedIngredient,
+                  },
+                });
+              }}
+              style={{ cursor: "pointer" }}
+            >
+              재료 수정
+              <EditSvg />
+            </button>
+
+            <button
+              onClick={() => handleDelete(selectedIngredient)}
+              style={{ cursor: "pointer" }}
+            >
+              재료 삭제
+              <DeleteSvg />
+            </button>
+          </S.OptionsBox>
         </S.OptionsBox>
-      </S.OptionsBox>
-    </S.Container>
-  );
-};
+      </S.Container>
+    );
+  },
+);
 
 const EditSvg = () => {
   return (
