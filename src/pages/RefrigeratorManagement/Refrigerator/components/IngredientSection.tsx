@@ -26,6 +26,7 @@ const IngredientSection = ({
               name={ingredient.name}
               dday={ingredient.dday}
               src={ingredient.imageUrl}
+              isFrozen={ingredient.storagePlace === "FROZEN"}
             />
           </div>
         ))}

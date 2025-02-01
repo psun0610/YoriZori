@@ -12,4 +12,11 @@ export const DdayBadge = styled.div.attrs<{ $backColor: string }>(props => ({
   padding: 0 5px 1px;
   font-size: 11px;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    color: white;
+  }
 `;
