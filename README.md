@@ -39,19 +39,21 @@
 <div style="display:flex; justify-content:center;">
   <a href="https://github.com/seunggi99"><img src="https://github.com/user-attachments/assets/632b98bb-587b-4903-9488-1013c6cd4bfa" height="150"/></a>
   <a href="https://github.com/zzihoos"><img src="https://github.com/user-attachments/assets/42a6f748-7349-4cf4-94ae-6e14d443538a" height="150"/></a>
-  <a href="https://github.com/psun0610"><img src="https://github.com/user-attachments/assets/9ddc6e86-f8c2-4817-bf56-f1129f6947fb" height="150"/></a>
+  <a href="https://github.com/psun0610"><img src="https://avatars.githubusercontent.com/u/97274144?v=4" height="150"/></a>
 </div>
+
 
 <br/>
 
 # ⚙️4. 프로젝트 소개
 
 - 🗓️**프로젝트 기간**
-  - 2024년 1월 ~ 2024년 6월
+  - 개발: 2024년 1월 ~ 2024년 6월
+  - 이후 리팩토링:년
   
 - **🚩개인 개발 목표**
   
-  - React 프레임워크 컴포넌트 구조화 익히기
+  - React 컴포넌트 구조 익히고 TypeScript 적용하여 코드 개선하기
   
 - ⭐**개발 역할 분담**
   - 기획: 박선영, 신지호, 김승기
@@ -66,7 +68,7 @@
     <img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=AmazonEC2&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white"/>
   - 프론트엔드
     
-    <img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=darkred"/> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/ScSS-CC6699?style=for-the-badge&logo=scss&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black"/> <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=black"/> <img src="https://img.shields.io/badge/Prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=darkred"/> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
     
   - 협업
   
@@ -247,5 +249,4 @@
 
 
 <br/>
-
 
