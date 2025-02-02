@@ -27,7 +27,7 @@ function Ingredient({ src, name, isFrozen, dday }: IngredientProps) {
         <img src={src} />
       </ImageBox>
       <p>{name}</p>
-      <S.DdayBadge backColor={backColor}>
+      <S.DdayBadge $backColor={backColor}>
         {isFrozen ? (
           <>
             <svg

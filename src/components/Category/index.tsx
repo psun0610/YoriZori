@@ -13,7 +13,7 @@ function Category({ ITEMS, onClick }: CategoryProps) {
 
   /**
    * 카테고리 클릭시 클릭한 카테고리로 변경되는 함수
-   * @param index 카테고리의 인덱스스
+   * @param index 카테고리의 인덱스
    */
   const handleItemClick = (index: number) => {
     setSelectedItem(index);
@@ -25,7 +25,7 @@ function Category({ ITEMS, onClick }: CategoryProps) {
       {ITEMS.map((item, index) => (
         <S.Button
           key={index}
-          isSelect={selectedItem === index}
+          $isSelect={selectedItem === index}
           onClick={() => handleItemClick(index)}
         >
           {item}

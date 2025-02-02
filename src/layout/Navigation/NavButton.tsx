@@ -15,7 +15,7 @@ export const NavButton = ({
   icon,
   currentURL,
 }: NavButtonProps) => {
-  const fillColor = currentURL.includes(linkTo) ? "#ef64b8" : "#6C6C6C";
+  const fillColor = currentURL === linkTo ? "#ef64b8" : "#6C6C6C";
 
   const updatedIcon = React.cloneElement(icon, {
     fill: fillColor,

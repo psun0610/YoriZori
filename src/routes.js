@@ -1,4 +1,4 @@
-import Home from "pages/Member/LoginRequired";
+import LoginRequired from "pages/Member/LoginRequired";
 import Join from "pages/Member/Join";
 import Login from "pages/Member/Login";
 import Main from "pages/Main";
@@ -18,7 +18,7 @@ const routes = [
   { path: "/", component: Main, showNav: true },
   { path: "/join", component: Join },
   { path: "/login", component: Login },
-  { path: "/home", component: Home },
+  { path: "/loginRequired", component: LoginRequired },
   {
     path: "/mypage",
     component: Mypage,

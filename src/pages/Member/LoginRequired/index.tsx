@@ -3,7 +3,7 @@ import * as S from "./style";
 import { Wrapper, Logo } from "../style";
 import { PinkButton, WhiteButton } from "styles/Button.style";
 
-const Home = () => {
+const LoginRequired = () => {
   return (
     <Wrapper>
       <Logo />
@@ -21,4 +21,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default LoginRequired;

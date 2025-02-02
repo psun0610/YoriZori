@@ -6,10 +6,10 @@ export const CategoryNav = styled.nav`
   text-align: center;
 `;
 
-export const Button = styled.button<{ isSelect: boolean }>`
-  background-color: ${isSelect =>
-    isSelect ? "var(--main_button)" : "transparent"};
-  color: ${({ isSelect }) => (isSelect ? "white" : "black")};
+export const Button = styled.button<{ $isSelect: boolean }>`
+  background-color: ${({ $isSelect }) =>
+    $isSelect ? "var(--main_button)" : "transparent"};
+  color: ${({ $isSelect }) => ($isSelect ? "white" : "black")};
   display: inline-block;
   width: fit-content;
   padding: 3px 10px;
