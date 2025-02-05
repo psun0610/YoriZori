@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AxiosCommon from "../../../utils/AxiosCommon";
 import * as S from "../style";
 import { JoinButton } from "./style";
