@@ -120,7 +120,7 @@ const Join = () => {
           value={user.userName}
           onChange={handleInputChange}
         ></input>
-        <S.Label isActive={!!user.userName}>아이디</S.Label>
+        <S.Label $isActive={!!user.userName}>아이디</S.Label>
       </S.InputContainer>
       {valid.idDuplicate && (
         <S.WarningMessage>이미 존재하는 아이디입니다</S.WarningMessage>
@@ -133,7 +133,7 @@ const Join = () => {
           onChange={handleInputChange}
           type="password"
         ></input>
-        <S.Label isActive={!!user.password}>비밀번호</S.Label>
+        <S.Label $isActive={!!user.password}>비밀번호</S.Label>
       </S.InputContainer>
 
       <S.InputContainer>
@@ -143,7 +143,7 @@ const Join = () => {
           onChange={handleInputChange}
           type="password"
         ></input>
-        <S.Label isActive={!!user.confirmPassword}>비밀번호 확인</S.Label>
+        <S.Label $isActive={!!user.confirmPassword}>비밀번호 확인</S.Label>
       </S.InputContainer>
 
       {valid.passwordNoMatch && (
@@ -156,7 +156,7 @@ const Join = () => {
           value={user.nickName}
           onChange={handleInputChange}
         ></input>
-        <S.Label isActive={!!user.nickName}>닉네임</S.Label>
+        <S.Label $isActive={!!user.nickName}>닉네임</S.Label>
       </S.InputContainer>
 
       {valid.validEmpty && (
