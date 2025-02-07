@@ -43,10 +43,10 @@ const Join = () => {
    * 비밀번호 Match Validation
    */
   useEffect(() => {
-    setValid({
-      ...valid,
+    setValid(prevValid => ({
+      ...prevValid,
       passwordNoMatch: user.password !== user.confirmPassword,
-    });
+    }));
   }, [user.password, user.confirmPassword]);
 
   /**
@@ -79,10 +79,10 @@ const Join = () => {
       user.confirmPassword.trim() === "" ||
       user.nickName.trim() === ""
     ) {
-      setValid({ ...valid, validEmpty: true });
+      setValid(prevValid => ({ ...prevValid, validEmpty: true }));
       return;
     } else {
-      setValid({ ...valid, validEmpty: false });
+      setValid(prevValid => ({ ...prevValid, validEmpty: false }));
     }
 
     // 회원가입
@@ -93,7 +93,7 @@ const Join = () => {
     }).then(response => {
       // 회원가입 실패
       if (response.data.error === "이미 존재하는 아이디입니다.") {
-        setValid({ ...valid, idDuplicate: true });
+        setValid(prevValid => ({ ...prevValid, idDuplicate: true }));
         return;
       }
 
