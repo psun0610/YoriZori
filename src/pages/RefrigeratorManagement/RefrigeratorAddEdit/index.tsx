@@ -1,37 +1,54 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
-// import styles from "../../styles/Refrigerator.module.css";
 import SearchBox from "components/Search/SearchBox";
 import Header from "layout/Header";
 /** 달력 */
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
-import dayjs from "dayjs";
+import dayjs, { Dayjs } from "dayjs";
 import AxiosAuth from "../../../utils/AxiosAuth";
+import * as S from "./style";
+import { IngredientType } from "types/IngredientType";
+import styles from "./datepicker.module.css";
+
+const ITEMS = [
+  "전체",
+  "과일",
+  "채소",
+  "육류",
+  "해산물",
+  "유제품",
+  "음료/주류",
+  "조미료/향신료",
+  "견과류/곡류",
+  "디저트",
+  "요리",
+  "기타",
+];
 
 function RefrigeratorAdd() {
   const navigate = useNavigate();
   const location = useLocation();
+  const userId = localStorage.getItem("id");
+  const today = dayjs();
 
   // EditMode일 경우
   // isEditMode가 true, selectedIngredient가 location을 통해 넘어옴
   const isEditMode = location.state?.isEditMode;
-  const [selectedIngredient, setSelectedIngredient] = useState(
-    location.state?.selectedIngredient || null,
-  );
+  const selectedEditIngredient = location.state?.selectedIngredient || null;
 
-  const userId = localStorage.getItem("id");
+  const [selectedIngredient, setSelectedIngredient] =
+    useState<IngredientType | null>(null);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [storage, setStorage] = useState(
-    location.state?.selectedIngredient.storagePlace || "COLD",
+    location.state?.selectedEditIngredient.storagePlace || "COLD",
   );
-  const today = dayjs();
   const [putDate, setPutDate] = useState(
-    dayjs(location.state?.selectedIngredient.putDate) || today,
+    dayjs(location.state?.selectedEditIngredient.putDate) || today,
   );
   const [expDate, setExpDate] = useState(
-    dayjs(location.state?.selectedIngredient.expDate) || today,
+    dayjs(location.state?.selectedEditIngredient.expDate) || today,
   );
 
   // 로그인 유저 확인
@@ -47,9 +64,11 @@ function RefrigeratorAdd() {
     } else {
       navigate("/home");
     }
-  }, []);
+  }, [navigate]);
 
-  // 재료를 선택하는 동시에 기본 소비기한 자동으로 등록
+  /**
+   * 재료를 선택하는 동시에 기본 소비기한 자동으로 등록
+   */
   useEffect(() => {
     if (putDate && selectedIngredient && selectedIngredient.defaultExpDate) {
       // dayjs로 변환된 날짜에 기본 소비기한을 더하여 expDate를 설정
@@ -59,41 +78,37 @@ function RefrigeratorAdd() {
 
       console.log("====");
     }
-  }, [selectedIngredient, putDate]);
+  }, [selectedIngredient, putDate, expDate]);
 
-  const items = [
-    "전체",
-    "과일",
-    "채소",
-    "육류",
-    "해산물",
-    "유제품",
-    "음료/주류",
-    "조미료/향신료",
-    "견과류/곡류",
-    "디저트",
-    "요리",
-    "기타",
-  ];
+  const datePickerRef = useRef<HTMLDivElement | null>(null);
 
-  /* 날짜 계산 */
-  const wrapperRef = useRef(null);
-  useEffect(() => {
-    function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setSearchIsOpen(false);
-      }
+  /**
+   * datepicker 달력이 아닌 곳을 클릭했을 때 닫는 함수수
+   * @param event 클릭 이벤트 객체
+   */
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      datePickerRef.current &&
+      !datePickerRef.current.contains(event.target as Node)
+    ) {
+      setSearchIsOpen(false);
     }
+  };
+
+  useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [wrapperRef]);
+  }, [datePickerRef]);
 
-  /* 재료추가완료 버튼 동작 함수 */
-  // 냉동일때 expDate null로 처리
+  /**
+   * 재료 추가 Submit 동작 함수
+   * 냉동일 때 expDate null로 처리
+   * @returns 재료를 선택하지 않았을 때 처리하지 않음
+   */
   const handleSubmitClick = () => {
-    if (selectedIngredient === "") {
+    if (selectedIngredient === null) {
       alert("재료를 선택해주세요");
       return;
     }
@@ -119,6 +134,9 @@ function RefrigeratorAdd() {
       });
   };
 
+  /**
+   * 재료 수정 Submit 동작 함수
+   */
   const handleEditSubmitClick = () => {
     let requestExpDate;
     if (storage === "FROZEN") {
@@ -126,7 +144,7 @@ function RefrigeratorAdd() {
     } else {
       requestExpDate = expDate.format("YYYY-MM-DD");
     }
-    AxiosAuth.put(`/fridges/ingredients/${selectedIngredient.id}`, {
+    AxiosAuth.put(`/fridges/ingredients/${selectedEditIngredient?.id}`, {
       putDate: putDate.format("YYYY-MM-DD"),
       expDate: requestExpDate,
       storagePlace: storage,
@@ -142,82 +160,84 @@ function RefrigeratorAdd() {
 
   return (
     <div>
-      {isEditMode === true ? (
-        <Header name={`${selectedIngredient.name} 재료수정`} />
-      ) : (
-        <Header name="냉장고 재료 등록" />
-      )}
-
-      <div id="wrapper_contain_header" className={styles.refrigerator_add}>
+      <Header
+        name={
+          isEditMode === true
+            ? `${selectedEditIngredient?.name} 재료수정`
+            : "냉장고 재료 등록"
+        }
+      />
+      <S.Container id="wrapper_contain_header">
         <div>
           {/* 재료 선택 */}
           {/* 재료수정모드에서는 사용X */}
           {!isEditMode && (
-            <div className={styles.add_title}>
-              <div className={styles.select_ingredient_box}>
+            <S.Section>
+              <S.SelectBox>
                 <h1>
                   <span>어떤 재료</span>를 등록할까요?
                 </h1>
                 {selectedIngredient && (
-                  <div className={styles.select_ingredient}>
+                  <S.SelectedIngredient>
                     {selectedIngredient.name}
-                  </div>
+                  </S.SelectedIngredient>
                 )}
-              </div>
+              </S.SelectBox>
               {/* 클릭하면 열기, 재료 선택하면 닫기 */}
-              <div
-                ref={wrapperRef}
+              <S.SearchWindow
+                ref={datePickerRef}
                 style={{ cursor: "pointer" }}
-                className={styles.search_window}
                 onClick={() => setSearchIsOpen(true)}
               >
                 <SearchBox
                   placeholder="재료 검색하기"
                   isOpen={searchIsOpen}
-                  items={items}
-                  onClick={ingredient => {
+                  ITEMS={ITEMS}
+                  onItemSelect={(ingredient: IngredientType) => {
                     setSelectedIngredient(ingredient);
                   }}
-                  select={[selectedIngredient]}
+                  userSelectList={
+                    selectedIngredient ? [selectedIngredient] : []
+                  }
                 />
-              </div>
-            </div>
+              </S.SearchWindow>
+            </S.Section>
           )}
 
           {/* 보관 방법 */}
-          <div className={styles.add_title}>
+          <S.Section>
             <h1>
               <span>보관 방법</span>을 선택해주세요
             </h1>
-            <div className={styles.buttons}>
-              <button
-                className={storage === "COLD" ? styles.active : ""}
+            <S.ButtonList>
+              <S.Button
+                $active={storage === "COLD"}
                 onClick={() => setStorage("COLD")}
               >
                 냉장
-              </button>
-              <button
-                className={storage === "FROZEN" ? styles.active : ""}
+              </S.Button>
+              <S.Button
+                $active={storage === "FROZEN"}
                 onClick={() => setStorage("FROZEN")}
               >
                 냉동
-              </button>
-              <button
-                className={storage === "OUTSIDE" ? styles.active : ""}
+              </S.Button>
+              <S.Button
+                $active={storage === "OUTSIDE"}
                 onClick={() => setStorage("OUTSIDE")}
               >
                 실온
-              </button>
-            </div>
-          </div>
+              </S.Button>
+            </S.ButtonList>
+          </S.Section>
 
           {/* 등록일 */}
-          <div className={styles.add_title}>
+          <S.Section>
             <h1>
               <span>등록일</span>과 <span>소비기한</span>을 입력해주세요
             </h1>
             <div>
-              <div className={styles.add_date}>
+              <S.AddDate>
                 <p>등록일</p>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <MobileDatePicker
@@ -226,58 +246,43 @@ function RefrigeratorAdd() {
                     disableFuture={true}
                     value={putDate}
                     defaultValue={today}
-                    onChange={newValue => {
-                      setPutDate(newValue);
+                    onChange={(putDate: Dayjs | null) => {
+                      if (putDate) {
+                        setPutDate(putDate);
+                      }
                     }}
                   />
                 </LocalizationProvider>
-              </div>
-              <div className={styles.add_date}>
+              </S.AddDate>
+              <S.AddDate>
                 <p>소비기한</p>
-                {storage != "FROZEN" ? (
+                {storage !== "FROZEN" ? (
                   <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <MobileDatePicker
                       className={styles.datepicker}
                       format="YYYY년 MM월 DD일"
                       value={expDate}
                       defaultValue={today}
-                      onChange={newValue => {
-                        setExpDate(newValue);
+                      onChange={(expDate: Dayjs | null) => {
+                        if (expDate) {
+                          setExpDate(expDate);
+                        }
                       }}
                     />
                   </LocalizationProvider>
                 ) : (
-                  <div className={styles.none}>-</div>
+                  <S.None>-</S.None>
                 )}
-              </div>
+              </S.AddDate>
             </div>
-          </div>
+          </S.Section>
         </div>
 
-        {!isEditMode ? (
-          <input
-            type="submit"
-            value="재료 추가하기"
-            className={`button pink_back`}
-            style={{
-              width: "100%",
-              backgroundColor: "var(--main_text)",
-            }}
-            onClick={handleSubmitClick}
-          ></input>
-        ) : (
-          <input
-            type="submit"
-            value="재료 수정하기"
-            className={`button pink_back`}
-            style={{
-              width: "100%",
-              backgroundColor: "var(--main_text)",
-            }}
-            onClick={handleEditSubmitClick}
-          ></input>
-        )}
-      </div>
+        <S.SubmitButton
+          value={isEditMode ? "재료 수정하기" : "재료 추가하기"}
+          onClick={isEditMode ? handleEditSubmitClick : handleSubmitClick}
+        />
+      </S.Container>
     </div>
   );
 }

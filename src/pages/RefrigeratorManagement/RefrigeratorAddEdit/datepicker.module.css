@@ -1,0 +1,14 @@
+.datepicker {
+  font-size: 13px;
+  text-align: center;
+}
+
+.datepicker > div {
+  padding: 0;
+}
+
+.datepicker fieldset {
+  border-width: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 6px var(--grey60);
+}
