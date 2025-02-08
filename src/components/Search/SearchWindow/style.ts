@@ -19,8 +19,8 @@ export const Input = styled.input`
     color: var(--grey60);
   }
 
-  ::focus {
-    outline: none;
+  :focus {
+    outline: 0;
   }
 `;
 
