@@ -64,16 +64,16 @@ export const InputContainer = styled.div`
   }
 `;
 
-export const Label = styled.label<{ isActive: boolean }>`
+export const Label = styled.label<{ $isActive: boolean }>`
   position: absolute;
-  top: ${({ isActive }) => (isActive ? "-2px" : "13px")};
+  top: ${({ $isActive }) => ($isActive ? "-2px" : "13px")};
   left: 10px;
   margin: 0;
   padding: 0;
   color: var(--grey60);
   pointer-events: none;
   transition: top 0.3s ease, font-size 0.3s ease;
-  font-size: ${({ isActive }) => (isActive ? "0.8em" : "13px")};
+  font-size: ${({ $isActive }) => ($isActive ? "0.8em" : "13px")};
 `;
 
 export const WarningMessage = styled.p`

@@ -157,7 +157,7 @@ const RecipeInfo = () => {
                     <p>재료가 없습니다.</p>
                   )}
                 </div> */}
-                {token && info.insufficientIngredientsCount != 0 && (
+                {token && info.insufficientIngredientsCount !== 0 && (
                   <div>
                     부족한 재료 |
                     {info.insufficientIngredients &&

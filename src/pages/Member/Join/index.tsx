@@ -43,10 +43,10 @@ const Join = () => {
    * 비밀번호 Match Validation
    */
   useEffect(() => {
-    setValid({
-      ...valid,
+    setValid(prevValid => ({
+      ...prevValid,
       passwordNoMatch: user.password !== user.confirmPassword,
-    });
+    }));
   }, [user.password, user.confirmPassword]);
 
   /**
@@ -79,10 +79,10 @@ const Join = () => {
       user.confirmPassword.trim() === "" ||
       user.nickName.trim() === ""
     ) {
-      setValid({ ...valid, validEmpty: true });
+      setValid(prevValid => ({ ...prevValid, validEmpty: true }));
       return;
     } else {
-      setValid({ ...valid, validEmpty: false });
+      setValid(prevValid => ({ ...prevValid, validEmpty: false }));
     }
 
     // 회원가입
@@ -93,7 +93,7 @@ const Join = () => {
     }).then(response => {
       // 회원가입 실패
       if (response.data.error === "이미 존재하는 아이디입니다.") {
-        setValid({ ...valid, idDuplicate: true });
+        setValid(prevValid => ({ ...prevValid, idDuplicate: true }));
         return;
       }
 
@@ -120,7 +120,7 @@ const Join = () => {
           value={user.userName}
           onChange={handleInputChange}
         ></input>
-        <S.Label isActive={!!user.userName}>아이디</S.Label>
+        <S.Label $isActive={!!user.userName}>아이디</S.Label>
       </S.InputContainer>
       {valid.idDuplicate && (
         <S.WarningMessage>이미 존재하는 아이디입니다</S.WarningMessage>
@@ -133,7 +133,7 @@ const Join = () => {
           onChange={handleInputChange}
           type="password"
         ></input>
-        <S.Label isActive={!!user.password}>비밀번호</S.Label>
+        <S.Label $isActive={!!user.password}>비밀번호</S.Label>
       </S.InputContainer>
 
       <S.InputContainer>
@@ -143,7 +143,7 @@ const Join = () => {
           onChange={handleInputChange}
           type="password"
         ></input>
-        <S.Label isActive={!!user.confirmPassword}>비밀번호 확인</S.Label>
+        <S.Label $isActive={!!user.confirmPassword}>비밀번호 확인</S.Label>
       </S.InputContainer>
 
       {valid.passwordNoMatch && (
@@ -156,7 +156,7 @@ const Join = () => {
           value={user.nickName}
           onChange={handleInputChange}
         ></input>
-        <S.Label isActive={!!user.nickName}>닉네임</S.Label>
+        <S.Label $isActive={!!user.nickName}>닉네임</S.Label>
       </S.InputContainer>
 
       {valid.validEmpty && (

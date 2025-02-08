@@ -1,7 +1,7 @@
 import Ingredient from "components/Ingredient";
 import * as S from "./NearExpList.style";
 
-interface Ingredient {
+interface NearExpListProps {
   id: number;
   expDate: string;
   putDate: string;
@@ -14,7 +14,7 @@ interface Ingredient {
   dday: number;
 }
 /** 소비기한 임박 재료 리스트 */
-const NearExpList = ({ nearExpList }: { nearExpList: Ingredient[] }) => {
+const NearExpList = ({ nearExpList }: { nearExpList: NearExpListProps[] }) => {
   return (
     <>
       {nearExpList.length > 0 && (

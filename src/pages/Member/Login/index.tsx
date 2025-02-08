@@ -1,5 +1,5 @@
 import { useState, useEffect, FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AxiosCommon from "../../../utils/AxiosCommon";
 import * as S from "../style";
 import { JoinButton } from "./style";
@@ -55,7 +55,7 @@ const Login = () => {
           value={userName}
           onChange={e => setUsername(e.target.value)}
         ></input>
-        <S.Label isActive={!!userName}>아이디</S.Label>
+        <S.Label $isActive={!!userName}>아이디</S.Label>
       </S.InputContainer>
 
       {userName && (
@@ -66,7 +66,7 @@ const Login = () => {
             value={password}
             onChange={e => setPassword(e.target.value)}
           ></input>
-          <S.Label isActive={!!password}>비밀번호</S.Label>
+          <S.Label $isActive={!!password}>비밀번호</S.Label>
         </S.InputContainer>
       )}
       {validEmpty !== "" ? (
