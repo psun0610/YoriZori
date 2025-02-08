@@ -46,7 +46,7 @@ function IngredientList({
             onClick={() => {
               onItemSelect(ingredient);
             }}
-            isSelect={userSelectList.includes(ingredient)}
+            $isSelect={userSelectList.includes(ingredient)}
           >
             <ImageBox>
               <img src={ingredient.imageUrl} alt={ingredient.name} />
