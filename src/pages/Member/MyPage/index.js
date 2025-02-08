@@ -66,7 +66,7 @@ const Mypage = () => {
               }}
             >
               <p>레시피 북마크</p>
-              <img src="/images/bookmark.png" />
+              <img src="/images/bookmark.png" alt="북마크 버튼 이미지" />
             </div>
           </div>
 
