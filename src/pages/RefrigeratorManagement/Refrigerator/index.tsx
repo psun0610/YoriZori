@@ -166,7 +166,7 @@ const Refrigerator = () => {
           handleSelectIngredient={handleSelectIngredient}
         />
 
-        <S.AddButton to="/refrigerator_add" aria-label="재료 등록">
+        <S.AddButton to="/refrigerator/submit" aria-label="재료 등록">
           <AddButtonSvg />
           <p>재료등록</p>
         </S.AddButton>
