@@ -57,7 +57,7 @@ const Avoidance = () => {
   const handleSubmit = () => {
     let selectArray = userSelectList.map(s => s.id);
     AxiosAuth.post(`/users/avoid-ingredients`, selectArray).then(() => {
-      navigate("/join_complete");
+      navigate("/join/complete");
     });
   };
 
@@ -88,7 +88,7 @@ const Avoidance = () => {
       />
       <S.Notice>
         {userSelectList.length === 0 ? (
-          <Link to="/join_complete">
+          <Link to="/join/complete">
             <S.Button as="button">없어요 !</S.Button>
           </Link>
         ) : (
