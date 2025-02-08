@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router";
 import SearchBox from "components/Search/SearchBox";
 import Header from "layout/Header";
-/** 달력 */
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
@@ -10,6 +9,7 @@ import dayjs, { Dayjs } from "dayjs";
 import AxiosAuth from "../../../utils/AxiosAuth";
 import * as S from "./style";
 import { IngredientType } from "types/IngredientType";
+import { IngredientDetailType } from "../Refrigerator/IngredientDetailType";
 import styles from "./datepicker.module.css";
 
 const ITEMS = [
@@ -27,7 +27,7 @@ const ITEMS = [
   "기타",
 ];
 
-function RefrigeratorAdd() {
+const RefrigeratorAddEdit = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userId = localStorage.getItem("id");
@@ -36,19 +36,20 @@ function RefrigeratorAdd() {
   // EditMode일 경우
   // isEditMode가 true, selectedIngredient가 location을 통해 넘어옴
   const isEditMode = location.state?.isEditMode;
-  const selectedEditIngredient = location.state?.selectedIngredient || null;
+  const selectedIngredient: IngredientDetailType =
+    location.state?.selectedIngredient || null;
 
-  const [selectedIngredient, setSelectedIngredient] =
+  const [selectedAddIngredient, setSelectedAddIngredient] =
     useState<IngredientType | null>(null);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [storage, setStorage] = useState(
-    location.state?.selectedEditIngredient.storagePlace || "COLD",
+    location.state?.selectedIngredient.storagePlace || "COLD",
   );
   const [putDate, setPutDate] = useState(
-    dayjs(location.state?.selectedEditIngredient.putDate) || today,
+    dayjs(location.state?.selectedIngredient.putDate) || today,
   );
   const [expDate, setExpDate] = useState(
-    dayjs(location.state?.selectedEditIngredient.expDate) || today,
+    dayjs(location.state?.selectedIngredient.expDate) || today,
   );
 
   // 로그인 유저 확인
@@ -64,26 +65,20 @@ function RefrigeratorAdd() {
     } else {
       navigate("/home");
     }
-  }, [navigate]);
+  }, []);
 
   /**
-   * 재료를 선택하는 동시에 기본 소비기한 자동으로 등록
+   * 재료를 선택하면 재료와 재료의 기본 유통기한을 설정한다.
+   * @param ingredient 선택한 재료
    */
-  useEffect(() => {
-    if (putDate && selectedIngredient && selectedIngredient.defaultExpDate) {
-      // dayjs로 변환된 날짜에 기본 소비기한을 더하여 expDate를 설정
-      console.log(expDate.format("YYYY년 MM월 DD일"));
-      setExpDate(putDate.add(selectedIngredient.defaultExpDate, "day"));
-      console.log(expDate.format("YYYY년 MM월 DD일"));
-
-      console.log("====");
-    }
-  }, [selectedIngredient, putDate, expDate]);
+  const handleItemSelect = (ingredient: IngredientType) => {
+    setSelectedAddIngredient(ingredient);
+    setExpDate(putDate.add(ingredient.defaultExpDate, "day"));
+  };
 
   const datePickerRef = useRef<HTMLDivElement | null>(null);
-
   /**
-   * datepicker 달력이 아닌 곳을 클릭했을 때 닫는 함수수
+   * datepicker 달력이 아닌 곳을 클릭했을 때 닫는 함수
    * @param event 클릭 이벤트 객체
    */
   const handleClickOutside = (event: MouseEvent) => {
@@ -108,7 +103,7 @@ function RefrigeratorAdd() {
    * @returns 재료를 선택하지 않았을 때 처리하지 않음
    */
   const handleSubmitClick = () => {
-    if (selectedIngredient === null) {
+    if (selectedAddIngredient === null) {
       alert("재료를 선택해주세요");
       return;
     }
@@ -120,7 +115,7 @@ function RefrigeratorAdd() {
     }
     AxiosAuth.post(`/fridges/ingredients`, {
       fridgeId: userId,
-      ingredientId: selectedIngredient.id,
+      ingredientId: selectedAddIngredient.id,
       putDate: putDate.format("YYYY-MM-DD"),
       expDate: requestExpDate,
       storagePlace: storage,
@@ -144,7 +139,7 @@ function RefrigeratorAdd() {
     } else {
       requestExpDate = expDate.format("YYYY-MM-DD");
     }
-    AxiosAuth.put(`/fridges/ingredients/${selectedEditIngredient?.id}`, {
+    AxiosAuth.put(`/fridges/ingredients/${selectedIngredient?.id}`, {
       putDate: putDate.format("YYYY-MM-DD"),
       expDate: requestExpDate,
       storagePlace: storage,
@@ -163,7 +158,7 @@ function RefrigeratorAdd() {
       <Header
         name={
           isEditMode === true
-            ? `${selectedEditIngredient?.name} 재료수정`
+            ? `${selectedIngredient?.name} 재료수정`
             : "냉장고 재료 등록"
         }
       />
@@ -177,9 +172,9 @@ function RefrigeratorAdd() {
                 <h1>
                   <span>어떤 재료</span>를 등록할까요?
                 </h1>
-                {selectedIngredient && (
+                {selectedAddIngredient && (
                   <S.SelectedIngredient>
-                    {selectedIngredient.name}
+                    {selectedAddIngredient.name}
                   </S.SelectedIngredient>
                 )}
               </S.SelectBox>
@@ -193,11 +188,9 @@ function RefrigeratorAdd() {
                   placeholder="재료 검색하기"
                   isOpen={searchIsOpen}
                   ITEMS={ITEMS}
-                  onItemSelect={(ingredient: IngredientType) => {
-                    setSelectedIngredient(ingredient);
-                  }}
+                  onItemSelect={handleItemSelect}
                   userSelectList={
-                    selectedIngredient ? [selectedIngredient] : []
+                    selectedAddIngredient ? [selectedAddIngredient] : []
                   }
                 />
               </S.SearchWindow>
@@ -285,6 +278,6 @@ function RefrigeratorAdd() {
       </S.Container>
     </div>
   );
-}
+};
 
-export default RefrigeratorAdd;
+export default RefrigeratorAddEdit;
