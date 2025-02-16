@@ -1,34 +1,8 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
-import routes from "./routes.js";
-import Navigation from "./layout/Navigation";
-import Header from "./layout/Header";
+import { RouterProvider } from "react-router-dom";
+import RouterObject from "routes/RouterObject";
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Main />
-    </BrowserRouter>
-  );
+  return <RouterProvider router={RouterObject} />;
 };
 
 export default App;
-
-const Main = () => {
-  const location = useLocation();
-  const shouldShowNav = routes.find(
-    route => route.path === location.pathname,
-  )?.showNav;
-  const name = routes.find(route => route.path === location.pathname)?.name;
-
-  return (
-    <>
-      {name && <Header name={name} />}
-      <Routes>
-        {routes.map(({ path, component: Component }) => (
-          <Route key={path} path={path} element={<Component />} />
-        ))}
-      </Routes>
-      {shouldShowNav && <Navigation />}
-    </>
-  );
-};
