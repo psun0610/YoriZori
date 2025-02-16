@@ -21,6 +21,7 @@ function SearchWindow({ placeholder, onSearch }: SearchWindowProps) {
         placeholder={placeholder}
         onChange={handleSearchChange}
         value={searchText}
+        name="search"
       ></S.Input>
       <S.Expansion>
         <svg
