@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import AxiosAuth from "utils/AxiosAuth";
+import axiosAuth from "utils/axiosAuth";
 import * as S from "./style";
 import { ImageBox } from "styles/Ingredient.style";
 import { IngredientType } from "types/IngredientType";
@@ -23,7 +23,7 @@ function IngredientList({
   >([]);
 
   useEffect(() => {
-    AxiosAuth.get("/ingredients").then(response => {
+    axiosAuth.get("/ingredients").then(response => {
       setIngredients(response.data);
     });
   }, []);
@@ -40,9 +40,9 @@ function IngredientList({
   return (
     <S.Container>
       <S.IngredientList>
-        {filteredIngredients.map((ingredient, index) => (
+        {filteredIngredients.map(ingredient => (
           <S.NewIngredientButton
-            key={index}
+            key={ingredient.id}
             onClick={() => {
               onItemSelect(ingredient);
             }}

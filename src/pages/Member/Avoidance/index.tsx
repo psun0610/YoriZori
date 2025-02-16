@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SearchBox from "components/Search/SearchBox";
-import AxiosAuth from "utils/AxiosAuth";
+import axiosAuth from "utils/axiosAuth";
 import * as S from "./style";
 import { IngredientType } from "types/IngredientType";
 
@@ -24,21 +24,6 @@ const Avoidance = () => {
   const navigate = useNavigate();
   const [userSelectList, setUserSelectList] = useState<IngredientType[]>([]);
 
-  // 로그인 유저 확인
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      AxiosAuth.post("/auth/validate", {
-        token: token,
-      }).catch(error => {
-        console.log(error);
-        navigate("/home");
-      });
-    } else {
-      navigate("/home");
-    }
-  }, [navigate]);
-
   /**
    * 재료를 선택하거나 취소하는 함수
    * @param select 선택한 재료
@@ -56,7 +41,7 @@ const Avoidance = () => {
    */
   const handleSubmit = () => {
     let selectArray = userSelectList.map(s => s.id);
-    AxiosAuth.post(`/users/avoid-ingredients`, selectArray).then(() => {
+    axiosAuth.post(`/users/avoid-ingredients`, selectArray).then(() => {
       navigate("/join/complete");
     });
   };

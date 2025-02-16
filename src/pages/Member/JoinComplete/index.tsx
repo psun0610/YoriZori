@@ -1,28 +1,10 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import AxiosAuth from "../../../utils/AxiosAuth";
+import axiosAuth from "../../../utils/axiosAuth";
 import * as S from "./style";
 import { PinkButton } from "styles/Button.style";
 import { Wrapper } from "../style";
 
 function JoinComplete() {
-  // 로그인 유저 확인
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      AxiosAuth.post("/auth/validate", {
-        token: token,
-      }).catch(error => {
-        console.log(error);
-        navigate("/home");
-      });
-    } else {
-      navigate("/home");
-    }
-  }, []);
-
   return (
     <Wrapper>
       <S.Title>

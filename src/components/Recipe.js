@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 // import styles from "../styles/Main.module.css";
 import AxiosCommon from "../utils/AxiosCommon";
-import AxiosAuth from "../utils/AxiosAuth";
+import axiosAuth from "../utils/axiosAuth";
 
 function Recipe(props) {
   const [bookmarkCheck, setBookmarkCheck] = useState({});
@@ -19,7 +19,7 @@ function Recipe(props) {
     try {
       let response;
       if (token) {
-        response = await AxiosAuth.get("/recipes/user-filtered");
+        response = await axiosAuth.get("/recipes/user-filtered");
       } else {
         response = await AxiosCommon.get("/recipes/all");
       }
@@ -31,7 +31,7 @@ function Recipe(props) {
 
   const fetchBookmarkCheck = async recipeId => {
     try {
-      const response = await AxiosAuth.get(`/users/check-bookmark`, {
+      const response = await axiosAuth.get(`/users/check-bookmark`, {
         params: { recipeId },
       });
       setBookmarkCheck(prevState => ({

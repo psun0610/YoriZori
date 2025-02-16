@@ -1,25 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router";
 import styles from "../styles/Refrigerator.module.css";
-import AxiosAuth from "../../utils/AxiosAuth";
+import axiosAuth from "../../utils/axiosAuth";
 import SearchBox from "../../components/SearchBox";
 
 const ShoppingBasketAdd = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      AxiosAuth.post("/auth/validate", {
-        token: token,
-      }).catch(error => {
-        console.log(error);
-        navigate("/home");
-      });
-    } else {
-      navigate("/home");
-    }
-  }, []);
-
   const [selectIngredient, setSelectIngredient] = useState([]);
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const wrapperRef = useRef(null);
@@ -55,7 +39,7 @@ const ShoppingBasketAdd = () => {
     try {
       const ingredientId = selectIngredient[0].id;
       console.log(ingredientId);
-      const response = await AxiosAuth.post("/users/cart", [ingredientId]);
+      const response = await axiosAuth.post("/users/cart", [ingredientId]);
       console.log("Added to cart:", response.data);
 
       navigate("/shoppingbasket");

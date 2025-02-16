@@ -6,7 +6,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import dayjs, { Dayjs } from "dayjs";
-import AxiosAuth from "../../../utils/AxiosAuth";
+import AxiosAuth from "../../../utils/axiosAuth";
 import * as S from "./style";
 import { IngredientType } from "types/IngredientType";
 import { IngredientDetailType } from "../Refrigerator/IngredientDetailType";
@@ -51,21 +51,6 @@ const RefrigeratorAddEdit = () => {
   const [expDate, setExpDate] = useState(
     dayjs(location.state?.selectedIngredient.expDate) || today,
   );
-
-  // 로그인 유저 확인
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      AxiosAuth.post("/auth/validate", {
-        token: token,
-      }).catch(error => {
-        console.log(error);
-        navigate("/home");
-      });
-    } else {
-      navigate("/home");
-    }
-  }, []);
 
   /**
    * 재료를 선택하면 재료와 재료의 기본 유통기한을 설정한다.
