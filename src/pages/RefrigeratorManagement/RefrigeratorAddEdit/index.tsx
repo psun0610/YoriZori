@@ -58,18 +58,21 @@ const RefrigeratorAddEdit = () => {
    */
   const handleItemSelect = (ingredient: IngredientType) => {
     setSelectedAddIngredient(ingredient);
-    setExpDate(putDate.add(ingredient.defaultExpDate, "day"));
+    setExpDate(prevPutDate =>
+      prevPutDate.add(ingredient.defaultExpDate, "day"),
+    );
+    setSearchIsOpen(false);
   };
 
-  const datePickerRef = useRef<HTMLDivElement | null>(null);
+  const searchBoxRef = useRef<HTMLDivElement | null>(null);
   /**
-   * datepicker 달력이 아닌 곳을 클릭했을 때 닫는 함수
+   * 재료창이 아닌 곳을 클릭했을 때 창을 닫는 함수
    * @param event 클릭 이벤트 객체
    */
   const handleClickOutside = (event: MouseEvent) => {
     if (
-      datePickerRef.current &&
-      !datePickerRef.current.contains(event.target as Node)
+      searchBoxRef.current &&
+      !searchBoxRef.current.contains(event.target as Node)
     ) {
       setSearchIsOpen(false);
     }
@@ -80,7 +83,7 @@ const RefrigeratorAddEdit = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [datePickerRef]);
+  }, []);
 
   /**
    * 재료 추가 Submit 동작 함수
@@ -165,7 +168,7 @@ const RefrigeratorAddEdit = () => {
               </S.SelectBox>
               {/* 클릭하면 열기, 재료 선택하면 닫기 */}
               <S.SearchWindow
-                ref={datePickerRef}
+                ref={searchBoxRef}
                 style={{ cursor: "pointer" }}
                 onClick={() => setSearchIsOpen(true)}
               >
