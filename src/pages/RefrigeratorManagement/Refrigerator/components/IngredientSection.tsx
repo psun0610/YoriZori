@@ -1,4 +1,4 @@
-import Ingredient from "components/Ingredient";
+import MemorizedIngredient from "components/Ingredient";
 import * as S from "./IngredientSection.style";
 import { IngredientDetailType } from "../IngredientDetailType";
 
@@ -22,7 +22,7 @@ const IngredientSection = ({
       <S.IngredientContainer>
         {ingredientList.map((ingredient, index) => (
           <div key={index} onClick={() => handleSelectIngredient(ingredient)}>
-            <Ingredient
+            <MemorizedIngredient
               name={ingredient.name}
               dday={ingredient.dday}
               src={ingredient.imageUrl}

@@ -1,4 +1,4 @@
-import Ingredient from "components/Ingredient";
+import MemorizedIngredient from "components/Ingredient";
 import * as S from "./NearExpList.style";
 
 interface NearExpListProps {
@@ -25,7 +25,7 @@ const NearExpList = ({ nearExpList }: { nearExpList: NearExpListProps[] }) => {
           <S.IngredientContainer>
             {nearExpList.map((ingredient, index) => (
               <div key={index}>
-                <Ingredient
+                <MemorizedIngredient
                   name={ingredient.name}
                   dday={ingredient.dday}
                   src={ingredient.imageUrl}
