@@ -9,8 +9,8 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Category = styled.div<{ isOpen: boolean }>`
+export const Category = styled.div<{ $isOpen: boolean }>`
   transition: max-height 0.6s ease-in-out;
-  max-height: ${isOpen => (isOpen ? "1000px" : 0)};
+  max-height: ${({ $isOpen }) => ($isOpen ? "1000px" : 0)};
   overflow: hidden;
 `;

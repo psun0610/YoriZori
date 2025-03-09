@@ -4,8 +4,10 @@ import AxiosCommon from "../../../utils/AxiosCommon";
 import * as S from "../style";
 import { JoinButton } from "./style";
 import { PinkButton } from "styles/Button.style";
+import { useAuthStore } from "stores/useAuthStore";
 
 const Login = () => {
+  const useAuth = useAuthStore();
   const navigate = useNavigate();
   const [userName, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,10 +35,10 @@ const Login = () => {
         setValidMatch("아이디와 비밀번호를 다시 확인해주세요");
         return;
       }
-      localStorage.clear();
-      localStorage.setItem("accessToken", response.data.token);
-      localStorage.setItem("refreshToken", response.data.refreshToken);
-      localStorage.setItem("nickname", response.data.nickname);
+      const accessToken = response.data.token;
+      const refreshToken = response.data.refreshToken;
+      const nickname = response.data.nickname;
+      useAuth.login(accessToken, refreshToken, nickname);
       navigate("/");
     });
   };

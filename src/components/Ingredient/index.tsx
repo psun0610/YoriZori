@@ -1,5 +1,6 @@
 import { IngredientButton, ImageBox } from "styles/Ingredient.style";
 import * as S from "./style";
+import { memo } from "react";
 
 interface IngredientProps {
   src: string;
@@ -8,7 +9,7 @@ interface IngredientProps {
   dday: number;
 }
 // 냉장고 관리에 사용되는 재료 컴포넌트 (소비기한 디데이 포함)
-function Ingredient({ src, name, isFrozen, dday }: IngredientProps) {
+const Ingredient = ({ src, name, isFrozen, dday }: IngredientProps) => {
   let backColor: string;
 
   if (isFrozen) {
@@ -24,7 +25,7 @@ function Ingredient({ src, name, isFrozen, dday }: IngredientProps) {
   return (
     <IngredientButton>
       <ImageBox>
-        <img src={src} />
+        <img src={src} alt={name} />
       </ImageBox>
       <p>{name}</p>
       <S.DdayBadge $backColor={backColor}>
@@ -50,6 +51,7 @@ function Ingredient({ src, name, isFrozen, dday }: IngredientProps) {
       </S.DdayBadge>
     </IngredientButton>
   );
-}
+};
 
-export default Ingredient;
+const MemorizedIngredient = memo(Ingredient);
+export default MemorizedIngredient;

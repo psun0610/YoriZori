@@ -48,7 +48,7 @@ const EditDelteButton = forwardRef<HTMLDivElement, EditDelteButtonProps>(
           <S.OptionsBox>
             <button
               onClick={() => {
-                navigate("/refrigerator_add", {
+                navigate("/refrigerator/submit", {
                   state: {
                     isEditMode: true,
                     selectedIngredient: selectedIngredient,

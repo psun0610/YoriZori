@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import AxiosAuth from "utils/AxiosAuth";
+import axiosAuth from "utils/axiosAuth";
 import AxiosCommon from "utils/AxiosCommon";
 import * as S from "./style";
 import NearExpList from "./components/NearExpList";
 import RecommendRecipeList from "./components/RecommendRecipeList";
 import Buttons from "./components/Buttons";
+import { useAuthStore } from "stores/useAuthStore";
 
 interface Ingredient {
   id: number;
@@ -50,13 +51,14 @@ const Main = () => {
   const [RecipeList, setRecipeList] = useState<
     (UserRecommendRecipe | GuestRecommendRecipe)[]
   >([]);
-  const [isLogin, setIsLogin] = useState<boolean>(false);
+
+  const { isLogin } = useAuthStore.getState();
 
   /**
    * 소비기한 3일 이하 재료 리스트 받아오는 함수
    */
   const GetNearExpList = async () => {
-    const response = await AxiosAuth.get<Ingredient[]>(`/fridges/ingredients`);
+    const response = await axiosAuth.get<Ingredient[]>(`/fridges/ingredients`);
     const nearExpList = response.data.filter(
       ingredient => ingredient.dday <= 3,
     );
@@ -67,7 +69,7 @@ const Main = () => {
    * 로그인한 유저에게 보여주는 추천 레시피
    */
   const GetRecommendRecipe = async () => {
-    const response = await AxiosAuth.get<UserRecommendRecipe[]>(
+    const response = await axiosAuth.get<UserRecommendRecipe[]>(
       `/recipes/recommendations`,
     );
     setRecipeList(response.data);
@@ -82,14 +84,6 @@ const Main = () => {
     );
     setRecipeList(response.data);
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-  }, []);
 
   useEffect(() => {
     const GetUserData = async () => {

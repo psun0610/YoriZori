@@ -9,61 +9,79 @@ import Basket from "pages/BasketManagement/Basket";
 import MemberEdit from "pages/Member/MemberEdit";
 import Avoidance from "pages/Member/Avoidance";
 import JoinComplete from "pages/Member/JoinComplete";
-import RefrigeratorAdd from "pages/RefrigeratorManagement/RefrigeratorAdd";
+import RefrigeratorAddEdit from "pages/RefrigeratorManagement/RefrigeratorAddEdit";
 import RecipeInfo from "pages/Recipe/RecipeInfo";
 import BasketAdd from "pages/BasketManagement/BasketAdd";
 import RecipeBookmark from "pages/Recipe/RecipeBookmark";
 
-const routes = [
-  { path: "/", component: Main, showNav: true },
-  { path: "/join", component: Join },
-  { path: "/login", component: Login },
-  { path: "/loginRequired", component: LoginRequired },
+export interface RouterInfoType {
+  path: string;
+  element: React.ComponentType;
+  name?: string;
+  showNav?: boolean;
+  isProtected?: boolean;
+}
+
+const routerInfo: RouterInfoType[] = [
+  { path: "/", element: Main, showNav: true },
+  { path: "/join", element: Join },
+  { path: "/login", element: Login },
+  { path: "/loginRequired", element: LoginRequired },
   {
     path: "/mypage",
-    component: Mypage,
+    element: Mypage,
     showNav: true,
     name: "냉장고 재료 등록",
+    isProtected: true,
   },
   {
     path: "/recipeinfo/:id",
-    component: RecipeInfo,
+    element: RecipeInfo,
     showNav: true,
     name: "레시피",
   },
   {
     path: "/recipelist",
-    component: RecipeList,
+    element: RecipeList,
     showNav: true,
     name: "레시피",
   },
-  { path: "/refrigerator", component: Refrigerator, showNav: true },
+  {
+    path: "/refrigerator",
+    element: Refrigerator,
+    showNav: true,
+    isProtected: true,
+  },
   {
     path: "/basket",
-    component: Basket,
+    element: Basket,
     showNav: true,
     name: "장바구니",
+    isProtected: true,
   },
   {
     path: "/basket/add",
-    component: BasketAdd,
+    element: BasketAdd,
     showNav: true,
     name: "장바구니 재료 등록",
+    isProtected: true,
   },
-  { path: "/member/edit", component: MemberEdit },
-  { path: "/avoidance", component: Avoidance },
-  { path: "/join/complete", component: JoinComplete },
+  { path: "/member/edit", element: MemberEdit, isProtected: true },
+  { path: "/avoidance", element: Avoidance, isProtected: true },
+  { path: "/join/complete", element: JoinComplete, isProtected: true },
   {
-    path: "/refrigerator/add",
-    component: RefrigeratorAdd,
+    path: "/refrigerator/submit",
+    element: RefrigeratorAddEdit,
     showNav: false,
+    isProtected: true,
   },
   {
     path: "/recipebookmark",
-    component: RecipeBookmark,
+    element: RecipeBookmark,
     showNav: true,
     name: "레시피 북마크",
+    isProtected: true,
   },
 ];
 
-export default routes;
+export default routerInfo;

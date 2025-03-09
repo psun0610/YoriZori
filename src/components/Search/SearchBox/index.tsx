@@ -42,7 +42,7 @@ function SearchBox({
   return (
     <S.Container>
       <SearchWindow placeholder={placeholder} onSearch={handleSearch} />
-      <S.Category isOpen={isOpen}>
+      <S.Category $isOpen={isOpen}>
         <Category ITEMS={ITEMS} onClick={handleSelectCategory} />
         <IngredientList
           searchText={searchText}

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AxiosCommon from "utils/AxiosCommon";
 import * as S from "../style";
 import { PinkButton } from "styles/Button.style";
+import { useAuthStore } from "stores/useAuthStore";
 
 interface UserState {
   userName: string;
@@ -18,6 +19,7 @@ interface ValidState {
 }
 
 const Join = () => {
+  const { login } = useAuthStore();
   const navigate = useNavigate();
   const [user, setUser] = useState<UserState>({
     userName: "",
@@ -102,10 +104,11 @@ const Join = () => {
         name: user.userName,
         password: user.password,
       }).then(loginResponse => {
-        localStorage.clear();
-        localStorage.setItem("accessToken", loginResponse.data.token);
-        localStorage.setItem("refreshToken", loginResponse.data.refreshToken);
-        localStorage.setItem("nickname", loginResponse.data.nickname);
+        login(
+          loginResponse.data.token,
+          loginResponse.data.refreshToken,
+          loginResponse.data.nickname,
+        );
         navigate("/avoidance");
       });
     });

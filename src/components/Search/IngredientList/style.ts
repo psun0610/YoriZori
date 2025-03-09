@@ -16,7 +16,7 @@ export const IngredientList = styled.div`
 `;
 
 export const NewIngredientButton = styled(IngredientButton)<{
-  isSelect: boolean;
+  $isSelect: boolean;
 }>`
-  background-color: ${isSelect => isSelect && "rgba(0, 0, 0, 0.082"};
+  background-color: ${({ $isSelect }) => $isSelect && "rgba(0, 0, 0, 0.082"};
 `;

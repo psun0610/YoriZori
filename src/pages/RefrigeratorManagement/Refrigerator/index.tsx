@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import Category from "../../../components/Category";
-import AxiosAuth from "../../../utils/AxiosAuth";
+import Category from "components/Category";
+import axiosAuth from "utils/axiosAuth";
 import * as S from "./style";
 import EditDeleteButton from "./components/EditDeleteButton";
 import { IngredientDetailType } from "./IngredientDetailType";
@@ -29,7 +28,6 @@ interface IngredientList {
 }
 
 const Refrigerator = () => {
-  const navigate = useNavigate();
   const [ingredientList, setIngredientList] = useState<IngredientList>({
     COLD: [],
     FROZEN: [],
@@ -40,38 +38,36 @@ const Refrigerator = () => {
     useState<IngredientDetailType | null>(null);
   const editDeleteBtnRef = useRef<HTMLDivElement | null>(null); // EditDeleteButton을 감지함
 
-  // 로그인이 안돼있으면 로그인 화면으로 이동, 돼있으면 재료 get => 나중에 상태관리 라이브러리 사용해서 리팩토링하기
+  // 로그인이 안돼있으면 로그인 화면으로 이동, 돼있으면 재료 GET
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      AxiosAuth.post("/auth/validate", {
-        token: localStorage.getItem("accessToken"),
-      }).catch(error => {
-        console.log(error);
-        navigate("/loginRequired");
-        return;
-      });
-    } else {
-      navigate("/loginRequired");
-      return;
-    }
-    AxiosAuth.get(`/fridges/ingredients`).then(response => {
-      const groupedData: IngredientList = { COLD: [], FROZEN: [], OUTSIDE: [] };
+    const checkLoginAndFetchIngredients = async () => {
+      try {
+        const response = await axiosAuth.get(`/fridges/ingredients`);
+        const groupedData: IngredientList = {
+          COLD: [],
+          FROZEN: [],
+          OUTSIDE: [],
+        };
 
-      response.data.forEach((ingredient: IngredientDetailType) => {
-        groupedData[ingredient.storagePlace].push(ingredient);
-      });
+        response.data.forEach((ingredient: IngredientDetailType) => {
+          groupedData[ingredient.storagePlace].push(ingredient);
+        });
 
-      setIngredientList(groupedData);
-    });
+        setIngredientList(groupedData);
+      } catch (error) {
+        console.error("Failed to fetch ingredients:", error);
+      }
+    };
+
+    checkLoginAndFetchIngredients();
   }, []);
 
   /**
    * useEffect를 사용하고 그 안에 setState를 호출하던 로직을
    * useMemo를 사용하여 성능 개선함
    */
-  const filteredIngredientList = useMemo(
-    () => ({
+  const filteredIngredientList = useMemo(() => {
+    return {
       COLD: ingredientList.COLD.filter(
         ingredient =>
           selectedCategory === 0 || ingredient.categoryId === selectedCategory,
@@ -84,9 +80,8 @@ const Refrigerator = () => {
         ingredient =>
           selectedCategory === 0 || ingredient.categoryId === selectedCategory,
       ),
-    }),
-    [ingredientList, selectedCategory],
-  );
+    };
+  }, [ingredientList, selectedCategory]);
 
   /**
    * 사용자가 클릭해서 선택한 재료를 삭제하는 함수
@@ -94,7 +89,7 @@ const Refrigerator = () => {
    * @param ingredient 클릭한 재료 객체
    */
   const handleDelete = (ingredient: IngredientDetailType) => {
-    AxiosAuth.delete(`/fridges/ingredients/${ingredient.id}`).then(() => {
+    axiosAuth.delete(`/fridges/ingredients/${ingredient.id}`).then(() => {
       setIngredientList(prev => {
         const updatedData = {
           ...prev,

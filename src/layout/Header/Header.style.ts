@@ -5,7 +5,7 @@ export const NavHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 50px;
-  padding: "0 20px";
+  padding: 0 20px;
   box-shadow: 0 0 8px var(--grey40);
   position: "sticky";
   top: "0";
@@ -20,4 +20,6 @@ export const NavHeader = styled.header`
 
 export const GoBackButton = styled.button`
   cursor: pointer;
+  background-color: transparent;
+  border: none;
 `;
